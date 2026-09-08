@@ -27,7 +27,7 @@ type Room = {
   code: string
   hostId: string
   players: Player[]
-  state: "lobby" | "round" | "voting" | "reveal" | "podium"
+  state: "lobby" | "prompt" | "assigned" | "round" | "voting" | "reveal" | "podium"
   createdAt: number
   lastActivity: number
 }
@@ -38,10 +38,23 @@ type RoomClient = {
   code: string
 }
 
+type PromptPhase = {
+  submissions: Map<string, string>
+  assignments: Map<string, string>
+  startedAt: number
+  endsAt: number
+  timeout: NodeJS.Timeout | null
+  tick: NodeJS.Timeout | null
+}
+
+const PROMPT_DURATION_MS = 60 * 1000
+const PROMPT_MAX_LEN = 80
+
 const rooms = new Map<string, Room>()
 const roomSockets = new Map<string, Set<RoomClient>>()
 const rateLimitByIp = new Map<string, number[]>()
 const countdowns = new Map<string, NodeJS.Timeout[]>()
+const promptPhases = new Map<string, PromptPhase>()
 
 const PlayerInputSchema = z.object({
   name: z.string().trim().min(1).max(20),
@@ -132,6 +145,160 @@ function clearCountdown(code: string) {
   if (!timers) return
   for (const t of timers) clearTimeout(t)
   countdowns.delete(code)
+}
+
+function clearPrompt(code: string) {
+  const phase = promptPhases.get(code)
+  if (!phase) return
+  if (phase.timeout) clearTimeout(phase.timeout)
+  if (phase.tick) clearInterval(phase.tick)
+  promptPhases.delete(code)
+}
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const next = [...arr]
+  for (let i = next.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const tmp = next[i]!
+    next[i] = next[j]!
+    next[j] = tmp
+  }
+  return next
+}
+
+function buildDerangedAssignments(submissions: Map<string, string>, playerIds: string[]): Map<string, string> {
+  const submittedIds = [...submissions.keys()]
+  const submittedEntries = [...submissions.entries()]
+  if (submittedEntries.length === 0) {
+    const empty = new Map<string, string>()
+    for (const pid of playerIds) empty.set(pid, "")
+    return empty
+  }
+  if (submittedEntries.length === 1) {
+    const soleText = submittedEntries[0]![1]
+    const soleId = submittedEntries[0]![0]
+    const out = new Map<string, string>()
+    for (const pid of playerIds) {
+      if (pid === soleId) out.set(pid, "")
+      else out.set(pid, soleText)
+    }
+    return out
+  }
+  const ids = submittedIds
+  const texts = submittedEntries.map(([, t]) => t)
+  let shuffled: string[] = []
+  let attempts = 0
+  while (attempts < 80) {
+    shuffled = shuffleArray(texts)
+    let valid = true
+    for (let i = 0; i < ids.length; i++) {
+      const ownerId = ids[i]!
+      const assigned = shuffled[i]!
+      if (submissions.get(ownerId) === assigned) {
+        valid = false
+        break
+      }
+    }
+    if (valid) break
+    attempts++
+  }
+  if (attempts >= 80) {
+    shuffled = [...texts]
+    const last = shuffled[shuffled.length - 1]!
+    shuffled.pop()
+    shuffled.unshift(last)
+  }
+  const idToAssigned = new Map<string, string>()
+  for (let i = 0; i < ids.length; i++) {
+    idToAssigned.set(ids[i]!, shuffled[i]!)
+  }
+  const result = new Map<string, string>()
+  for (const pid of playerIds) {
+    if (idToAssigned.has(pid)) {
+      result.set(pid, idToAssigned.get(pid)!)
+    } else {
+      const pool = submittedEntries.filter(([id]) => id !== pid).map(([, t]) => t)
+      const source = pool.length ? pool : texts
+      const pick = source[Math.floor(Math.random() * source.length)]!
+      result.set(pid, pick)
+    }
+  }
+  return result
+}
+
+function broadcastPromptProgress(code: string) {
+  const room = rooms.get(code)
+  const phase = promptPhases.get(code)
+  if (!room || !phase) return
+  const x = phase.submissions.size
+  const y = room.players.length
+  broadcastToRoom(code, { t: "game:prompt:progress", x, y })
+}
+
+function endPromptPhase(code: string) {
+  const room = rooms.get(code)
+  const phase = promptPhases.get(code)
+  if (!room || !phase) return
+  if (phase.tick) clearInterval(phase.tick)
+  if (phase.timeout) clearTimeout(phase.timeout)
+  phase.tick = null
+  phase.timeout = null
+  const playerIds = room.players.map((p) => p.id)
+  const assignments = buildDerangedAssignments(phase.submissions, playerIds)
+  phase.assignments = assignments
+  room.state = "assigned"
+  touchRoom(room)
+  broadcastRoomUpdate(code)
+  const clients = roomSockets.get(code)
+  if (clients) {
+    for (const c of clients) {
+      if (c.ws.readyState === WebSocket.OPEN) {
+        const assignedText = assignments.get(c.playerId) ?? ""
+        try {
+          c.ws.send(JSON.stringify({ t: "game:prompt:result", assignedText }))
+        } catch {}
+      }
+    }
+  }
+  broadcastToRoom(code, { t: "game:prompt:done", msLeft: 0 })
+}
+
+function startPromptPhase(code: string) {
+  const room = rooms.get(code)
+  if (!room) return
+  if (promptPhases.has(code)) return
+  room.state = "prompt"
+  touchRoom(room)
+  broadcastRoomUpdate(code)
+  const now = Date.now()
+  const phase: PromptPhase = {
+    submissions: new Map(),
+    assignments: new Map(),
+    startedAt: now,
+    endsAt: now + PROMPT_DURATION_MS,
+    timeout: null,
+    tick: null,
+  }
+  promptPhases.set(code, phase)
+  broadcastToRoom(code, { t: "game:prompt:start", durationMs: PROMPT_DURATION_MS, total: room.players.length, msLeft: PROMPT_DURATION_MS })
+  broadcastPromptProgress(code)
+  phase.tick = setInterval(() => {
+    const p = promptPhases.get(code)
+    const r = rooms.get(code)
+    if (!p || !r) {
+      if (p?.tick) clearInterval(p.tick)
+      return
+    }
+    const msLeft = Math.max(0, p.endsAt - Date.now())
+    broadcastToRoom(code, { t: "game:prompt:tick", msLeft, x: p.submissions.size, y: r.players.length })
+    if (msLeft <= 0) {
+      if (p.tick) clearInterval(p.tick)
+      p.tick = null
+    }
+  }, 500)
+  phase.timeout = setTimeout(() => {
+    endPromptPhase(code)
+  }, PROMPT_DURATION_MS + 800)
 }
 
 function touchRoom(room: Room) {
@@ -236,6 +403,7 @@ app.post("/api/rooms/:code/join", async (c) => {
     rooms.delete(code)
     roomSockets.delete(code)
     clearCountdown(code)
+    clearPrompt(code)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   let body: unknown
@@ -264,6 +432,10 @@ app.post("/api/rooms/:code/join", async (c) => {
       touchRoom(room)
       return c.json({ code, playerId: existing.id, token: existing.token, room: publicRoomPayload(room), rejoined: true })
     }
+  }
+
+  if (room.state !== "lobby") {
+    return c.json({ error: "ROOM_STARTED", message: "La partida ya comenzó" }, 409)
   }
 
   if (room.players.length >= MAX_PLAYERS) {
@@ -298,6 +470,7 @@ app.get("/api/rooms/:code", (c) => {
     rooms.delete(rawCode)
     roomSockets.delete(rawCode)
     clearCountdown(rawCode)
+    clearPrompt(rawCode)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   return c.json({ room: publicRoomPayload(room) })
@@ -320,10 +493,16 @@ app.post("/api/rooms/:code/leave", async (c) => {
   if (idx === -1) return c.json({ error: "NOT_FOUND" }, 404)
   const wasHost = room.players[idx]?.isHost
   room.players.splice(idx, 1)
+  const prompt = promptPhases.get(rawCode)
+  if (prompt) {
+    prompt.submissions.delete(playerId)
+    prompt.assignments.delete(playerId)
+  }
   if (room.players.length === 0) {
     rooms.delete(rawCode)
     roomSockets.delete(rawCode)
     clearCountdown(rawCode)
+    clearPrompt(rawCode)
     return c.json({ ok: true, destroyed: true })
   }
   if (wasHost) {
@@ -332,6 +511,22 @@ app.post("/api/rooms/:code/leave", async (c) => {
   }
   touchRoom(room)
   broadcastRoomUpdate(rawCode)
+  if (prompt && room.state === "prompt") {
+    broadcastPromptProgress(rawCode)
+    if (prompt.submissions.size >= room.players.length) {
+      endPromptPhase(rawCode)
+    } else {
+      broadcastToRoom(rawCode, { t: "game:prompt:tick", msLeft: Math.max(0, prompt.endsAt - Date.now()), x: prompt.submissions.size, y: room.players.length })
+    }
+  }
+  if (prompt && room.state === "assigned" && prompt.assignments.size > 0) {
+    const remaining = [...prompt.assignments.entries()].filter(([pid]) => room.players.some((p) => p.id === pid))
+    if (remaining.length === 0) {
+      clearPrompt(rawCode)
+      room.state = "lobby"
+      broadcastRoomUpdate(rawCode)
+    }
+  }
   const clients = roomSockets.get(rawCode)
   if (clients) {
     for (const cl of [...clients]) {
@@ -375,6 +570,7 @@ wss.on("connection", (ws, req) => {
     rooms.delete(code)
     roomSockets.delete(code)
     clearCountdown(code)
+    clearPrompt(code)
     ws.send(JSON.stringify({ t: "error", code: "NOT_FOUND", message: "Sala expirada" }))
     ws.close(4000, "expired")
     return
@@ -394,6 +590,25 @@ wss.on("connection", (ws, req) => {
   }
   set.add(client)
   broadcastRoomUpdate(code)
+  const existingPrompt = promptPhases.get(code)
+  if (existingPrompt) {
+    const msLeft = Math.max(0, existingPrompt.endsAt - Date.now())
+    if (room.state === "prompt") {
+      try {
+        ws.send(JSON.stringify({ t: "game:prompt:start", durationMs: PROMPT_DURATION_MS, total: room.players.length, msLeft }))
+        ws.send(JSON.stringify({ t: "game:prompt:progress", x: existingPrompt.submissions.size, y: room.players.length }))
+        ws.send(JSON.stringify({ t: "game:prompt:tick", msLeft, x: existingPrompt.submissions.size, y: room.players.length }))
+        if (existingPrompt.submissions.has(playerId)) {
+          ws.send(JSON.stringify({ t: "game:prompt:submitted", x: existingPrompt.submissions.size, y: room.players.length }))
+        }
+      } catch {}
+    } else if (room.state === "assigned") {
+      const assignedText = existingPrompt.assignments.get(playerId) ?? ""
+      try {
+        ws.send(JSON.stringify({ t: "game:prompt:result", assignedText }))
+      } catch {}
+    }
+  }
 
   ws.on("message", (data) => {
     let msg: unknown
@@ -427,6 +642,8 @@ wss.on("connection", (ws, req) => {
         return
       }
       if (countdowns.has(code)) return
+      if (promptPhases.has(code)) return
+      if (room.state !== "lobby") return
       const seq: number[] = [3, 2, 1]
       const timers: NodeJS.Timeout[] = []
       countdowns.set(code, timers)
@@ -442,7 +659,73 @@ wss.on("connection", (ws, req) => {
         }, idx * 1000)
         timers.push(t)
       })
+      const promptTimer = setTimeout(() => {
+        startPromptPhase(code)
+      }, 3000)
+      timers.push(promptTimer)
       touchRoom(room)
+      return
+    }
+    if (type === "prompt:submit" || type === "game:prompt:submit") {
+      const phase = promptPhases.get(code)
+      if (!phase || room.state !== "prompt") {
+        try {
+          ws.send(JSON.stringify({ t: "error", code: "NOT_IN_PROMPT", message: "No hay fase de escritura activa" }))
+        } catch {}
+        return
+      }
+      if (phase.assignments.size > 0) return
+      const rawText = (msg as { text?: unknown }).text
+      if (typeof rawText !== "string") {
+        try {
+          ws.send(JSON.stringify({ t: "error", code: "INVALID_TEXT", message: "Texto inválido" }))
+        } catch {}
+        return
+      }
+      const trimmed = rawText.trim().slice(0, PROMPT_MAX_LEN)
+      if (trimmed.length < 1) {
+        try {
+          ws.send(JSON.stringify({ t: "error", code: "INVALID_TEXT", message: "Escribí algo para continuar" }))
+        } catch {}
+        return
+      }
+      if (trimmed.length > PROMPT_MAX_LEN) {
+        try {
+          ws.send(JSON.stringify({ t: "error", code: "INVALID_TEXT", message: `Máximo ${PROMPT_MAX_LEN} caracteres` }))
+        } catch {}
+        return
+      }
+      if (phase.submissions.has(playerId)) {
+        try {
+          ws.send(JSON.stringify({ t: "game:prompt:submitted", x: phase.submissions.size, y: room.players.length }))
+        } catch {}
+        return
+      }
+      phase.submissions.set(playerId, trimmed)
+      touchRoom(room)
+      broadcastPromptProgress(code)
+      try {
+        ws.send(JSON.stringify({ t: "game:prompt:submitted", x: phase.submissions.size, y: room.players.length }))
+      } catch {}
+      broadcastToRoom(code, { t: "game:prompt:tick", msLeft: Math.max(0, phase.endsAt - Date.now()), x: phase.submissions.size, y: room.players.length })
+      if (phase.submissions.size >= room.players.length) {
+        endPromptPhase(code)
+      }
+      return
+    }
+    if (type === "prompt:edit" || type === "game:prompt:edit" || type === "prompt:unsubmit" || type === "game:prompt:unsubmit") {
+      const phase = promptPhases.get(code)
+      if (!phase || room.state !== "prompt") return
+      if (phase.assignments.size > 0) return
+      if (!phase.submissions.has(playerId)) return
+      const previous = phase.submissions.get(playerId) ?? ""
+      phase.submissions.delete(playerId)
+      touchRoom(room)
+      broadcastPromptProgress(code)
+      try {
+        ws.send(JSON.stringify({ t: "game:prompt:edit_ok", x: phase.submissions.size, y: room.players.length, previousText: previous }))
+      } catch {}
+      broadcastToRoom(code, { t: "game:prompt:tick", msLeft: Math.max(0, phase.endsAt - Date.now()), x: phase.submissions.size, y: room.players.length })
       return
     }
     if (type === "leave") {
@@ -450,11 +733,17 @@ wss.on("connection", (ws, req) => {
       if (idx !== -1) {
         const wasHost = room.players[idx]?.isHost
         room.players.splice(idx, 1)
+        const prompt = promptPhases.get(code)
+        if (prompt) {
+          prompt.submissions.delete(playerId)
+          prompt.assignments.delete(playerId)
+        }
         if (room.players.length === 0) {
           broadcastRoomExpired(code, "empty")
           rooms.delete(code)
           roomSockets.delete(code)
           clearCountdown(code)
+          clearPrompt(code)
           return
         }
         if (wasHost) {
@@ -463,6 +752,12 @@ wss.on("connection", (ws, req) => {
         }
         touchRoom(room)
         broadcastRoomUpdate(code)
+        if (prompt && room.state === "prompt") {
+          broadcastPromptProgress(code)
+          if (prompt.submissions.size >= room.players.length) {
+            endPromptPhase(code)
+          }
+        }
       }
       ws.close(4000, "left")
       return
@@ -492,6 +787,7 @@ setInterval(() => {
       rooms.delete(code)
       roomSockets.delete(code)
       clearCountdown(code)
+      clearPrompt(code)
     }
   }
 }, MAX_ROOM_LIFETIME_CLEANUP_MS)

@@ -69,9 +69,17 @@ function App() {
   const [expiredMessage, setExpiredMessage] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [countdown, setCountdown] = useState<string | number | null>(null)
+  const [promptActive, setPromptActive] = useState(false)
+  const [promptMsLeft, setPromptMsLeft] = useState<number>(60000)
+  const [promptProgress, setPromptProgress] = useState<{ x: number; y: number } | null>(null)
+  const [promptInput, setPromptInput] = useState("")
+  const [promptSubmitted, setPromptSubmitted] = useState(false)
+  const [promptError, setPromptError] = useState("")
+  const [assignedText, setAssignedText] = useState<string | null>(null)
   const countdownTimeoutRef = useRef<number | null>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
   const codeInputRef = useRef<HTMLInputElement>(null)
+  const promptInputRef = useRef<HTMLInputElement>(null)
   const wsRef = useRef<WebSocket | null>(null)
   const reconnectAttemptsRef = useRef(0)
   const reconnectTimerRef = useRef<number | null>(null)
@@ -159,6 +167,13 @@ function App() {
     setToken(null)
     setWsConnected(false)
     setCountdown(null)
+    setPromptActive(false)
+    setPromptMsLeft(60000)
+    setPromptProgress(null)
+    setPromptInput("")
+    setPromptSubmitted(false)
+    setPromptError("")
+    setAssignedText(null)
     if (countdownTimeoutRef.current) {
       window.clearTimeout(countdownTimeoutRef.current)
       countdownTimeoutRef.current = null
@@ -225,9 +240,28 @@ function App() {
         } catch {
           return
         }
-        const msg = data as { t?: string; room?: RoomData; reason?: string; code?: string; message?: string; value?: string | number }
+        const msg = data as {
+          t?: string
+          room?: RoomData
+          reason?: string
+          code?: string
+          message?: string
+          value?: string | number
+          assignedText?: string
+          durationMs?: number
+          msLeft?: number
+          x?: number
+          y?: number
+          total?: number
+          previousText?: string
+        }
         if (msg.t === "room:update" && msg.room) {
           setCurrentRoom(msg.room)
+          if (msg.room.state === "lobby") {
+            setPromptActive(false)
+            setPromptSubmitted(false)
+            setAssignedText(null)
+          }
         }
         if (msg.t === "pong") return
         if (msg.t === "game:countdown" && msg.value !== undefined) {
@@ -239,6 +273,63 @@ function App() {
           if (msg.value === 1) {
             countdownTimeoutRef.current = window.setTimeout(() => setCountdown(null), 1200)
           }
+          return
+        }
+        if (msg.t === "game:prompt:start") {
+          setPromptActive(true)
+          setPromptSubmitted(false)
+          setPromptInput("")
+          setPromptError("")
+          setAssignedText(null)
+          const dur = typeof msg.durationMs === "number" ? msg.durationMs : 60000
+          const left = typeof msg.msLeft === "number" ? msg.msLeft : dur
+          setPromptMsLeft(left)
+          const total = typeof msg.total === "number" ? msg.total : (typeof msg.y === "number" ? msg.y : 0)
+          if (typeof msg.x === "number" && typeof msg.y === "number") {
+            setPromptProgress({ x: msg.x, y: msg.y })
+          } else {
+            setPromptProgress({ x: 0, y: total })
+          }
+          requestAnimationFrame(() => promptInputRef.current?.focus())
+          return
+        }
+        if (msg.t === "game:prompt:tick" && typeof msg.msLeft === "number") {
+          setPromptMsLeft(msg.msLeft)
+          if (typeof msg.x === "number" && typeof msg.y === "number") {
+            setPromptProgress({ x: msg.x, y: msg.y })
+          }
+          return
+        }
+        if (msg.t === "game:prompt:progress" && typeof msg.x === "number" && typeof msg.y === "number") {
+          setPromptProgress({ x: msg.x, y: msg.y })
+          return
+        }
+        if (msg.t === "game:prompt:submitted") {
+          setPromptSubmitted(true)
+          setPromptError("")
+          if (typeof msg.x === "number" && typeof msg.y === "number") {
+            setPromptProgress({ x: msg.x, y: msg.y })
+          }
+          return
+        }
+        if (msg.t === "game:prompt:edit_ok") {
+          setPromptSubmitted(false)
+          setPromptError("")
+          if (typeof msg.previousText === "string") setPromptInput(msg.previousText)
+          if (typeof msg.x === "number" && typeof msg.y === "number") {
+            setPromptProgress({ x: msg.x, y: msg.y })
+          }
+          requestAnimationFrame(() => promptInputRef.current?.focus())
+          return
+        }
+        if (msg.t === "game:prompt:result" && typeof msg.assignedText === "string") {
+          setPromptActive(false)
+          setPromptSubmitted(true)
+          setAssignedText(msg.assignedText)
+          return
+        }
+        if (msg.t === "game:prompt:done") {
+          setPromptActive(false)
           return
         }
         if (msg.t === "room:expired") {
@@ -292,6 +383,17 @@ function App() {
     },
     [clearSession]
   )
+
+  useEffect(() => {
+    if (!promptActive || promptSubmitted) return
+    if (promptMsLeft > 1500) return
+    const trimmed = promptInput.trim()
+    if (trimmed.length < 1) return
+    if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return
+    try {
+      wsRef.current.send(JSON.stringify({ t: "prompt:submit", text: trimmed }))
+    } catch {}
+  }, [promptMsLeft, promptActive, promptSubmitted, promptInput])
 
   useEffect(() => {
     if (!currentRoom || !playerId || !token) return
@@ -465,6 +567,43 @@ function App() {
     } catch {}
   }
 
+  function handlePromptSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    const trimmed = promptInput.trim()
+    if (trimmed.length < 1) {
+      setPromptError("Escribí algo para continuar")
+      return
+    }
+    if (trimmed.length > 80) {
+      setPromptError("Máximo 80 caracteres")
+      return
+    }
+    if (promptSubmitted) return
+    if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+      setPromptError("Sin conexión, reintentá")
+      return
+    }
+    setPromptError("")
+    try {
+      wsRef.current.send(JSON.stringify({ t: "prompt:submit", text: trimmed }))
+    } catch {
+      setPromptError("No se pudo enviar")
+    }
+  }
+
+  function handlePromptEdit() {
+    if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+      setPromptError("Sin conexión, reintentá")
+      return
+    }
+    setPromptError("")
+    try {
+      wsRef.current.send(JSON.stringify({ t: "prompt:edit" }))
+    } catch {
+      setPromptError("No se pudo editar")
+    }
+  }
+
   function selectColor(color: string) {
     setAvatarColor(color)
   }
@@ -550,6 +689,53 @@ function App() {
           <div className="countdown-overlay" aria-live="assertive" aria-atomic="true">
             <div key={String(countdown)} className="countdown-wrap">
               <span className="countdown-value">{countdown}</span>
+            </div>
+          </div>
+        )}
+        {promptActive && (
+          <div className="prompt-overlay" aria-live="polite" aria-atomic="true">
+            <form className="prompt-card" onSubmit={handlePromptSubmit}>
+              <div className="prompt-top">
+                <span className="prompt-timer">{Math.ceil(promptMsLeft / 1000)}s</span>
+                {promptProgress && (
+                  <span className="prompt-progress">
+                    {promptProgress.x}/{promptProgress.y}
+                  </span>
+                )}
+              </div>
+
+              <h2 className="prompt-title">Forma de hablar/actuar</h2>
+              <input
+                ref={promptInputRef}
+                className={`prompt-input ${promptError ? "prompt-input--error" : ""}`}
+                type="text"
+                value={promptInput}
+                onChange={(e) => setPromptInput(e.target.value.slice(0, 80))}
+                placeholder="Ej: Como argentino"
+                maxLength={80}
+                autoComplete="off"
+                spellCheck={false}
+                autoFocus
+                disabled={promptSubmitted}
+              />
+              {promptError ? <span className="prompt-error">{promptError}</span> : null}
+              {promptSubmitted ? (
+                <button type="button" className="btn btn-secondary prompt-submit" onClick={handlePromptEdit}>
+                  Editar
+                </button>
+              ) : (
+                <button type="submit" className="btn btn-primary prompt-submit">
+                  Confirmar
+                </button>
+              )}
+            </form>
+          </div>
+        )}
+        {assignedText !== null && !promptActive && countdown === null && (
+          <div className="prompt-overlay prompt-overlay--result" aria-live="polite" aria-atomic="true">
+            <div className="prompt-card prompt-card--result">
+              <span className="prompt-result-label">Te tocó actuar como</span>
+              <span className="prompt-result-value">{assignedText || "—"}</span>
             </div>
           </div>
         )}

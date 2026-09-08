@@ -1,0 +1,7 @@
+AGENTS.md
+node_modules
+dist
+.turbo
+.env
+.env.local
+.DS_Store

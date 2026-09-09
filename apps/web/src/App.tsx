@@ -76,6 +76,9 @@ function App() {
   const [promptSubmitted, setPromptSubmitted] = useState(false)
   const [promptError, setPromptError] = useState("")
   const [assignedText, setAssignedText] = useState<string | null>(null)
+  const [mainMsLeft, setMainMsLeft] = useState<number>(180000)
+  const [mainActive, setMainActive] = useState(false)
+  const [mainFinished, setMainFinished] = useState(false)
   const countdownTimeoutRef = useRef<number | null>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
   const codeInputRef = useRef<HTMLInputElement>(null)
@@ -174,6 +177,9 @@ function App() {
     setPromptSubmitted(false)
     setPromptError("")
     setAssignedText(null)
+    setMainMsLeft(180000)
+    setMainActive(false)
+    setMainFinished(false)
     if (countdownTimeoutRef.current) {
       window.clearTimeout(countdownTimeoutRef.current)
       countdownTimeoutRef.current = null
@@ -261,6 +267,15 @@ function App() {
             setPromptActive(false)
             setPromptSubmitted(false)
             setAssignedText(null)
+            setMainActive(false)
+            setMainFinished(false)
+            setMainMsLeft(180000)
+          } else if (msg.room.state === "round") {
+            setMainActive(true)
+            setMainFinished(false)
+          } else if (msg.room.state === "finished") {
+            setMainActive(false)
+            setMainFinished(true)
           }
         }
         if (msg.t === "pong") return
@@ -330,6 +345,24 @@ function App() {
         }
         if (msg.t === "game:prompt:done") {
           setPromptActive(false)
+          return
+        }
+        if (msg.t === "game:main:start") {
+          setMainActive(true)
+          setMainFinished(false)
+          const dur = typeof msg.durationMs === "number" ? msg.durationMs : 180000
+          const left = typeof msg.msLeft === "number" ? msg.msLeft : dur
+          setMainMsLeft(left)
+          return
+        }
+        if (msg.t === "game:main:tick" && typeof msg.msLeft === "number") {
+          setMainMsLeft(msg.msLeft)
+          return
+        }
+        if (msg.t === "game:main:end") {
+          setMainActive(false)
+          setMainFinished(true)
+          setMainMsLeft(0)
           return
         }
         if (msg.t === "room:expired") {
@@ -608,12 +641,109 @@ function App() {
     setAvatarColor(color)
   }
 
+  function formatMainTime(ms: number) {
+    const total = Math.max(0, Math.ceil(ms / 1000))
+    const m = Math.floor(total / 60)
+    const s = total % 60
+    return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`
+  }
+
   const hostNameRaw = currentRoom ? (currentRoom.players.find((p) => p.id === currentRoom.hostId)?.name ?? currentRoom.players.find((p) => p.isHost)?.name ?? currentRoom.players[0]?.name ?? "") : ""
   const hostName = hostNameRaw.toUpperCase()
   const isHost = !!currentRoom && !!playerId && currentRoom.hostId === playerId
   const canStart = !!currentRoom && currentRoom.players.length > 1
 
+  const showGame = !!currentRoom && !!playerId && (promptActive || assignedText !== null || mainActive || mainFinished || currentRoom.state === "prompt" || currentRoom.state === "assigned" || currentRoom.state === "round" || currentRoom.state === "finished")
+
   if (currentRoom && playerId) {
+    if (showGame) {
+      return (
+        <main className="game-layout">
+          <div className="landing-rays" aria-hidden="true" />
+          {mainActive && !mainFinished && !promptActive && (
+            <div className="main-timer-fixed" aria-live="polite" aria-atomic="true">
+              {formatMainTime(mainMsLeft)}
+            </div>
+          )}
+          <div className="game-stage" aria-live="polite" aria-atomic="true">
+            {promptActive ? (
+              <form className="prompt-card" onSubmit={handlePromptSubmit}>
+                <div className="prompt-top">
+                  <span className="prompt-timer">{Math.ceil(promptMsLeft / 1000)}s</span>
+                  {promptProgress && (
+                    <span className="prompt-progress">
+                      {promptProgress.x}/{promptProgress.y}
+                    </span>
+                  )}
+                </div>
+                <h2 className="prompt-title">Forma de hablar/actuar</h2>
+                <input
+                  ref={promptInputRef}
+                  className={`prompt-input ${promptError ? "prompt-input--error" : ""}`}
+                  type="text"
+                  value={promptInput}
+                  onChange={(e) => setPromptInput(e.target.value.slice(0, 80))}
+                  placeholder="Ej: Como argentino"
+                  maxLength={80}
+                  autoComplete="off"
+                  spellCheck={false}
+                  autoFocus
+                  disabled={promptSubmitted}
+                />
+                {promptError ? <span className="prompt-error">{promptError}</span> : null}
+                {promptSubmitted ? (
+                  <button type="button" className="btn btn-secondary prompt-submit" onClick={handlePromptEdit}>
+                    Editar
+                  </button>
+                ) : (
+                  <button type="submit" className="btn btn-primary prompt-submit">
+                    Confirmar
+                  </button>
+                )}
+              </form>
+            ) : mainFinished ? (
+              <div className="prompt-card prompt-card--result">
+                <span className="prompt-result-label">Tiempo</span>
+                <span className="prompt-result-value">Se terminó el tiempo</span>
+                <button type="button" className="btn btn-primary prompt-result-close" onClick={handleLeave}>
+                  Volver al inicio
+                </button>
+              </div>
+            ) : assignedText !== null ? (
+              <div className="prompt-card prompt-card--result">
+                <span className="prompt-result-label">Te tocó actuar como</span>
+                <span className="prompt-result-value">{assignedText || "—"}</span>
+                <button type="button" className="btn btn-primary prompt-result-close" onClick={() => setAssignedText(null)}>
+                  Entendido
+                </button>
+              </div>
+            ) : mainActive ? (
+              <div className="prompt-card prompt-card--result">
+                <span className="prompt-result-label">A actuar</span>
+                <p className="game-waiting-hint">Tenés 3 minutos para actuar</p>
+              </div>
+            ) : (
+              <div className="prompt-card prompt-card--result">
+                <span className="prompt-result-label">¡Listo!</span>
+                <span className="prompt-result-value">Guardá tu papel en secreto</span>
+                <p className="game-waiting-hint">Esperando al resto de jugadores…</p>
+                <button type="button" className="btn btn-ghost prompt-result-close" onClick={handleLeave}>
+                  Salir
+                </button>
+              </div>
+            )}
+          </div>
+          {countdown !== null && (
+            <div className="countdown-overlay" aria-live="assertive" aria-atomic="true">
+              <div key={String(countdown)} className="countdown-wrap">
+                <span className="countdown-value">{countdown}</span>
+              </div>
+            </div>
+          )}
+        </main>
+      )
+    }
+
     return (
       <main className="room-layout">
         <div className="landing-rays" aria-hidden="true" />
@@ -689,53 +819,6 @@ function App() {
           <div className="countdown-overlay" aria-live="assertive" aria-atomic="true">
             <div key={String(countdown)} className="countdown-wrap">
               <span className="countdown-value">{countdown}</span>
-            </div>
-          </div>
-        )}
-        {promptActive && (
-          <div className="prompt-overlay" aria-live="polite" aria-atomic="true">
-            <form className="prompt-card" onSubmit={handlePromptSubmit}>
-              <div className="prompt-top">
-                <span className="prompt-timer">{Math.ceil(promptMsLeft / 1000)}s</span>
-                {promptProgress && (
-                  <span className="prompt-progress">
-                    {promptProgress.x}/{promptProgress.y}
-                  </span>
-                )}
-              </div>
-
-              <h2 className="prompt-title">Forma de hablar/actuar</h2>
-              <input
-                ref={promptInputRef}
-                className={`prompt-input ${promptError ? "prompt-input--error" : ""}`}
-                type="text"
-                value={promptInput}
-                onChange={(e) => setPromptInput(e.target.value.slice(0, 80))}
-                placeholder="Ej: Como argentino"
-                maxLength={80}
-                autoComplete="off"
-                spellCheck={false}
-                autoFocus
-                disabled={promptSubmitted}
-              />
-              {promptError ? <span className="prompt-error">{promptError}</span> : null}
-              {promptSubmitted ? (
-                <button type="button" className="btn btn-secondary prompt-submit" onClick={handlePromptEdit}>
-                  Editar
-                </button>
-              ) : (
-                <button type="submit" className="btn btn-primary prompt-submit">
-                  Confirmar
-                </button>
-              )}
-            </form>
-          </div>
-        )}
-        {assignedText !== null && !promptActive && countdown === null && (
-          <div className="prompt-overlay prompt-overlay--result" aria-live="polite" aria-atomic="true">
-            <div className="prompt-card prompt-card--result">
-              <span className="prompt-result-label">Te tocó actuar como</span>
-              <span className="prompt-result-value">{assignedText || "—"}</span>
             </div>
           </div>
         )}

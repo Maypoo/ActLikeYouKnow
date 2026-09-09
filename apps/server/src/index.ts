@@ -27,7 +27,7 @@ type Room = {
   code: string
   hostId: string
   players: Player[]
-  state: "lobby" | "prompt" | "assigned" | "round" | "voting" | "reveal" | "podium"
+  state: "lobby" | "prompt" | "assigned" | "round" | "finished" | "voting" | "reveal" | "podium"
   createdAt: number
   lastActivity: number
 }
@@ -47,7 +47,15 @@ type PromptPhase = {
   tick: NodeJS.Timeout | null
 }
 
+type MainPhase = {
+  startedAt: number
+  endsAt: number
+  timeout: NodeJS.Timeout | null
+  tick: NodeJS.Timeout | null
+}
+
 const PROMPT_DURATION_MS = 60 * 1000
+const MAIN_DURATION_MS = 3 * 60 * 1000
 const PROMPT_MAX_LEN = 80
 
 const rooms = new Map<string, Room>()
@@ -55,6 +63,7 @@ const roomSockets = new Map<string, Set<RoomClient>>()
 const rateLimitByIp = new Map<string, number[]>()
 const countdowns = new Map<string, NodeJS.Timeout[]>()
 const promptPhases = new Map<string, PromptPhase>()
+const mainPhases = new Map<string, MainPhase>()
 
 const PlayerInputSchema = z.object({
   name: z.string().trim().min(1).max(20),
@@ -155,6 +164,14 @@ function clearPrompt(code: string) {
   promptPhases.delete(code)
 }
 
+function clearMainPhase(code: string) {
+  const phase = mainPhases.get(code)
+  if (!phase) return
+  if (phase.timeout) clearTimeout(phase.timeout)
+  if (phase.tick) clearInterval(phase.tick)
+  mainPhases.delete(code)
+}
+
 function shuffleArray<T>(arr: T[]): T[] {
   const next = [...arr]
   for (let i = next.length - 1; i > 0; i--) {
@@ -235,6 +252,54 @@ function broadcastPromptProgress(code: string) {
   broadcastToRoom(code, { t: "game:prompt:progress", x, y })
 }
 
+function startMainTimer(code: string) {
+  const room = rooms.get(code)
+  if (!room) return
+  if (mainPhases.has(code)) return
+  room.state = "round"
+  touchRoom(room)
+  broadcastRoomUpdate(code)
+  const now = Date.now()
+  const phase: MainPhase = {
+    startedAt: now,
+    endsAt: now + MAIN_DURATION_MS,
+    timeout: null,
+    tick: null,
+  }
+  mainPhases.set(code, phase)
+  broadcastToRoom(code, { t: "game:main:start", durationMs: MAIN_DURATION_MS, msLeft: MAIN_DURATION_MS })
+  phase.tick = setInterval(() => {
+    const p = mainPhases.get(code)
+    const r = rooms.get(code)
+    if (!p || !r) {
+      if (p?.tick) clearInterval(p.tick)
+      return
+    }
+    const msLeft = Math.max(0, p.endsAt - Date.now())
+    broadcastToRoom(code, { t: "game:main:tick", msLeft, durationMs: MAIN_DURATION_MS })
+    if (msLeft <= 0) {
+      if (p.tick) clearInterval(p.tick)
+      p.tick = null
+    }
+  }, 500)
+  phase.timeout = setTimeout(() => {
+    endMainTimer(code)
+  }, MAIN_DURATION_MS + 500)
+}
+
+function endMainTimer(code: string) {
+  const room = rooms.get(code)
+  const phase = mainPhases.get(code)
+  if (!room || !phase) return
+  if (phase.tick) clearInterval(phase.tick)
+  if (phase.timeout) clearTimeout(phase.timeout)
+  mainPhases.delete(code)
+  room.state = "finished"
+  touchRoom(room)
+  broadcastRoomUpdate(code)
+  broadcastToRoom(code, { t: "game:main:end" })
+}
+
 function endPromptPhase(code: string) {
   const room = rooms.get(code)
   const phase = promptPhases.get(code)
@@ -261,6 +326,7 @@ function endPromptPhase(code: string) {
     }
   }
   broadcastToRoom(code, { t: "game:prompt:done", msLeft: 0 })
+  startMainTimer(code)
 }
 
 function startPromptPhase(code: string) {
@@ -404,6 +470,7 @@ app.post("/api/rooms/:code/join", async (c) => {
     roomSockets.delete(code)
     clearCountdown(code)
     clearPrompt(code)
+    clearMainPhase(code)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   let body: unknown
@@ -471,6 +538,7 @@ app.get("/api/rooms/:code", (c) => {
     roomSockets.delete(rawCode)
     clearCountdown(rawCode)
     clearPrompt(rawCode)
+    clearMainPhase(rawCode)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   return c.json({ room: publicRoomPayload(room) })
@@ -503,6 +571,7 @@ app.post("/api/rooms/:code/leave", async (c) => {
     roomSockets.delete(rawCode)
     clearCountdown(rawCode)
     clearPrompt(rawCode)
+    clearMainPhase(rawCode)
     return c.json({ ok: true, destroyed: true })
   }
   if (wasHost) {
@@ -523,6 +592,7 @@ app.post("/api/rooms/:code/leave", async (c) => {
     const remaining = [...prompt.assignments.entries()].filter(([pid]) => room.players.some((p) => p.id === pid))
     if (remaining.length === 0) {
       clearPrompt(rawCode)
+      clearMainPhase(rawCode)
       room.state = "lobby"
       broadcastRoomUpdate(rawCode)
     }
@@ -571,6 +641,7 @@ wss.on("connection", (ws, req) => {
     roomSockets.delete(code)
     clearCountdown(code)
     clearPrompt(code)
+    clearMainPhase(code)
     ws.send(JSON.stringify({ t: "error", code: "NOT_FOUND", message: "Sala expirada" }))
     ws.close(4000, "expired")
     return
@@ -602,12 +673,24 @@ wss.on("connection", (ws, req) => {
           ws.send(JSON.stringify({ t: "game:prompt:submitted", x: existingPrompt.submissions.size, y: room.players.length }))
         }
       } catch {}
-    } else if (room.state === "assigned") {
+    } else if (room.state === "assigned" || room.state === "round" || room.state === "finished") {
       const assignedText = existingPrompt.assignments.get(playerId) ?? ""
       try {
         ws.send(JSON.stringify({ t: "game:prompt:result", assignedText }))
       } catch {}
     }
+  }
+  const existingMain = mainPhases.get(code)
+  if (existingMain) {
+    const msLeft = Math.max(0, existingMain.endsAt - Date.now())
+    try {
+      ws.send(JSON.stringify({ t: "game:main:start", durationMs: MAIN_DURATION_MS, msLeft }))
+      ws.send(JSON.stringify({ t: "game:main:tick", msLeft, durationMs: MAIN_DURATION_MS }))
+    } catch {}
+  } else if (room.state === "finished") {
+    try {
+      ws.send(JSON.stringify({ t: "game:main:end" }))
+    } catch {}
   }
 
   ws.on("message", (data) => {
@@ -643,6 +726,7 @@ wss.on("connection", (ws, req) => {
       }
       if (countdowns.has(code)) return
       if (promptPhases.has(code)) return
+      if (mainPhases.has(code)) return
       if (room.state !== "lobby") return
       const seq: number[] = [3, 2, 1]
       const timers: NodeJS.Timeout[] = []
@@ -744,6 +828,7 @@ wss.on("connection", (ws, req) => {
           roomSockets.delete(code)
           clearCountdown(code)
           clearPrompt(code)
+          clearMainPhase(code)
           return
         }
         if (wasHost) {
@@ -788,6 +873,7 @@ setInterval(() => {
       roomSockets.delete(code)
       clearCountdown(code)
       clearPrompt(code)
+      clearMainPhase(code)
     }
   }
 }, MAX_ROOM_LIFETIME_CLEANUP_MS)

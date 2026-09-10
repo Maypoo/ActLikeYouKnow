@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
+import { Check, X, Plus } from "lucide-react"
+import AudioRecorder from "./components/AudioRecorder"
 
 type ModalMode = "create" | "join" | null
 
@@ -18,6 +20,22 @@ type RoomData = {
   state: string
   createdAt: number
   lastActivity: number
+}
+
+type ScriptLine = {
+  characterId: string
+  text: string
+  order: number
+}
+
+type ScriptView = {
+  scriptId: string
+  scriptTitle: string
+  character: { id: string }
+  lines: ScriptLine[]
+  totalLines: number
+  act?: number
+  totalActs?: number
 }
 
 const STORAGE_KEY = "actlike_player_name"
@@ -76,6 +94,11 @@ function App() {
   const [promptSubmitted, setPromptSubmitted] = useState(false)
   const [promptError, setPromptError] = useState("")
   const [assignedText, setAssignedText] = useState<string | null>(null)
+  const [assignedTextDismissed, setAssignedTextDismissed] = useState(false)
+  const [scriptView, setScriptView] = useState<ScriptView | null>(null)
+  const [actingIndex, setActingIndex] = useState(0)
+  const [scriptConfirmed, setScriptConfirmed] = useState(false)
+  const [scriptConfirmProgress, setScriptConfirmProgress] = useState<{ x: number; y: number } | null>(null)
   const [mainMsLeft, setMainMsLeft] = useState<number>(180000)
   const [mainActive, setMainActive] = useState(false)
   const [mainFinished, setMainFinished] = useState(false)
@@ -177,6 +200,11 @@ function App() {
     setPromptSubmitted(false)
     setPromptError("")
     setAssignedText(null)
+    setAssignedTextDismissed(false)
+    setScriptView(null)
+    setActingIndex(0)
+    setScriptConfirmed(false)
+    setScriptConfirmProgress(null)
     setMainMsLeft(180000)
     setMainActive(false)
     setMainFinished(false)
@@ -260,6 +288,7 @@ function App() {
           y?: number
           total?: number
           previousText?: string
+          view?: ScriptView
         }
         if (msg.t === "room:update" && msg.room) {
           setCurrentRoom(msg.room)
@@ -267,35 +296,61 @@ function App() {
             setPromptActive(false)
             setPromptSubmitted(false)
             setAssignedText(null)
+            setAssignedTextDismissed(false)
+            setScriptView(null)
+            setActingIndex(0)
+            setScriptConfirmed(false)
+            setScriptConfirmProgress(null)
             setMainActive(false)
             setMainFinished(false)
             setMainMsLeft(180000)
-          } else if (msg.room.state === "round") {
-            setMainActive(true)
-            setMainFinished(false)
-          } else if (msg.room.state === "finished") {
-            setMainActive(false)
-            setMainFinished(true)
+          } else {
+            if (countdownTimeoutRef.current) {
+              window.clearTimeout(countdownTimeoutRef.current)
+              countdownTimeoutRef.current = null
+            }
+            setCountdown(null)
+            if (msg.room.state === "round") {
+              setMainActive(true)
+              setMainFinished(false)
+            } else if (msg.room.state === "finished") {
+              setMainActive(false)
+              setMainFinished(true)
+            }
           }
         }
         if (msg.t === "pong") return
-        if (msg.t === "game:countdown" && msg.value !== undefined) {
-          setCountdown(msg.value)
+        if (msg.t === "game:countdown:done") {
           if (countdownTimeoutRef.current) {
             window.clearTimeout(countdownTimeoutRef.current)
             countdownTimeoutRef.current = null
           }
+          setCountdown(null)
+          return
+        }
+        if (msg.t === "game:countdown" && msg.value !== undefined) {
+          if (countdownTimeoutRef.current) {
+            window.clearTimeout(countdownTimeoutRef.current)
+            countdownTimeoutRef.current = null
+          }
+          setCountdown(msg.value)
           if (msg.value === 1) {
-            countdownTimeoutRef.current = window.setTimeout(() => setCountdown(null), 1200)
+            countdownTimeoutRef.current = window.setTimeout(() => setCountdown(null), 950)
           }
           return
         }
         if (msg.t === "game:prompt:start") {
+          if (countdownTimeoutRef.current) {
+            window.clearTimeout(countdownTimeoutRef.current)
+            countdownTimeoutRef.current = null
+          }
+          setCountdown(null)
           setPromptActive(true)
           setPromptSubmitted(false)
           setPromptInput("")
           setPromptError("")
           setAssignedText(null)
+          setAssignedTextDismissed(false)
           const dur = typeof msg.durationMs === "number" ? msg.durationMs : 60000
           const left = typeof msg.msLeft === "number" ? msg.msLeft : dur
           setPromptMsLeft(left)
@@ -341,6 +396,7 @@ function App() {
           setPromptActive(false)
           setPromptSubmitted(true)
           setAssignedText(msg.assignedText)
+          setAssignedTextDismissed(false)
           return
         }
         if (msg.t === "game:prompt:done") {
@@ -363,6 +419,25 @@ function App() {
           setMainActive(false)
           setMainFinished(true)
           setMainMsLeft(0)
+          return
+        }
+        if (msg.t === "game:script:assigned" && msg.view) {
+          const v = msg.view as ScriptView
+          if (v && typeof v.scriptId === "string" && Array.isArray(v.lines)) {
+            const sorted = [...v.lines].sort((a, b) => a.order - b.order)
+            setScriptView({ ...v, lines: sorted })
+            setActingIndex(0)
+            setScriptConfirmed(false)
+            setScriptConfirmProgress(null)
+          }
+          return
+        }
+        if (msg.t === "game:script:confirm:progress" && typeof msg.x === "number" && typeof msg.y === "number") {
+          setScriptConfirmProgress({ x: msg.x, y: msg.y })
+          return
+        }
+        if (msg.t === "game:script:confirmed") {
+          setScriptConfirmed(true)
           return
         }
         if (msg.t === "room:expired") {
@@ -641,6 +716,22 @@ function App() {
     setAvatarColor(color)
   }
 
+  function handleActingNext() {
+    if (!scriptView) return
+    if (actingIndex < scriptView.lines.length - 1) {
+      setActingIndex((v) => v + 1)
+    }
+  }
+
+  function handleScriptConfirm() {
+    if (!scriptView || scriptConfirmed) return
+    if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return
+    try {
+      wsRef.current.send(JSON.stringify({ t: "game:script:confirm" }))
+      setScriptConfirmed(true)
+    } catch {}
+  }
+
   function formatMainTime(ms: number) {
     const total = Math.max(0, Math.ceil(ms / 1000))
     const m = Math.floor(total / 60)
@@ -653,7 +744,7 @@ function App() {
   const isHost = !!currentRoom && !!playerId && currentRoom.hostId === playerId
   const canStart = !!currentRoom && currentRoom.players.length > 1
 
-  const showGame = !!currentRoom && !!playerId && (promptActive || assignedText !== null || mainActive || mainFinished || currentRoom.state === "prompt" || currentRoom.state === "assigned" || currentRoom.state === "round" || currentRoom.state === "finished")
+  const showGame = !!currentRoom && !!playerId && (promptActive || assignedText !== null || scriptView !== null || mainActive || mainFinished || currentRoom.state === "prompt" || currentRoom.state === "assigned" || currentRoom.state === "round" || currentRoom.state === "finished")
 
   if (currentRoom && playerId) {
     if (showGame) {
@@ -661,8 +752,13 @@ function App() {
         <main className="game-layout">
           <div className="landing-rays" aria-hidden="true" />
           {mainActive && !mainFinished && !promptActive && (
-            <div className="main-timer-fixed" aria-live="polite" aria-atomic="true">
-              {formatMainTime(mainMsLeft)}
+            <div className="game-topbar" aria-live="polite" aria-atomic="true">
+              {scriptConfirmProgress && (
+                <div className="script-confirm-progress">
+                  {scriptConfirmProgress.x}/{scriptConfirmProgress.y}
+                </div>
+              )}
+              <div className="main-timer-fixed">{formatMainTime(mainMsLeft)}</div>
             </div>
           )}
           <div className="game-stage" aria-live="polite" aria-atomic="true">
@@ -703,20 +799,61 @@ function App() {
               </form>
             ) : mainFinished ? (
               <div className="prompt-card prompt-card--result">
-                <span className="prompt-result-label">Tiempo</span>
-                <span className="prompt-result-value">Se terminó el tiempo</span>
+                <span className="prompt-result-value">La partida termino</span>
                 <button type="button" className="btn btn-primary prompt-result-close" onClick={handleLeave}>
-                  Volver al inicio
+                  Salir
                 </button>
               </div>
-            ) : assignedText !== null ? (
+            ) : assignedText !== null && !assignedTextDismissed ? (
               <div className="prompt-card prompt-card--result">
                 <span className="prompt-result-label">Te tocó actuar como</span>
                 <span className="prompt-result-value">{assignedText || "—"}</span>
-                <button type="button" className="btn btn-primary prompt-result-close" onClick={() => setAssignedText(null)}>
+                <button type="button" className="btn btn-primary prompt-result-close" onClick={() => setAssignedTextDismissed(true)}>
                   Entendido
                 </button>
               </div>
+            ) : scriptView ? (
+              (() => {
+                const currentLine = scriptView.lines[Math.min(actingIndex, scriptView.lines.length - 1)]!
+                const isLast = actingIndex >= scriptView.lines.length - 1
+                return (
+                  <div className="acting-card">
+                    <div className="acting-header">
+                      <span className="acting-label">A ACTUAR</span>
+                      {scriptView.totalActs === 2 && scriptView.act ? (
+                        <span className="acting-act-badge">Acto {scriptView.act} de 2</span>
+                      ) : null}
+                      <span className="acting-character">Forma de hablar: {assignedText || "—"}</span>
+                    </div>
+                    <div className="acting-lines">
+                      <div key={currentLine.order} className="acting-line">
+                        <p className="acting-line-text">{currentLine.text}</p>
+                      </div>
+                    </div>
+                    <AudioRecorder key={scriptView.scriptId + "-" + currentLine.order} lineKey={scriptView.scriptId + "-" + currentLine.order} />
+                    <span className="acting-step">{actingIndex + 1} / {scriptView.lines.length}</span>
+                    {!scriptConfirmed ? (
+                      isLast ? (
+                        <button type="button" className="btn btn-primary acting-next" onClick={handleScriptConfirm}>
+                          Confirmar
+                        </button>
+                      ) : (
+                        <button type="button" className="btn btn-primary acting-next" onClick={handleActingNext}>
+                          Siguiente
+                        </button>
+                      )
+                    ) : (
+                      <>
+                        <button type="button" className="btn btn-primary acting-next" disabled aria-disabled="true">
+                          Confirmado <Check size={16} />
+                        </button>
+                        <p className="game-waiting-hint">Esperando al resto… {scriptConfirmProgress ? `${scriptConfirmProgress.x}/${scriptConfirmProgress.y}` : ""}</p>
+                      </>
+                    )}
+                    {!scriptConfirmed && <p className="game-waiting-hint">Solo vos ves esta línea. ¡Actuá en orden!</p>}
+                  </div>
+                )
+              })()
             ) : mainActive ? (
               <div className="prompt-card prompt-card--result">
                 <span className="prompt-result-label">A actuar</span>
@@ -794,7 +931,7 @@ function App() {
             })}
             {Array.from({ length: Math.max(0, 2 - currentRoom.players.length) }).map((_, i) => (
               <div key={`empty-${i}`} className="player-card player-card--empty">
-                <div className="player-avatar player-avatar--empty">+</div>
+                <div className="player-avatar player-avatar--empty"><Plus size={20} /></div>
                 <span className="player-empty-label">Esperando jugador…</span>
               </div>
             ))}
@@ -850,7 +987,7 @@ function App() {
         <div className="modal-overlay" onClick={close}>
           <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="modal-close" onClick={close} aria-label="Cerrar">
-              ×
+              <X size={18} />
             </button>
             <h2 id="modal-title" className="modal-title">
               {isCreate ? "¿Cómo te llamas?" : "Unite a la partida"}
@@ -889,7 +1026,7 @@ function App() {
                         aria-label={`Color ${color}`}
                         aria-pressed={selected}
                       >
-                        {selected && <span className="palette-check" aria-hidden="true">✓</span>}
+                        {selected && <span className="palette-check" aria-hidden="true"><Check size={14} color="white" /></span>}
                       </button>
                     )
                   })}

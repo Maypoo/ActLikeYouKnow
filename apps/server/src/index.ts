@@ -4,6 +4,7 @@ import { serve } from "@hono/node-server"
 import { WebSocketServer, WebSocket } from "ws"
 import { z } from "zod"
 import { randomUUID } from "node:crypto"
+import { getAndAssignForRoom, type PlayerScriptView, type SplitResult, type Script, type CharacterAssignment } from "@actlike/shared/scripts"
 
 const ROOM_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 const ROOM_CODE_LENGTH = 6
@@ -64,6 +65,11 @@ const rateLimitByIp = new Map<string, number[]>()
 const countdowns = new Map<string, NodeJS.Timeout[]>()
 const promptPhases = new Map<string, PromptPhase>()
 const mainPhases = new Map<string, MainPhase>()
+
+type ScriptState = ReturnType<typeof getAndAssignForRoom>
+const scriptStates = new Map<string, ScriptState>()
+const scriptViewsByPlayer = new Map<string, Map<string, PlayerScriptView & { act?: number; totalActs?: number }>>()
+const scriptConfirms = new Map<string, Set<string>>()
 
 const PlayerInputSchema = z.object({
   name: z.string().trim().min(1).max(20),
@@ -172,6 +178,89 @@ function clearMainPhase(code: string) {
   mainPhases.delete(code)
 }
 
+function clearScriptState(code: string) {
+  scriptStates.delete(code)
+  scriptViewsByPlayer.delete(code)
+  scriptConfirms.delete(code)
+}
+
+function broadcastScriptConfirmProgress(code: string) {
+  const room = rooms.get(code)
+  if (!room) return
+  const set = scriptConfirms.get(code)
+  const x = set ? set.size : 0
+  const y = room.players.length
+  broadcastToRoom(code, { t: "game:script:confirm:progress", x, y })
+}
+
+function interpolateScriptText(text: string, charIdToName: Map<string, string>): string {
+  return text.replace(/\{\{(\w+)\}\}/g, (_, id: string) => charIdToName.get(id) ?? `{{${id}}}`)
+}
+
+function buildInterpolatedView(
+  view: PlayerScriptView,
+  charIdToName: Map<string, string>
+): PlayerScriptView {
+  return {
+    ...view,
+    lines: view.lines.map((l) => ({
+      ...l,
+      text: interpolateScriptText(l.text, charIdToName),
+    })),
+  }
+}
+
+function prepareScriptAssignment(code: string) {
+  const room = rooms.get(code)
+  if (!room) return null
+  if (scriptStates.has(code)) return scriptStates.get(code) ?? null
+  const playerIds = room.players.map((p) => p.id)
+  const idToPlayer = new Map(room.players.map((p) => [p.id, p] as const))
+  const result = getAndAssignForRoom(playerIds)
+  if (!result.single && !result.split) return null
+  scriptStates.set(code, result)
+  const views = new Map<string, PlayerScriptView & { act?: number; totalActs?: number }>()
+  if (result.single) {
+    const charIdToName = new Map<string, string>()
+    for (const [pid, assignment] of result.single.assignments) {
+      charIdToName.set(assignment.character.id, idToPlayer.get(pid)?.name ?? assignment.character.id)
+    }
+    for (const [pid, v] of result.single.views) {
+      const interpolated = buildInterpolatedView(v, charIdToName)
+      views.set(pid, { ...interpolated, act: 1, totalActs: 1 })
+    }
+  } else if (result.split) {
+    for (const act of result.split.acts) {
+      const charIdToName = new Map<string, string>()
+      for (const [pid, assignment] of act.assignments) {
+        charIdToName.set(assignment.character.id, idToPlayer.get(pid)?.name ?? assignment.character.id)
+      }
+      for (const [pid, v] of act.views) {
+        const interpolated = buildInterpolatedView(v, charIdToName)
+        views.set(pid, { ...interpolated, act: act.act, totalActs: 2 })
+      }
+    }
+  }
+  scriptViewsByPlayer.set(code, views)
+  if (!scriptConfirms.has(code)) scriptConfirms.set(code, new Set())
+  return result
+}
+
+function sendScriptViews(code: string) {
+  const views = scriptViewsByPlayer.get(code)
+  if (!views) return
+  const clients = roomSockets.get(code)
+  if (!clients) return
+  for (const c of clients) {
+    if (c.ws.readyState !== WebSocket.OPEN) continue
+    const view = views.get(c.playerId)
+    if (!view) continue
+    try {
+      c.ws.send(JSON.stringify({ t: "game:script:assigned", view }))
+    } catch {}
+  }
+}
+
 function shuffleArray<T>(arr: T[]): T[] {
   const next = [...arr]
   for (let i = next.length - 1; i > 0; i--) {
@@ -259,6 +348,7 @@ function startMainTimer(code: string) {
   room.state = "round"
   touchRoom(room)
   broadcastRoomUpdate(code)
+  prepareScriptAssignment(code)
   const now = Date.now()
   const phase: MainPhase = {
     startedAt: now,
@@ -268,6 +358,7 @@ function startMainTimer(code: string) {
   }
   mainPhases.set(code, phase)
   broadcastToRoom(code, { t: "game:main:start", durationMs: MAIN_DURATION_MS, msLeft: MAIN_DURATION_MS })
+  sendScriptViews(code)
   phase.tick = setInterval(() => {
     const p = mainPhases.get(code)
     const r = rooms.get(code)
@@ -471,6 +562,7 @@ app.post("/api/rooms/:code/join", async (c) => {
     clearCountdown(code)
     clearPrompt(code)
     clearMainPhase(code)
+    clearScriptState(code)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   let body: unknown
@@ -539,6 +631,7 @@ app.get("/api/rooms/:code", (c) => {
     clearCountdown(rawCode)
     clearPrompt(rawCode)
     clearMainPhase(rawCode)
+    clearScriptState(rawCode)
     return c.json({ error: "NOT_FOUND", message: "Sala expirada" }, 404)
   }
   return c.json({ room: publicRoomPayload(room) })
@@ -566,12 +659,26 @@ app.post("/api/rooms/:code/leave", async (c) => {
     prompt.submissions.delete(playerId)
     prompt.assignments.delete(playerId)
   }
+  scriptViewsByPlayer.get(rawCode)?.delete(playerId)
+  {
+    const s = scriptConfirms.get(rawCode)
+    if (s) {
+      if (s.has(playerId)) s.delete(playerId)
+      if (room.players.length > 0) {
+        broadcastScriptConfirmProgress(rawCode)
+        if (s.size >= room.players.length && room.state === "round") {
+          endMainTimer(rawCode)
+        }
+      }
+    }
+  }
   if (room.players.length === 0) {
     rooms.delete(rawCode)
     roomSockets.delete(rawCode)
     clearCountdown(rawCode)
     clearPrompt(rawCode)
     clearMainPhase(rawCode)
+    clearScriptState(rawCode)
     return c.json({ ok: true, destroyed: true })
   }
   if (wasHost) {
@@ -593,6 +700,7 @@ app.post("/api/rooms/:code/leave", async (c) => {
     if (remaining.length === 0) {
       clearPrompt(rawCode)
       clearMainPhase(rawCode)
+      clearScriptState(rawCode)
       room.state = "lobby"
       broadcastRoomUpdate(rawCode)
     }
@@ -642,6 +750,7 @@ wss.on("connection", (ws, req) => {
     clearCountdown(code)
     clearPrompt(code)
     clearMainPhase(code)
+    clearScriptState(code)
     ws.send(JSON.stringify({ t: "error", code: "NOT_FOUND", message: "Sala expirada" }))
     ws.close(4000, "expired")
     return
@@ -692,6 +801,25 @@ wss.on("connection", (ws, req) => {
       ws.send(JSON.stringify({ t: "game:main:end" }))
     } catch {}
   }
+  const existingScriptView = scriptViewsByPlayer.get(code)?.get(playerId)
+  if (existingScriptView) {
+    try {
+      ws.send(JSON.stringify({ t: "game:script:assigned", view: existingScriptView }))
+    } catch {}
+  }
+  const existingConfirms = scriptConfirms.get(code)
+  if (existingConfirms) {
+    const x = existingConfirms.size
+    const y = room.players.length
+    try {
+      ws.send(JSON.stringify({ t: "game:script:confirm:progress", x, y }))
+    } catch {}
+    if (existingConfirms.has(playerId)) {
+      try {
+        ws.send(JSON.stringify({ t: "game:script:confirmed" }))
+      } catch {}
+    }
+  }
 
   ws.on("message", (data) => {
     let msg: unknown
@@ -728,6 +856,7 @@ wss.on("connection", (ws, req) => {
       if (promptPhases.has(code)) return
       if (mainPhases.has(code)) return
       if (room.state !== "lobby") return
+      clearScriptState(code)
       const seq: number[] = [3, 2, 1]
       const timers: NodeJS.Timeout[] = []
       countdowns.set(code, timers)
@@ -737,15 +866,17 @@ wss.on("connection", (ws, req) => {
           if (idx === seq.length - 1) {
             const end = setTimeout(() => {
               countdowns.delete(code)
-            }, 1200)
+            }, 1000)
             timers.push(end)
           }
         }, idx * 1000)
         timers.push(t)
       })
       const promptTimer = setTimeout(() => {
+        broadcastToRoom(code, { t: "game:countdown:done" })
+        countdowns.delete(code)
         startPromptPhase(code)
-      }, 3000)
+      }, 3100)
       timers.push(promptTimer)
       touchRoom(room)
       return
@@ -812,6 +943,35 @@ wss.on("connection", (ws, req) => {
       broadcastToRoom(code, { t: "game:prompt:tick", msLeft: Math.max(0, phase.endsAt - Date.now()), x: phase.submissions.size, y: room.players.length })
       return
     }
+    if (type === "script:confirm" || type === "game:script:confirm") {
+      const views = scriptViewsByPlayer.get(code)
+      if (!views || !views.has(playerId)) return
+      let set = scriptConfirms.get(code)
+      if (!set) {
+        set = new Set<string>()
+        scriptConfirms.set(code, set)
+      }
+      if (set.has(playerId)) {
+        try {
+          ws.send(JSON.stringify({ t: "game:script:confirmed" }))
+        } catch {}
+        broadcastScriptConfirmProgress(code)
+        if (set.size >= room.players.length && room.state === "round") {
+          endMainTimer(code)
+        }
+        return
+      }
+      set.add(playerId)
+      touchRoom(room)
+      try {
+        ws.send(JSON.stringify({ t: "game:script:confirmed" }))
+      } catch {}
+      broadcastScriptConfirmProgress(code)
+      if (set.size >= room.players.length && room.state === "round") {
+        endMainTimer(code)
+      }
+      return
+    }
     if (type === "leave") {
       const idx = room.players.findIndex((p) => p.id === playerId)
       if (idx !== -1) {
@@ -822,6 +982,19 @@ wss.on("connection", (ws, req) => {
           prompt.submissions.delete(playerId)
           prompt.assignments.delete(playerId)
         }
+        scriptViewsByPlayer.get(code)?.delete(playerId)
+        {
+          const s = scriptConfirms.get(code)
+          if (s) {
+            if (s.has(playerId)) s.delete(playerId)
+            if (room.players.length > 0) {
+              broadcastScriptConfirmProgress(code)
+              if (s.size >= room.players.length && room.state === "round") {
+                endMainTimer(code)
+              }
+            }
+          }
+        }
         if (room.players.length === 0) {
           broadcastRoomExpired(code, "empty")
           rooms.delete(code)
@@ -829,6 +1002,7 @@ wss.on("connection", (ws, req) => {
           clearCountdown(code)
           clearPrompt(code)
           clearMainPhase(code)
+          clearScriptState(code)
           return
         }
         if (wasHost) {
@@ -874,6 +1048,7 @@ setInterval(() => {
       clearCountdown(code)
       clearPrompt(code)
       clearMainPhase(code)
+      clearScriptState(code)
     }
   }
 }, MAX_ROOM_LIFETIME_CLEANUP_MS)

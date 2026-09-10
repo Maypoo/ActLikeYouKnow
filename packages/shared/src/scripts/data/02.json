@@ -6,15 +6,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¡{{b}}! ¿Por qué hay una pizza pegada al techo?", "order": 0 },
-      { "characterId": "b", "text": "No grites. La estoy observando.", "order": 1, "direction": "serio" },
-      { "characterId": "a", "text": "¡¿OBSERVANDO?! ¡Es una pizza, no un eclipse!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "No grites. La estoy observando.", "order": 1 },
+      { "characterId": "a", "text": "¡¿OBSERVANDO?! ¡Es una pizza, no un eclipse!", "order": 2 },
       { "characterId": "b", "text": "Quiero saber si cae sola o si tenemos que intervenir.", "order": 3 },
-      { "characterId": "a", "text": "¿Y cómo demonios llegó ahí?", "order": 4, "direction": "confundido" },
+      { "characterId": "a", "text": "¿Y cómo demonios llegó ahí?", "order": 4 },
       { "characterId": "b", "text": "La lancé para espantar una mosca.", "order": 5 },
-      { "characterId": "a", "text": "¡¿LANZASTE UNA PIZZA PARA ESPANTAR UNA MOSCA?!", "order": 6, "direction": "indignado" },
-      { "characterId": "b", "text": "Funcionó. La mosca se fue.", "order": 7, "direction": "orgulloso" },
+      { "characterId": "a", "text": "¡¿LANZASTE UNA PIZZA PARA ESPANTAR UNA MOSCA?!", "order": 6 },
+      { "characterId": "b", "text": "Funcionó. La mosca se fue.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, la mosca se fue porque vio que sos capaz de cualquier cosa.", "order": 8 },
-      { "characterId": "b", "text": "Exacto. Técnica avanzada.", "order": 9, "direction": "convencido" }
+      { "characterId": "b", "text": "Exacto. Técnica avanzada.", "order": 9 }
     ]
   },
   {
@@ -24,14 +24,14 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué hace mi teléfono adentro de la heladera?", "order": 0 },
-      { "characterId": "b", "text": "Se estaba calentando.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡¿CÓMO QUE SE ESTABA CALENTANDO?! ¡NO ES UNA SOPA!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "Se estaba calentando.", "order": 1 },
+      { "characterId": "a", "text": "¡¿CÓMO QUE SE ESTABA CALENTANDO?! ¡NO ES UNA SOPA!", "order": 2 },
       { "characterId": "b", "text": "Estaba muy caliente de tanto usarlo.", "order": 3 },
-      { "characterId": "a", "text": "¡Y lo metiste al lado del yogur!", "order": 4, "direction": "escandalizado" },
-      { "characterId": "b", "text": "Para que tuviera compañía.", "order": 5, "direction": "inocente" },
+      { "characterId": "a", "text": "¡Y lo metiste al lado del yogur!", "order": 4 },
+      { "characterId": "b", "text": "Para que tuviera compañía.", "order": 5 },
       { "characterId": "a", "text": "¿Qué sigue? ¿Le vas a preparar una almohada?", "order": 6 },
-      { "characterId": "b", "text": "Ya le puse el modo avión.", "order": 7, "direction": "orgulloso" },
-      { "characterId": "a", "text": "{{b}}... el modo avión no significa que el teléfono necesite vacaciones.", "order": 8, "direction": "agotado" },
+      { "characterId": "b", "text": "Ya le puse el modo avión.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}... el modo avión no significa que el teléfono necesite vacaciones.", "order": 8 },
       { "characterId": "b", "text": "Bueno, pero ahora está fresco.", "order": 9 }
     ]
   },
@@ -45,12 +45,12 @@
       { "characterId": "b", "text": "Porque quiero devolver esto.", "order": 1 },
       { "characterId": "a", "text": "Pero compraste un paquete de fideos.", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
-      { "characterId": "a", "text": "¿Y qué querés devolver?", "order": 4, "direction": "desconcertado" },
-      { "characterId": "b", "text": "La decisión.", "order": 5, "direction": "dramático" },
-      { "characterId": "a", "text": "¡¿QUÉ DECISIÓN?!", "order": 6, "direction": "gritando" },
+      { "characterId": "a", "text": "¿Y qué querés devolver?", "order": 4 },
+      { "characterId": "b", "text": "La decisión.", "order": 5 },
+      { "characterId": "a", "text": "¡¿QUÉ DECISIÓN?!", "order": 6 },
       { "characterId": "b", "text": "Comprar fideos. Me arrepentí emocionalmente.", "order": 7 },
-      { "characterId": "a", "text": "{{b}}, llevamos cuarenta minutos haciendo fila para devolver tu estado de ánimo.", "order": 8, "direction": "furioso" },
-      { "characterId": "b", "text": "Y mirá, ya casi llegamos. Hay que aprovechar.", "order": 9, "direction": "optimista" }
+      { "characterId": "a", "text": "{{b}}, llevamos cuarenta minutos haciendo fila para devolver tu estado de ánimo.", "order": 8 },
+      { "characterId": "b", "text": "Y mirá, ya casi llegamos. Hay que aprovechar.", "order": 9 }
     ]
   },
   {
@@ -60,15 +60,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, el perro del vecino lleva una hora mirando nuestra ventana.", "order": 0 },
-      { "characterId": "b", "text": "Sí. Creo que sospecha algo.", "order": 1, "direction": "susurrando" },
+      { "characterId": "b", "text": "Sí. Creo que sospecha algo.", "order": 1 },
       { "characterId": "a", "text": "¿Qué va a sospechar un perro?", "order": 2 },
-      { "characterId": "b", "text": "No sé. Por eso me preocupa.", "order": 3, "direction": "nervioso" },
-      { "characterId": "a", "text": "¡{{b}}, dejá de mirar al perro como si fuera un inspector!", "order": 4, "direction": "gritando" },
+      { "characterId": "b", "text": "No sé. Por eso me preocupa.", "order": 3 },
+      { "characterId": "a", "text": "¡{{b}}, dejá de mirar al perro como si fuera un inspector!", "order": 4 },
       { "characterId": "b", "text": "Es que me acaba de guiñar un ojo.", "order": 5 },
-      { "characterId": "a", "text": "¡LOS PERROS NO HACEN REUNIONES SECRETAS!", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "Este sí. Mirá, ahora está mirando nuestro tacho de basura.", "order": 7, "direction": "alarmado" },
+      { "characterId": "a", "text": "¡LOS PERROS NO HACEN REUNIONES SECRETAS!", "order": 6 },
+      { "characterId": "b", "text": "Este sí. Mirá, ahora está mirando nuestro tacho de basura.", "order": 7 },
       { "characterId": "a", "text": "¿Qué querés hacer?", "order": 8 },
-      { "characterId": "b", "text": "Negociar. Tengo galletitas.", "order": 9, "direction": "decidido" }
+      { "characterId": "b", "text": "Negociar. Tengo galletitas.", "order": 9 }
     ]
   },
   {
@@ -79,14 +79,14 @@
     "lines": [
       { "characterId": "a", "text": "¿Por qué estamos haciendo la reunión en el baño?", "order": 0 },
       { "characterId": "b", "text": "Porque acá no se escucha la impresora.", "order": 1 },
-      { "characterId": "a", "text": "Hay un inodoro atrás tuyo.", "order": 2, "direction": "incómodo" },
-      { "characterId": "b", "text": "Es la única sala libre.", "order": 3, "direction": "práctico" },
-      { "characterId": "a", "text": "¡Y estamos sentados en el piso!", "order": 4, "direction": "gritando" },
+      { "characterId": "a", "text": "Hay un inodoro atrás tuyo.", "order": 2 },
+      { "characterId": "b", "text": "Es la única sala libre.", "order": 3 },
+      { "characterId": "a", "text": "¡Y estamos sentados en el piso!", "order": 4 },
       { "characterId": "b", "text": "Así estamos todos al mismo nivel.", "order": 5 },
       { "characterId": "a", "text": "¿Y por qué apagaste la luz?", "order": 6 },
-      { "characterId": "b", "text": "Ambiente corporativo.", "order": 7, "direction": "solemne" },
-      { "characterId": "a", "text": "{{b}}, mañana le voy a decir al jefe que esta reunión fue un error.", "order": 8, "direction": "resignado" },
-      { "characterId": "b", "text": "Decile también que tenemos nueva estrategia. Lavarnos las manos y seguir.", "order": 9, "direction": "motivador" }
+      { "characterId": "b", "text": "Ambiente corporativo.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, mañana le voy a decir al jefe que esta reunión fue un error.", "order": 8 },
+      { "characterId": "b", "text": "Decile también que tenemos nueva estrategia. Lavarnos las manos y seguir.", "order": 9 }
     ]
   },
   {
@@ -100,11 +100,11 @@
       { "characterId": "a", "text": "Tiene tres sobres de azúcar. Yo odio el azúcar.", "order": 2 },
       { "characterId": "b", "text": "Entonces es claramente mío.", "order": 3 },
       { "characterId": "a", "text": "Pero vos dijiste que querías uno sin azúcar.", "order": 4 },
-      { "characterId": "b", "text": "Sí. Estoy intentando engañar a mi viejo yo.", "order": 5, "direction": "filosófico" },
-      { "characterId": "a", "text": "¡No podés tener una pelea personal con un café!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Ya empezamos. Mirá cómo tiembla.", "order": 7, "direction": "dramático" },
+      { "characterId": "b", "text": "Sí. Estoy intentando engañar a mi viejo yo.", "order": 5 },
+      { "characterId": "a", "text": "¡No podés tener una pelea personal con un café!", "order": 6 },
+      { "characterId": "b", "text": "Ya empezamos. Mirá cómo tiembla.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, el café tiembla porque lo estás agarrando como si fuera un delincuente.", "order": 8 },
-      { "characterId": "b", "text": "¡Que confiese!", "order": 9, "direction": "acusador" }
+      { "characterId": "b", "text": "¡Que confiese!", "order": 9 }
     ]
   },
   {
@@ -113,16 +113,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "Dame el control.", "order": 0, "direction": "firme" },
-      { "characterId": "b", "text": "No.", "order": 1, "direction": "seco" },
+      { "characterId": "a", "text": "Dame el control.", "order": 0 },
+      { "characterId": "b", "text": "No.", "order": 1 },
       { "characterId": "a", "text": "{{b}}, hace una hora que estás viendo el mismo canal.", "order": 2 },
       { "characterId": "b", "text": "No estoy viendo el canal. Estoy esperando que pase algo.", "order": 3 },
-      { "characterId": "a", "text": "¡NO VA A PASAR NADA! ¡ES EL INFORME DEL TIEMPO!", "order": 4, "direction": "gritando" },
+      { "characterId": "a", "text": "¡NO VA A PASAR NADA! ¡ES EL INFORME DEL TIEMPO!", "order": 4 },
       { "characterId": "b", "text": "Justamente. Quiero saber si mañana llueve.", "order": 5 },
-      { "characterId": "a", "text": "¡Lo dice en la pantalla desde hace quince minutos!", "order": 6, "direction": "exasperado" },
-      { "characterId": "b", "text": "No puedo confiar en la pantalla.", "order": 7, "direction": "sospechoso" },
+      { "characterId": "a", "text": "¡Lo dice en la pantalla desde hace quince minutos!", "order": 6 },
+      { "characterId": "b", "text": "No puedo confiar en la pantalla.", "order": 7 },
       { "characterId": "a", "text": "¿Y en quién confiás?", "order": 8 },
-      { "characterId": "b", "text": "En tu cara. Estás transpirando. Algo malo va a pasar.", "order": 9, "direction": "convencido" }
+      { "characterId": "b", "text": "En tu cara. Estás transpirando. Algo malo va a pasar.", "order": 9 }
     ]
   },
   {
@@ -132,15 +132,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué no entrás al ascensor?", "order": 0 },
-      { "characterId": "b", "text": "Porque hizo un ruido.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "Porque hizo un ruido.", "order": 1 },
       { "characterId": "a", "text": "Todos los ascensores hacen ruidos.", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero este tosió.", "order": 3, "direction": "sospechoso" },
-      { "characterId": "a", "text": "¡LOS ASCENSORES NO TOSEN!", "order": 4, "direction": "gritando" },
+      { "characterId": "b", "text": "Sí, pero este tosió.", "order": 3 },
+      { "characterId": "a", "text": "¡LOS ASCENSORES NO TOSEN!", "order": 4 },
       { "characterId": "b", "text": "Entrá vos primero.", "order": 5 },
-      { "characterId": "a", "text": "¡¿YO?! ¡SI VOS SOS EL QUE DESCONFÍA!", "order": 6, "direction": "indignado" },
-      { "characterId": "b", "text": "Yo confío en vos.", "order": 7, "direction": "sincero" },
+      { "characterId": "a", "text": "¡¿YO?! ¡SI VOS SOS EL QUE DESCONFÍA!", "order": 6 },
+      { "characterId": "b", "text": "Yo confío en vos.", "order": 7 },
       { "characterId": "a", "text": "Eso no mejora nada.", "order": 8 },
-      { "characterId": "b", "text": "Bueno. Apretá el botón y vemos si tose otra vez.", "order": 9, "direction": "decidido" }
+      { "characterId": "b", "text": "Bueno. Apretá el botón y vemos si tose otra vez.", "order": 9 }
     ]
   },
   {
@@ -151,14 +151,14 @@
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué tenés el documento en la mano y estás posando?", "order": 0 },
       { "characterId": "b", "text": "Porque me dijeron que saque una foto del documento.", "order": 1 },
-      { "characterId": "a", "text": "¡DEL DOCUMENTO, NO DE VOS CON EL DOCUMENTO!", "order": 2, "direction": "gritando" },
+      { "characterId": "a", "text": "¡DEL DOCUMENTO, NO DE VOS CON EL DOCUMENTO!", "order": 2 },
       { "characterId": "b", "text": "Pero así se ve que es mío.", "order": 3 },
-      { "characterId": "a", "text": "Tenés cinco selfies sosteniendo tu documento.", "order": 4, "direction": "incrédulo" },
-      { "characterId": "b", "text": "En una salgo bastante bien.", "order": 5, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¡NO ESTAMOS HACIENDO UNA CAMPAÑA PUBLICITARIA!", "order": 6, "direction": "desesperado" },
+      { "characterId": "a", "text": "Tenés cinco selfies sosteniendo tu documento.", "order": 4 },
+      { "characterId": "b", "text": "En una salgo bastante bien.", "order": 5 },
+      { "characterId": "a", "text": "¡NO ESTAMOS HACIENDO UNA CAMPAÑA PUBLICITARIA!", "order": 6 },
       { "characterId": "b", "text": "¿Entonces borro la que estoy sonriendo?", "order": 7 },
-      { "characterId": "a", "text": "¡BORRÁ TODAS!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Bueno. Pero guardo una para mi cumpleaños.", "order": 9, "direction": "tranquilo" }
+      { "characterId": "a", "text": "¡BORRÁ TODAS!", "order": 8 },
+      { "characterId": "b", "text": "Bueno. Pero guardo una para mi cumpleaños.", "order": 9 }
     ]
   },
   {
@@ -168,15 +168,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, encontré una media dentro de la olla.", "order": 0 },
-      { "characterId": "b", "text": "Perfecto.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡¿PERFECTO?! ¡HAY UNA MEDIA EN LA OLLA!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "Perfecto.", "order": 1 },
+      { "characterId": "a", "text": "¡¿PERFECTO?! ¡HAY UNA MEDIA EN LA OLLA!", "order": 2 },
       { "characterId": "b", "text": "Entonces apareció.", "order": 3 },
-      { "characterId": "a", "text": "¿Qué significa que apareció?", "order": 4, "direction": "confundido" },
+      { "characterId": "a", "text": "¿Qué significa que apareció?", "order": 4 },
       { "characterId": "b", "text": "La estaba buscando desde ayer.", "order": 5 },
-      { "characterId": "a", "text": "¡¿Y SE TE OCURRIÓ BUSCARLA EN LA COCINA?!", "order": 6, "direction": "indignado" },
-      { "characterId": "b", "text": "No. La encontré cocinando.", "order": 7, "direction": "serio" },
-      { "characterId": "a", "text": "{{b}}, decime que no estabas cocinando con la media adentro.", "order": 8, "direction": "horrorizado" },
-      { "characterId": "b", "text": "No. La puse después. La comida ya estaba lista.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "a", "text": "¡¿Y SE TE OCURRIÓ BUSCARLA EN LA COCINA?!", "order": 6 },
+      { "characterId": "b", "text": "No. La encontré cocinando.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, decime que no estabas cocinando con la media adentro.", "order": 8 },
+      { "characterId": "b", "text": "No. La puse después. La comida ya estaba lista.", "order": 9 }
     ]
   },
   {
@@ -186,15 +186,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué estás haciendo con ese tupper?", "order": 0 },
-      { "characterId": "b", "text": "Intentando abrirlo.", "order": 1, "direction": "concentrado" },
-      { "characterId": "a", "text": "¡Hace veinte minutos que estás con eso!", "order": 2, "direction": "incrédulo" },
-      { "characterId": "b", "text": "No es un tupper normal. Este tiene carácter.", "order": 3, "direction": "serio" },
-      { "characterId": "a", "text": "¡DAME ESO!", "order": 4, "direction": "gritando" },
-      { "characterId": "b", "text": "¡No! ¡Lo tengo!", "order": 5, "direction": "forcejeando" },
-      { "characterId": "a", "text": "¡ESTÁS PELEANDO CONTRA UN RECIPIENTE!", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "¡Y ESTÁ GANANDO!", "order": 7, "direction": "furioso" },
+      { "characterId": "b", "text": "Intentando abrirlo.", "order": 1 },
+      { "characterId": "a", "text": "¡Hace veinte minutos que estás con eso!", "order": 2 },
+      { "characterId": "b", "text": "No es un tupper normal. Este tiene carácter.", "order": 3 },
+      { "characterId": "a", "text": "¡DAME ESO!", "order": 4 },
+      { "characterId": "b", "text": "¡No! ¡Lo tengo!", "order": 5 },
+      { "characterId": "a", "text": "¡ESTÁS PELEANDO CONTRA UN RECIPIENTE!", "order": 6 },
+      { "characterId": "b", "text": "¡Y ESTÁ GANANDO!", "order": 7 },
       { "characterId": "a", "text": "Soltalo antes de que le tengas que pedir perdón.", "order": 8 },
-      { "characterId": "b", "text": "Ya le pedí.", "order": 9, "direction": "avergonzado" }
+      { "characterId": "b", "text": "Ya le pedí.", "order": 9 }
     ]
   },
   {
@@ -204,15 +204,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué le estás diciendo al taxi que pare?", "order": 0 },
-      { "characterId": "b", "text": "Porque es el nuestro.", "order": 1, "direction": "seguro" },
+      { "characterId": "b", "text": "Porque es el nuestro.", "order": 1 },
       { "characterId": "a", "text": "¡Ese taxi está ocupado!", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero nos puede llevar igual.", "order": 3, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡¿CÓMO QUE NOS PUEDE LLEVAR IGUAL?!", "order": 4, "direction": "gritando" },
+      { "characterId": "b", "text": "Sí, pero nos puede llevar igual.", "order": 3 },
+      { "characterId": "a", "text": "¡¿CÓMO QUE NOS PUEDE LLEVAR IGUAL?!", "order": 4 },
       { "characterId": "b", "text": "Bueno, todavía no me contestó.", "order": 5 },
-      { "characterId": "a", "text": "¡PORQUE HAY UNA SEÑORA ADENTRO MIRÁNDOTE!", "order": 6, "direction": "alarmado" },
-      { "characterId": "b", "text": "Ah. Entonces capaz no era el nuestro.", "order": 7, "direction": "confundido" },
-      { "characterId": "a", "text": "¡CAPAZ!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Bueno, por las dudas le levanté el pulgar.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "a", "text": "¡PORQUE HAY UNA SEÑORA ADENTRO MIRÁNDOTE!", "order": 6 },
+      { "characterId": "b", "text": "Ah. Entonces capaz no era el nuestro.", "order": 7 },
+      { "characterId": "a", "text": "¡CAPAZ!", "order": 8 },
+      { "characterId": "b", "text": "Bueno, por las dudas le levanté el pulgar.", "order": 9 }
     ]
   },
   {
@@ -222,15 +222,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué pusiste la planta en el balcón?", "order": 0 },
-      { "characterId": "b", "text": "Necesita aire.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡Es una planta! ¡Está literalmente afuera!", "order": 2, "direction": "incrédulo" },
-      { "characterId": "b", "text": "La de adentro estaba deprimida.", "order": 3, "direction": "preocupado" },
+      { "characterId": "b", "text": "Necesita aire.", "order": 1 },
+      { "characterId": "a", "text": "¡Es una planta! ¡Está literalmente afuera!", "order": 2 },
+      { "characterId": "b", "text": "La de adentro estaba deprimida.", "order": 3 },
       { "characterId": "a", "text": "{{b}}, le hablaste a la planta toda la mañana.", "order": 4 },
-      { "characterId": "b", "text": "Porque no me está respondiendo.", "order": 5, "direction": "ofendido" },
-      { "characterId": "a", "text": "¡PORQUE ES UNA PLANTA!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Eso mismo decía hasta que empezó a inclinarse para mi lado.", "order": 7, "direction": "misterioso" },
-      { "characterId": "a", "text": "Se está inclinando porque hay viento.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "No quiero influenciar tu opinión, pero me acaba de señalar con una hoja.", "order": 9, "direction": "asustado" }
+      { "characterId": "b", "text": "Porque no me está respondiendo.", "order": 5 },
+      { "characterId": "a", "text": "¡PORQUE ES UNA PLANTA!", "order": 6 },
+      { "characterId": "b", "text": "Eso mismo decía hasta que empezó a inclinarse para mi lado.", "order": 7 },
+      { "characterId": "a", "text": "Se está inclinando porque hay viento.", "order": 8 },
+      { "characterId": "b", "text": "No quiero influenciar tu opinión, pero me acaba de señalar con una hoja.", "order": 9 }
     ]
   },
   {
@@ -240,15 +240,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Qué hiciste con el pan?", "order": 0 },
-      { "characterId": "b", "text": "Lo tosté.", "order": 1, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¡Eso no está tostado! ¡Eso tiene antecedentes penales!", "order": 2, "direction": "escandalizado" },
+      { "characterId": "b", "text": "Lo tosté.", "order": 1 },
+      { "characterId": "a", "text": "¡Eso no está tostado! ¡Eso tiene antecedentes penales!", "order": 2 },
       { "characterId": "b", "text": "Me distraje un segundo.", "order": 3 },
-      { "characterId": "a", "text": "¿Un segundo? ¡Está negro!", "order": 4, "direction": "gritando" },
-      { "characterId": "b", "text": "Bueno, así no se vence nunca.", "order": 5, "direction": "racionalizando" },
+      { "characterId": "a", "text": "¿Un segundo? ¡Está negro!", "order": 4 },
+      { "characterId": "b", "text": "Bueno, así no se vence nunca.", "order": 5 },
       { "characterId": "a", "text": "{{b}}, eso ya no es comida.", "order": 6 },
-      { "characterId": "b", "text": "Puede servir de posavasos.", "order": 7, "direction": "esperanzado" },
-      { "characterId": "a", "text": "¡NO LE BUSQUES OTRO OFICIO!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Entonces lo guardo. Algún día nos va a salvar.", "order": 9, "direction": "solemne" }
+      { "characterId": "b", "text": "Puede servir de posavasos.", "order": 7 },
+      { "characterId": "a", "text": "¡NO LE BUSQUES OTRO OFICIO!", "order": 8 },
+      { "characterId": "b", "text": "Entonces lo guardo. Algún día nos va a salvar.", "order": 9 }
     ]
   },
   {
@@ -260,13 +260,13 @@
       { "characterId": "a", "text": "{{b}}, ¿por qué estás tirado en el piso?", "order": 0 },
       { "characterId": "b", "text": "Se me cayó una moneda.", "order": 1 },
       { "characterId": "a", "text": "Hay cuatro monedas al lado tuyo.", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero no es esa.", "order": 3, "direction": "concentrado" },
-      { "characterId": "a", "text": "¡SON TODAS IGUALES!", "order": 4, "direction": "gritando" },
-      { "characterId": "b", "text": "No. Una tiene historia.", "order": 5, "direction": "misterioso" },
-      { "characterId": "a", "text": "¿Qué historia?", "order": 6, "direction": "confundido" },
-      { "characterId": "b", "text": "No sé. Pero era mi favorita.", "order": 7, "direction": "triste" },
-      { "characterId": "a", "text": "¡ESTÁS LLORANDO POR UNA MONEDA DE UN PESO!", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "No es por el valor. Es por lo que vivió.", "order": 9, "direction": "dramático" }
+      { "characterId": "b", "text": "Sí, pero no es esa.", "order": 3 },
+      { "characterId": "a", "text": "¡SON TODAS IGUALES!", "order": 4 },
+      { "characterId": "b", "text": "No. Una tiene historia.", "order": 5 },
+      { "characterId": "a", "text": "¿Qué historia?", "order": 6 },
+      { "characterId": "b", "text": "No sé. Pero era mi favorita.", "order": 7 },
+      { "characterId": "a", "text": "¡ESTÁS LLORANDO POR UNA MONEDA DE UN PESO!", "order": 8 },
+      { "characterId": "b", "text": "No es por el valor. Es por lo que vivió.", "order": 9 }
     ]
   },
   {
@@ -276,15 +276,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}... ¿por qué hay una cuchara adentro del microondas?", "order": 0 },
-      { "characterId": "b", "text": "La dejé sin querer.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡Y DESPUÉS PRENDISTE EL MICROONDAS!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "La dejé sin querer.", "order": 1 },
+      { "characterId": "a", "text": "¡Y DESPUÉS PRENDISTE EL MICROONDAS!", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
-      { "characterId": "a", "text": "¡¿Y NO VISTE LAS CHISPAS?!", "order": 4, "direction": "horrorizado" },
-      { "characterId": "b", "text": "Sí, pero pensé que estaba cocinando rápido.", "order": 5, "direction": "inocente" },
-      { "characterId": "a", "text": "¡ESO NO ES COCINAR RÁPIDO!", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "Bueno, el plato quedó caliente.", "order": 7, "direction": "satisfecho" },
-      { "characterId": "a", "text": "Y la cocina parece una discoteca.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Entonces salió mejor de lo esperado.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "a", "text": "¡¿Y NO VISTE LAS CHISPAS?!", "order": 4 },
+      { "characterId": "b", "text": "Sí, pero pensé que estaba cocinando rápido.", "order": 5 },
+      { "characterId": "a", "text": "¡ESO NO ES COCINAR RÁPIDO!", "order": 6 },
+      { "characterId": "b", "text": "Bueno, el plato quedó caliente.", "order": 7 },
+      { "characterId": "a", "text": "Y la cocina parece una discoteca.", "order": 8 },
+      { "characterId": "b", "text": "Entonces salió mejor de lo esperado.", "order": 9 }
     ]
   },
   {
@@ -294,15 +294,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, afuera hacen treinta y cinco grados. ¿Por qué tenés campera?", "order": 0 },
-      { "characterId": "b", "text": "Por seguridad.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "Por seguridad.", "order": 1 },
       { "characterId": "a", "text": "¿Seguridad contra qué?", "order": 2 },
-      { "characterId": "b", "text": "Contra el frío.", "order": 3, "direction": "convencido" },
-      { "characterId": "a", "text": "¡NO HACE FRÍO!", "order": 4, "direction": "gritando" },
+      { "characterId": "b", "text": "Contra el frío.", "order": 3 },
+      { "characterId": "a", "text": "¡NO HACE FRÍO!", "order": 4 },
       { "characterId": "b", "text": "Vos decís eso ahora.", "order": 5 },
-      { "characterId": "a", "text": "¡ESTÁS TRANSPIRANDO!", "order": 6, "direction": "escandalizado" },
-      { "characterId": "b", "text": "Es defensa térmica.", "order": 7, "direction": "profesional" },
+      { "characterId": "a", "text": "¡ESTÁS TRANSPIRANDO!", "order": 6 },
+      { "characterId": "b", "text": "Es defensa térmica.", "order": 7 },
       { "characterId": "a", "text": "Parecés una milanesa envuelta.", "order": 8 },
-      { "characterId": "b", "text": "Bueno, pero una milanesa preparada para el invierno.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Bueno, pero una milanesa preparada para el invierno.", "order": 9 }
     ]
   },
   {
@@ -311,16 +311,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "¡{{b}}! ¡Apagá la alarma!", "order": 0, "direction": "gritando" },
-      { "characterId": "b", "text": "Ya la apago.", "order": 1, "direction": "dormido" },
+      { "characterId": "a", "text": "¡{{b}}! ¡Apagá la alarma!", "order": 0 },
+      { "characterId": "b", "text": "Ya la apago.", "order": 1 },
       { "characterId": "a", "text": "¡Hace diez minutos que decís eso!", "order": 2 },
       { "characterId": "b", "text": "Estoy buscando el teléfono.", "order": 3 },
-      { "characterId": "a", "text": "¡LO TENÉS EN LA MANO!", "order": 4, "direction": "desesperado" },
-      { "characterId": "b", "text": "¿Este?", "order": 5, "direction": "confundido" },
-      { "characterId": "a", "text": "¡SÍ, ESE!", "order": 6, "direction": "gritando" },
+      { "characterId": "a", "text": "¡LO TENÉS EN LA MANO!", "order": 4 },
+      { "characterId": "b", "text": "¿Este?", "order": 5 },
+      { "characterId": "a", "text": "¡SÍ, ESE!", "order": 6 },
       { "characterId": "b", "text": "Ah. Yo pensé que era el otro.", "order": 7 },
-      { "characterId": "a", "text": "¿QUÉ OTRO TELÉFONO?", "order": 8, "direction": "furioso" },
-      { "characterId": "b", "text": "No sé. Por eso estaba buscando.", "order": 9, "direction": "medio dormido" }
+      { "characterId": "a", "text": "¿QUÉ OTRO TELÉFONO?", "order": 8 },
+      { "characterId": "b", "text": "No sé. Por eso estaba buscando.", "order": 9 }
     ]
   },
   {
@@ -331,14 +331,14 @@
     "lines": [
       { "characterId": "a", "text": "¿Por qué compraste cuatro lechugas?", "order": 0 },
       { "characterId": "b", "text": "Me dijiste que comprara una.", "order": 1 },
-      { "characterId": "a", "text": "¡UNA! ¡UNA SOLA!", "order": 2, "direction": "gritando" },
-      { "characterId": "b", "text": "Sí, pero agarré una y después no sabía cuál era.", "order": 3, "direction": "confundido" },
+      { "characterId": "a", "text": "¡UNA! ¡UNA SOLA!", "order": 2 },
+      { "characterId": "b", "text": "Sí, pero agarré una y después no sabía cuál era.", "order": 3 },
       { "characterId": "a", "text": "¡¿CÓMO QUE NO SABÍAS CUÁL ERA?!", "order": 4 },
-      { "characterId": "b", "text": "Eran muy parecidas.", "order": 5, "direction": "defensivo" },
-      { "characterId": "a", "text": "¡SON LECHUGAS!", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "Exactamente. Ninguna tenía nombre.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "Eran muy parecidas.", "order": 5 },
+      { "characterId": "a", "text": "¡SON LECHUGAS!", "order": 6 },
+      { "characterId": "b", "text": "Exactamente. Ninguna tenía nombre.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, compraste cuatro para asegurarte de traer la correcta.", "order": 8 },
-      { "characterId": "b", "text": "Y ahora tenemos margen de error.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Y ahora tenemos margen de error.", "order": 9 }
     ]
   },
   {
@@ -347,16 +347,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "{{b}}, ¿POR QUÉ HAY UN ZAPATO EN EL FREEZER?", "order": 0, "direction": "gritando" },
-      { "characterId": "b", "text": "Lo puse ahí.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡ESO YA LO SÉ! ¡TE ESTOY PREGUNTANDO POR QUÉ!", "order": 2, "direction": "desesperado" },
+      { "characterId": "a", "text": "{{b}}, ¿POR QUÉ HAY UN ZAPATO EN EL FREEZER?", "order": 0 },
+      { "characterId": "b", "text": "Lo puse ahí.", "order": 1 },
+      { "characterId": "a", "text": "¡ESO YA LO SÉ! ¡TE ESTOY PREGUNTANDO POR QUÉ!", "order": 2 },
       { "characterId": "b", "text": "Quería enfriarlo.", "order": 3 },
-      { "characterId": "a", "text": "¿PARA QUÉ QUERÉS UN ZAPATO FRÍO?", "order": 4, "direction": "escandalizado" },
-      { "characterId": "b", "text": "Me ajusta mucho.", "order": 5, "direction": "molesto" },
-      { "characterId": "a", "text": "¡¿Y PENSASTE QUE EL FREEZER ERA EL MÉTODO CORRECTO?!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Cinco minutos y queda perfecto.", "order": 7, "direction": "seguro" },
-      { "characterId": "a", "text": "Ahora tu zapato está al lado de las empanadas.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Entonces mañana desayunamos con buena organización.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "a", "text": "¿PARA QUÉ QUERÉS UN ZAPATO FRÍO?", "order": 4 },
+      { "characterId": "b", "text": "Me ajusta mucho.", "order": 5 },
+      { "characterId": "a", "text": "¡¿Y PENSASTE QUE EL FREEZER ERA EL MÉTODO CORRECTO?!", "order": 6 },
+      { "characterId": "b", "text": "Cinco minutos y queda perfecto.", "order": 7 },
+      { "characterId": "a", "text": "Ahora tu zapato está al lado de las empanadas.", "order": 8 },
+      { "characterId": "b", "text": "Entonces mañana desayunamos con buena organización.", "order": 9 }
     ]
   },
   {
@@ -366,15 +366,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás tirando de la puerta del auto?", "order": 0 },
-      { "characterId": "b", "text": "No abre.", "order": 1, "direction": "concentrado" },
-      { "characterId": "a", "text": "¡Porque el auto está cerrado!", "order": 2, "direction": "incrédulo" },
+      { "characterId": "b", "text": "No abre.", "order": 1 },
+      { "characterId": "a", "text": "¡Porque el auto está cerrado!", "order": 2 },
       { "characterId": "b", "text": "Ya probé con la manija.", "order": 3 },
-      { "characterId": "a", "text": "¡¿Y CON QUÉ QUERÉS PROBAR?!", "order": 4, "direction": "gritando" },
-      { "characterId": "b", "text": "Con la otra manija.", "order": 5, "direction": "serio" },
-      { "characterId": "a", "text": "¡ES LA MISMA PUERTA!", "order": 6, "direction": "desesperado" },
+      { "characterId": "a", "text": "¡¿Y CON QUÉ QUERÉS PROBAR?!", "order": 4 },
+      { "characterId": "b", "text": "Con la otra manija.", "order": 5 },
+      { "characterId": "a", "text": "¡ES LA MISMA PUERTA!", "order": 6 },
       { "characterId": "b", "text": "No, esta es la puerta de atrás.", "order": 7 },
-      { "characterId": "a", "text": "{{b}}, estamos adentro del supermercado.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Ah... entonces entiendo por qué no arranca.", "order": 9, "direction": "avergonzado" }
+      { "characterId": "a", "text": "{{b}}, estamos adentro del supermercado.", "order": 8 },
+      { "characterId": "b", "text": "Ah... entonces entiendo por qué no arranca.", "order": 9 }
     ]
   },
   {
@@ -384,15 +384,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué llevás dentro de la cartera?", "order": 0 },
-      { "characterId": "b", "text": "El helado.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡¿QUÉ?! ¡¿EL HELADO?!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "El helado.", "order": 1 },
+      { "characterId": "a", "text": "¡¿QUÉ?! ¡¿EL HELADO?!", "order": 2 },
       { "characterId": "b", "text": "Sí. No quería que se me derritiera.", "order": 3 },
-      { "characterId": "a", "text": "¡POR ESO LO TENÍAS QUE COMER!", "order": 4, "direction": "desesperado" },
-      { "characterId": "b", "text": "Ahora es más fácil. Puedo tomarlo con sorbete.", "order": 5, "direction": "práctico" },
+      { "characterId": "a", "text": "¡POR ESO LO TENÍAS QUE COMER!", "order": 4 },
+      { "characterId": "b", "text": "Ahora es más fácil. Puedo tomarlo con sorbete.", "order": 5 },
       { "characterId": "a", "text": "{{b}}, tenés helado líquido adentro de una cartera.", "order": 6 },
-      { "characterId": "b", "text": "Técnicamente es un batido.", "order": 7, "direction": "convencido" },
-      { "characterId": "a", "text": "¡TÉCNICAMENTE ARRUINASTE LA CARTERA!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Bueno, ahora también tiene sabor a chocolate.", "order": 9, "direction": "optimista" }
+      { "characterId": "b", "text": "Técnicamente es un batido.", "order": 7 },
+      { "characterId": "a", "text": "¡TÉCNICAMENTE ARRUINASTE LA CARTERA!", "order": 8 },
+      { "characterId": "b", "text": "Bueno, ahora también tiene sabor a chocolate.", "order": 9 }
     ]
   },
   {
@@ -404,13 +404,13 @@
       { "characterId": "a", "text": "{{b}}, ¿qué hacés hablando con la persona de adelante?", "order": 0 },
       { "characterId": "b", "text": "Le estoy preguntando cuánto falta.", "order": 1 },
       { "characterId": "a", "text": "¡Está comprando una sola cosa!", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero quiero información precisa.", "order": 3, "direction": "serio" },
-      { "characterId": "a", "text": "¿Información precisa?", "order": 4, "direction": "confundido" },
-      { "characterId": "b", "text": "¿Cuánto tarda? ¿Qué va a pedir? ¿Si va a pagar con tarjeta?", "order": 5, "direction": "interrogando" },
-      { "characterId": "a", "text": "¡DEJÁ DE HACERLE UNA ENTREVISTA!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Se puso nervioso.", "order": 7, "direction": "sorprendido" },
-      { "characterId": "a", "text": "¡OBVIO QUE SE PUSO NERVIOSO!", "order": 8, "direction": "exasperado" },
-      { "characterId": "b", "text": "Bueno, por lo menos ahora sabemos que quiere medialunas.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "b", "text": "Sí, pero quiero información precisa.", "order": 3 },
+      { "characterId": "a", "text": "¿Información precisa?", "order": 4 },
+      { "characterId": "b", "text": "¿Cuánto tarda? ¿Qué va a pedir? ¿Si va a pagar con tarjeta?", "order": 5 },
+      { "characterId": "a", "text": "¡DEJÁ DE HACERLE UNA ENTREVISTA!", "order": 6 },
+      { "characterId": "b", "text": "Se puso nervioso.", "order": 7 },
+      { "characterId": "a", "text": "¡OBVIO QUE SE PUSO NERVIOSO!", "order": 8 },
+      { "characterId": "b", "text": "Bueno, por lo menos ahora sabemos que quiere medialunas.", "order": 9 }
     ]
   },
   {
@@ -419,16 +419,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "¡{{b}}! ¡Dejá ese teléfono!", "order": 0, "direction": "alarmado" },
-      { "characterId": "b", "text": "¿Por qué?", "order": 1, "direction": "confundido" },
-      { "characterId": "a", "text": "¡Porque no es tuyo!", "order": 2, "direction": "gritando" },
+      { "characterId": "a", "text": "¡{{b}}! ¡Dejá ese teléfono!", "order": 0 },
+      { "characterId": "b", "text": "¿Por qué?", "order": 1 },
+      { "characterId": "a", "text": "¡Porque no es tuyo!", "order": 2 },
       { "characterId": "b", "text": "Ah.", "order": 3 },
-      { "characterId": "a", "text": "¡¿AH?!", "order": 4, "direction": "incrédulo" },
+      { "characterId": "a", "text": "¡¿AH?!", "order": 4 },
       { "characterId": "b", "text": "Pensé que era el mío porque tenía la misma funda.", "order": 5 },
-      { "characterId": "a", "text": "¡Y TAMBIÉN TIENE EL NOMBRE DE OTRA PERSONA EN LA PANTALLA!", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "Sí, eso me llamó la atención.", "order": 7, "direction": "pensativo" },
+      { "characterId": "a", "text": "¡Y TAMBIÉN TIENE EL NOMBRE DE OTRA PERSONA EN LA PANTALLA!", "order": 6 },
+      { "characterId": "b", "text": "Sí, eso me llamó la atención.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, llevás cinco minutos desbloqueando el teléfono de un desconocido.", "order": 8 },
-      { "characterId": "b", "text": "Por suerte no funcionó.", "order": 9, "direction": "aliviado" }
+      { "characterId": "b", "text": "Por suerte no funcionó.", "order": 9 }
     ]
   },
   {
@@ -438,15 +438,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué abriste el paraguas en el living?", "order": 0 },
-      { "characterId": "b", "text": "Para probarlo.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡YA SABÉS QUE FUNCIONA! ¡ES UN PARAGUAS!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "Para probarlo.", "order": 1 },
+      { "characterId": "a", "text": "¡YA SABÉS QUE FUNCIONA! ¡ES UN PARAGUAS!", "order": 2 },
       { "characterId": "b", "text": "Quería verificar que abriera completo.", "order": 3 },
-      { "characterId": "a", "text": "¡ABRIÓ COMPLETO! ¡TE TAPÓ MEDIA CARA!", "order": 4, "direction": "exasperado" },
-      { "characterId": "b", "text": "Todavía falta cerrarlo.", "order": 5, "direction": "concentrado" },
+      { "characterId": "a", "text": "¡ABRIÓ COMPLETO! ¡TE TAPÓ MEDIA CARA!", "order": 4 },
+      { "characterId": "b", "text": "Todavía falta cerrarlo.", "order": 5 },
       { "characterId": "a", "text": "Bueno, cerralo.", "order": 6 },
-      { "characterId": "b", "text": "No puedo.", "order": 7, "direction": "asustado" },
-      { "characterId": "a", "text": "¡¿CÓMO QUE NO PODÉS?!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Creo que le gustó estar abierto.", "order": 9, "direction": "serio" }
+      { "characterId": "b", "text": "No puedo.", "order": 7 },
+      { "characterId": "a", "text": "¡¿CÓMO QUE NO PODÉS?!", "order": 8 },
+      { "characterId": "b", "text": "Creo que le gustó estar abierto.", "order": 9 }
     ]
   },
   {
@@ -456,15 +456,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué estás buscando?", "order": 0 },
-      { "characterId": "b", "text": "Las llaves.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "Las llaves.", "order": 1 },
       { "characterId": "a", "text": "¿Revisaste los bolsillos?", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "¿Todos?", "order": 4 },
-      { "characterId": "b", "text": "Todos.", "order": 5, "direction": "convencido" },
+      { "characterId": "b", "text": "Todos.", "order": 5 },
       { "characterId": "a", "text": "¿Ese también?", "order": 6 },
-      { "characterId": "b", "text": "¿Cuál?", "order": 7, "direction": "confundido" },
-      { "characterId": "a", "text": "¡EL QUE ESTÁS AGARRANDO CON LA MANO!", "order": 8, "direction": "gritando" },
-      { "characterId": "b", "text": "Ah... entonces no las estaba buscando. Las estaba sosteniendo.", "order": 9, "direction": "avergonzado" }
+      { "characterId": "b", "text": "¿Cuál?", "order": 7 },
+      { "characterId": "a", "text": "¡EL QUE ESTÁS AGARRANDO CON LA MANO!", "order": 8 },
+      { "characterId": "b", "text": "Ah... entonces no las estaba buscando. Las estaba sosteniendo.", "order": 9 }
     ]
   },
   {
@@ -473,16 +473,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "¿Qué olor es ese?", "order": 0, "direction": "sospechoso" },
+      { "characterId": "a", "text": "¿Qué olor es ese?", "order": 0 },
       { "characterId": "b", "text": "No sé.", "order": 1 },
       { "characterId": "a", "text": "{{b}}, estamos dentro del auto y huele a queso.", "order": 2 },
-      { "characterId": "b", "text": "Ah.", "order": 3, "direction": "culpable" },
-      { "characterId": "a", "text": "¿Qué hiciste?", "order": 4, "direction": "amenazante" },
+      { "characterId": "b", "text": "Ah.", "order": 3 },
+      { "characterId": "a", "text": "¿Qué hiciste?", "order": 4 },
       { "characterId": "b", "text": "Me olvidé de sacar una bolsa.", "order": 5 },
-      { "characterId": "a", "text": "¡¿CUÁNTO HACE QUE ESTÁ ACÁ?!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Unos días.", "order": 7, "direction": "inocente" },
-      { "characterId": "a", "text": "¡{{b}}! ¡EL QUESO ESTÁ MÁS CERCA DE TENER DOCUMENTOS QUE NOSOTROS!", "order": 8, "direction": "desesperado" },
-      { "characterId": "b", "text": "Por lo menos maduró bien.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "a", "text": "¡¿CUÁNTO HACE QUE ESTÁ ACÁ?!", "order": 6 },
+      { "characterId": "b", "text": "Unos días.", "order": 7 },
+      { "characterId": "a", "text": "¡{{b}}! ¡EL QUESO ESTÁ MÁS CERCA DE TENER DOCUMENTOS QUE NOSOTROS!", "order": 8 },
+      { "characterId": "b", "text": "Por lo menos maduró bien.", "order": 9 }
     ]
   },
   {
@@ -492,15 +492,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué el microondas sigue sonando?", "order": 0 },
-      { "characterId": "b", "text": "Porque no terminé.", "order": 1, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡TERMINÓ HACE DIEZ MINUTOS!", "order": 2, "direction": "gritando" },
+      { "characterId": "b", "text": "Porque no terminé.", "order": 1 },
+      { "characterId": "a", "text": "¡TERMINÓ HACE DIEZ MINUTOS!", "order": 2 },
       { "characterId": "b", "text": "Sí, pero todavía está caliente.", "order": 3 },
-      { "characterId": "a", "text": "¡EL MICROONDAS NO NECESITA TU PERMISO PARA TERMINAR!", "order": 4, "direction": "desesperado" },
-      { "characterId": "b", "text": "No me gusta interrumpirlo.", "order": 5, "direction": "culpable" },
-      { "characterId": "a", "text": "¡ES UNA MÁQUINA!", "order": 6, "direction": "gritando" },
-      { "characterId": "b", "text": "Sí, pero está siendo insistente.", "order": 7, "direction": "incómodo" },
+      { "characterId": "a", "text": "¡EL MICROONDAS NO NECESITA TU PERMISO PARA TERMINAR!", "order": 4 },
+      { "characterId": "b", "text": "No me gusta interrumpirlo.", "order": 5 },
+      { "characterId": "a", "text": "¡ES UNA MÁQUINA!", "order": 6 },
+      { "characterId": "b", "text": "Sí, pero está siendo insistente.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, apretá el botón.", "order": 8 },
-      { "characterId": "b", "text": "No quiero herir sus sentimientos.", "order": 9, "direction": "muy serio" }
+      { "characterId": "b", "text": "No quiero herir sus sentimientos.", "order": 9 }
     ]
   },
   {
@@ -510,15 +510,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué pusiste una botella arriba de esa silla?", "order": 0 },
-      { "characterId": "b", "text": "La reservé.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "La reservé.", "order": 1 },
       { "characterId": "a", "text": "¿Para quién?", "order": 2 },
-      { "characterId": "b", "text": "Para mí.", "order": 3, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¡PERO ESTÁS SENTADO EN OTRA SILLA!", "order": 4, "direction": "gritando" },
+      { "characterId": "b", "text": "Para mí.", "order": 3 },
+      { "characterId": "a", "text": "¡PERO ESTÁS SENTADO EN OTRA SILLA!", "order": 4 },
       { "characterId": "b", "text": "Sí. Esta me gusta más.", "order": 5 },
-      { "characterId": "a", "text": "Entonces ¿para qué reservaste la otra?", "order": 6, "direction": "confundido" },
-      { "characterId": "b", "text": "Por si cambio de opinión.", "order": 7, "direction": "tranquilo" },
-      { "characterId": "a", "text": "{{b}}, hay seis personas buscando dónde sentarse.", "order": 8, "direction": "indignado" },
-      { "characterId": "b", "text": "Que tengan paciencia. Yo todavía estoy decidiendo.", "order": 9, "direction": "solemne" }
+      { "characterId": "a", "text": "Entonces ¿para qué reservaste la otra?", "order": 6 },
+      { "characterId": "b", "text": "Por si cambio de opinión.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, hay seis personas buscando dónde sentarse.", "order": 8 },
+      { "characterId": "b", "text": "Que tengan paciencia. Yo todavía estoy decidiendo.", "order": 9 }
     ]
   },
   {
@@ -528,15 +528,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué llevás una bolsa vacía?", "order": 0 },
-      { "characterId": "b", "text": "No está vacía.", "order": 1, "direction": "serio" },
-      { "characterId": "a", "text": "¡NO TIENE NADA!", "order": 2, "direction": "gritando" },
-      { "characterId": "b", "text": "Tiene aire.", "order": 3, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¡ES UNA BOLSA DE AIRE!", "order": 4, "direction": "incrédulo" },
+      { "characterId": "b", "text": "No está vacía.", "order": 1 },
+      { "characterId": "a", "text": "¡NO TIENE NADA!", "order": 2 },
+      { "characterId": "b", "text": "Tiene aire.", "order": 3 },
+      { "characterId": "a", "text": "¡ES UNA BOLSA DE AIRE!", "order": 4 },
       { "characterId": "b", "text": "Me la dieron en la panadería.", "order": 5 },
-      { "characterId": "a", "text": "¿Y POR QUÉ LA GUARDASTE?", "order": 6, "direction": "desesperado" },
-      { "characterId": "b", "text": "Porque capaz después necesito otra bolsa.", "order": 7, "direction": "racionalizando" },
+      { "characterId": "a", "text": "¿Y POR QUÉ LA GUARDASTE?", "order": 6 },
+      { "characterId": "b", "text": "Porque capaz después necesito otra bolsa.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, podés conseguir una bolsa cuando la necesites.", "order": 8 },
-      { "characterId": "b", "text": "Sí, pero esta ya está llena de aire.", "order": 9, "direction": "convencido" }
+      { "characterId": "b", "text": "Sí, pero esta ya está llena de aire.", "order": 9 }
     ]
   },
   {
@@ -546,17 +546,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué te pasa?", "order": 0 },
-      { "characterId": "b", "text": "Estoy eligiendo pan.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy eligiendo pan.", "order": 1 },
       { "characterId": "a", "text": "Hace diez minutos que estás mirando la misma canasta.", "order": 2 },
-      { "characterId": "b", "text": "Hay decisiones que cambian una vida.", "order": 3, "direction": "dramático" },
-      { "characterId": "a", "text": "Es pan, {{b}}.", "order": 4, "direction": "seco" },
+      { "characterId": "b", "text": "Hay decisiones que cambian una vida.", "order": 3 },
+      { "characterId": "a", "text": "Es pan, {{b}}.", "order": 4 },
       { "characterId": "b", "text": "Este está muy crocante.", "order": 5 },
       { "characterId": "a", "text": "Agarralo.", "order": 6 },
-      { "characterId": "b", "text": "No, mirá este otro.", "order": 7, "direction": "indeciso" },
+      { "characterId": "b", "text": "No, mirá este otro.", "order": 7 },
       { "characterId": "a", "text": "Los dos son iguales.", "order": 8 },
-      { "characterId": "b", "text": "No para alguien que se los va a comer.", "order": 9, "direction": "muy serio" },
+      { "characterId": "b", "text": "No para alguien que se los va a comer.", "order": 9 },
       { "characterId": "a", "text": "Bueno. Elegí el que quieras.", "order": 10 },
-      { "characterId": "b", "text": "Ese es el problema. Me diste demasiada libertad.", "order": 11, "direction": "angustiado" }
+      { "characterId": "b", "text": "Ese es el problema. Me diste demasiada libertad.", "order": 11 }
     ]
   },
   {
@@ -565,18 +565,18 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "{{b}}, llegamos tarde.", "order": 0, "direction": "apurado" },
+      { "characterId": "a", "text": "{{b}}, llegamos tarde.", "order": 0 },
       { "characterId": "b", "text": "No.", "order": 1 },
       { "characterId": "a", "text": "Sí. Son las ocho y veinte.", "order": 2 },
-      { "characterId": "b", "text": "En mi reloj son las ocho y cinco.", "order": 3, "direction": "tranquilo" },
+      { "characterId": "b", "text": "En mi reloj son las ocho y cinco.", "order": 3 },
       { "characterId": "a", "text": "Tu reloj está atrasado quince minutos.", "order": 4 },
-      { "characterId": "b", "text": "Entonces yo también estoy quince minutos atrasado.", "order": 5, "direction": "pensativo" },
+      { "characterId": "b", "text": "Entonces yo también estoy quince minutos atrasado.", "order": 5 },
       { "characterId": "a", "text": "No funciona así.", "order": 6 },
-      { "characterId": "b", "text": "A mí me funciona perfecto.", "order": 7, "direction": "convencido" },
-      { "characterId": "a", "text": "¡Vamos!", "order": 8, "direction": "impaciente" },
+      { "characterId": "b", "text": "A mí me funciona perfecto.", "order": 7 },
+      { "characterId": "a", "text": "¡Vamos!", "order": 8 },
       { "characterId": "b", "text": "Esperá.", "order": 9 },
-      { "characterId": "a", "text": "¿Qué?", "order": 10, "direction": "exasperado" },
-      { "characterId": "b", "text": "Quiero esperar quince minutos. Así llegamos a tiempo según mi reloj.", "order": 11, "direction": "orgulloso" }
+      { "characterId": "a", "text": "¿Qué?", "order": 10 },
+      { "characterId": "b", "text": "Quiero esperar quince minutos. Así llegamos a tiempo según mi reloj.", "order": 11 }
     ]
   },
   {
@@ -586,15 +586,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué llenaste el vaso hasta el borde?", "order": 0 },
-      { "characterId": "b", "text": "Para aprovecharlo.", "order": 1, "direction": "práctico" },
+      { "characterId": "b", "text": "Para aprovecharlo.", "order": 1 },
       { "characterId": "a", "text": "No podés ni moverlo.", "order": 2 },
       { "characterId": "b", "text": "Sí puedo.", "order": 3 },
-      { "characterId": "a", "text": "A ver.", "order": 4, "direction": "desafiante" },
-      { "characterId": "b", "text": "Mirá.", "order": 5, "direction": "concentrado" },
-      { "characterId": "a", "text": "¡Se te está cayendo!", "order": 6, "direction": "alarmado" },
+      { "characterId": "a", "text": "A ver.", "order": 4 },
+      { "characterId": "b", "text": "Mirá.", "order": 5 },
+      { "characterId": "a", "text": "¡Se te está cayendo!", "order": 6 },
       { "characterId": "b", "text": "No, no. Todavía tiene margen.", "order": 7 },
-      { "characterId": "a", "text": "¿QUÉ MARGEN? ¡ESTÁ CHORREANDO POR TODOS LADOS!", "order": 8, "direction": "alterado" },
-      { "characterId": "b", "text": "Bueno, ahí descubrimos el límite.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "a", "text": "¿QUÉ MARGEN? ¡ESTÁ CHORREANDO POR TODOS LADOS!", "order": 8 },
+      { "characterId": "b", "text": "Bueno, ahí descubrimos el límite.", "order": 9 }
     ]
   },
   {
@@ -606,14 +606,14 @@
       { "characterId": "a", "text": "{{b}}, ¿por qué pusiste el aire a dieciocho?", "order": 0 },
       { "characterId": "b", "text": "Porque hacía calor.", "order": 1 },
       { "characterId": "a", "text": "Ahora hace frío.", "order": 2 },
-      { "characterId": "b", "text": "Perfecto. Se solucionó.", "order": 3, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Perfecto. Se solucionó.", "order": 3 },
       { "characterId": "a", "text": "No se solucionó. Ahora estamos congelados.", "order": 4 },
-      { "characterId": "b", "text": "Ponete una campera.", "order": 5, "direction": "tranquilo" },
-      { "characterId": "a", "text": "¡NO QUIERO PONERME UNA CAMPERA ADENTRO DE CASA!", "order": 6, "direction": "exasperado" },
-      { "characterId": "b", "text": "Bueno, entonces sacátela afuera.", "order": 7, "direction": "lógico" },
-      { "characterId": "a", "text": "{{b}}...", "order": 8, "direction": "mirada de cansancio" },
-      { "characterId": "b", "text": "¿Qué?", "order": 9, "direction": "inocente" },
-      { "characterId": "a", "text": "No sé cómo discutir con vos sin perder años de vida.", "order": 10, "direction": "agotado" }
+      { "characterId": "b", "text": "Ponete una campera.", "order": 5 },
+      { "characterId": "a", "text": "¡NO QUIERO PONERME UNA CAMPERA ADENTRO DE CASA!", "order": 6 },
+      { "characterId": "b", "text": "Bueno, entonces sacátela afuera.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}...", "order": 8 },
+      { "characterId": "b", "text": "¿Qué?", "order": 9 },
+      { "characterId": "a", "text": "No sé cómo discutir con vos sin perder años de vida.", "order": 10 }
     ]
   },
   {
@@ -623,15 +623,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué buscás?", "order": 0 },
-      { "characterId": "b", "text": "Mi lápiz.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "Mi lápiz.", "order": 1 },
       { "characterId": "a", "text": "Tenés uno atrás de la oreja.", "order": 2 },
-      { "characterId": "b", "text": "No puede ser.", "order": 3, "direction": "sorprendido" },
+      { "characterId": "b", "text": "No puede ser.", "order": 3 },
       { "characterId": "a", "text": "Sí puede. Lo estoy viendo.", "order": 4 },
       { "characterId": "b", "text": "Ese no es.", "order": 5 },
-      { "characterId": "a", "text": "¿Cómo que no es?", "order": 6, "direction": "confundido" },
-      { "characterId": "b", "text": "El mío tenía tapa azul.", "order": 7, "direction": "serio" },
+      { "characterId": "a", "text": "¿Cómo que no es?", "order": 6 },
+      { "characterId": "b", "text": "El mío tenía tapa azul.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, el que tenés atrás de la oreja tiene tapa azul.", "order": 8 },
-      { "characterId": "b", "text": "...No me gusta cómo me estás mirando.", "order": 9, "direction": "incómodo" },
+      { "characterId": "b", "text": "...No me gusta cómo me estás mirando.", "order": 9 },
       { "characterId": "a", "text": "Porque estoy tratando de entender cómo perdiste algo que ya habías encontrado.", "order": 10 }
     ]
   },
@@ -644,14 +644,14 @@
       { "characterId": "a", "text": "{{b}}, ¿abriste la ventana?", "order": 0 },
       { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "¿Por qué?", "order": 2 },
-      { "characterId": "b", "text": "Para que entre aire.", "order": 3, "direction": "natural" },
+      { "characterId": "b", "text": "Para que entre aire.", "order": 3 },
       { "characterId": "a", "text": "Está entrando un mosquito.", "order": 4 },
-      { "characterId": "b", "text": "Uno solo.", "order": 5, "direction": "minimizando" },
+      { "characterId": "b", "text": "Uno solo.", "order": 5 },
       { "characterId": "a", "text": "Sí, pero ahora está adentro.", "order": 6 },
-      { "characterId": "b", "text": "Bueno, ahora también vive acá.", "order": 7, "direction": "resignado" },
-      { "characterId": "a", "text": "No invitamos a nadie.", "order": 8, "direction": "molesto" },
-      { "characterId": "b", "text": "Yo no le iba a pedir documento.", "order": 9, "direction": "casual" },
-      { "characterId": "a", "text": "Cerrá la ventana antes de que tengamos vecinos.", "order": 10, "direction": "agotado" }
+      { "characterId": "b", "text": "Bueno, ahora también vive acá.", "order": 7 },
+      { "characterId": "a", "text": "No invitamos a nadie.", "order": 8 },
+      { "characterId": "b", "text": "Yo no le iba a pedir documento.", "order": 9 },
+      { "characterId": "a", "text": "Cerrá la ventana antes de que tengamos vecinos.", "order": 10 }
     ]
   },
   {
@@ -661,15 +661,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué está la toalla tirada arriba de la cama?", "order": 0 },
-      { "characterId": "b", "text": "Se estaba secando.", "order": 1, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Se estaba secando.", "order": 1 },
       { "characterId": "a", "text": "En la cama.", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
-      { "characterId": "a", "text": "¿Y eso cómo funciona?", "order": 4, "direction": "confundido" },
-      { "characterId": "b", "text": "No sé, pero está seca.", "order": 5, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¡Claro, porque la cama también está seca!", "order": 6, "direction": "exasperado" },
+      { "characterId": "a", "text": "¿Y eso cómo funciona?", "order": 4 },
+      { "characterId": "b", "text": "No sé, pero está seca.", "order": 5 },
+      { "characterId": "a", "text": "¡Claro, porque la cama también está seca!", "order": 6 },
       { "characterId": "b", "text": "Entonces funcionó perfecto.", "order": 7 },
-      { "characterId": "a", "text": "No podés llamar estrategia a cualquier cosa que casualmente salió bien.", "order": 8, "direction": "serio" },
-      { "characterId": "b", "text": "Yo sí puedo.", "order": 9, "direction": "muy tranquilo" }
+      { "characterId": "a", "text": "No podés llamar estrategia a cualquier cosa que casualmente salió bien.", "order": 8 },
+      { "characterId": "b", "text": "Yo sí puedo.", "order": 9 }
     ]
   },
   {
@@ -679,15 +679,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿dónde estacionaste?", "order": 0 },
-      { "characterId": "b", "text": "Ahí atrás.", "order": 1, "direction": "señalando" },
+      { "characterId": "b", "text": "Ahí atrás.", "order": 1 },
       { "characterId": "a", "text": "Hay veinte autos atrás.", "order": 2 },
       { "characterId": "b", "text": "El nuestro es el negro.", "order": 3 },
       { "characterId": "a", "text": "Hay siete negros.", "order": 4 },
-      { "characterId": "b", "text": "Entonces estamos complicados.", "order": 5, "direction": "preocupado" },
+      { "characterId": "b", "text": "Entonces estamos complicados.", "order": 5 },
       { "characterId": "a", "text": "¿No te acordás de nada más?", "order": 6 },
-      { "characterId": "b", "text": "Sí. Tenía una puerta.", "order": 7, "direction": "pensativo" },
-      { "characterId": "a", "text": "Todos tienen puertas, {{b}}.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Bueno, entonces estamos peor de lo que pensaba.", "order": 9, "direction": "resignado" }
+      { "characterId": "b", "text": "Sí. Tenía una puerta.", "order": 7 },
+      { "characterId": "a", "text": "Todos tienen puertas, {{b}}.", "order": 8 },
+      { "characterId": "b", "text": "Bueno, entonces estamos peor de lo que pensaba.", "order": 9 }
     ]
   },
   {
@@ -699,14 +699,14 @@
       { "characterId": "a", "text": "¿Por qué estás revolviendo el café?", "order": 0 },
       { "characterId": "b", "text": "Porque le falta azúcar.", "order": 1 },
       { "characterId": "a", "text": "Ya le pusiste tres cucharadas.", "order": 2 },
-      { "characterId": "b", "text": "Sí.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "Entonces, ¿qué estás esperando?", "order": 4 },
-      { "characterId": "b", "text": "Que se disuelva bien.", "order": 5, "direction": "paciente" },
+      { "characterId": "b", "text": "Que se disuelva bien.", "order": 5 },
       { "characterId": "a", "text": "Hace cinco minutos que revolvés.", "order": 6 },
-      { "characterId": "b", "text": "Estoy siendo meticuloso.", "order": 7, "direction": "orgulloso" },
-      { "characterId": "a", "text": "La cuchara ya está cansada.", "order": 8, "direction": "burlón" },
-      { "characterId": "b", "text": "Por eso voy a cambiar de mano.", "order": 9, "direction": "decidido" },
-      { "characterId": "a", "text": "{{b}}, te vas a tomar el café o vas a fabricar un ciclón.", "order": 10, "direction": "resignado" }
+      { "characterId": "b", "text": "Estoy siendo meticuloso.", "order": 7 },
+      { "characterId": "a", "text": "La cuchara ya está cansada.", "order": 8 },
+      { "characterId": "b", "text": "Por eso voy a cambiar de mano.", "order": 9 },
+      { "characterId": "a", "text": "{{b}}, te vas a tomar el café o vas a fabricar un ciclón.", "order": 10 }
     ]
   },
   {
@@ -716,17 +716,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué buscás?", "order": 0 },
-      { "characterId": "b", "text": "Mi teléfono.", "order": 1, "direction": "apurado" },
+      { "characterId": "b", "text": "Mi teléfono.", "order": 1 },
       { "characterId": "a", "text": "Llamalo desde el mío.", "order": 2 },
       { "characterId": "b", "text": "No puedo.", "order": 3 },
       { "characterId": "a", "text": "¿Por qué?", "order": 4 },
-      { "characterId": "b", "text": "Está en silencio.", "order": 5, "direction": "serio" },
+      { "characterId": "b", "text": "Está en silencio.", "order": 5 },
       { "characterId": "a", "text": "Entonces llamalo igual.", "order": 6 },
       { "characterId": "b", "text": "No va a sonar.", "order": 7 },
-      { "characterId": "a", "text": "Bueno, va a vibrar.", "order": 8, "direction": "práctico" },
-      { "characterId": "b", "text": "También lo tengo en vibración apagada.", "order": 9, "direction": "avergonzado" },
-      { "characterId": "a", "text": "{{b}}, acabás de convertir la búsqueda de un teléfono en una operación de rescate.", "order": 10, "direction": "cansado" },
-      { "characterId": "b", "text": "Y todavía no encontramos al desaparecido.", "order": 11, "direction": "dramático" }
+      { "characterId": "a", "text": "Bueno, va a vibrar.", "order": 8 },
+      { "characterId": "b", "text": "También lo tengo en vibración apagada.", "order": 9 },
+      { "characterId": "a", "text": "{{b}}, acabás de convertir la búsqueda de un teléfono en una operación de rescate.", "order": 10 },
+      { "characterId": "b", "text": "Y todavía no encontramos al desaparecido.", "order": 11 }
     ]
   },
   {
@@ -738,13 +738,13 @@
       { "characterId": "a", "text": "{{b}}, ¿tenés cambio?", "order": 0 },
       { "characterId": "b", "text": "Sí. Esperá.", "order": 1 },
       { "characterId": "a", "text": "¿Qué estás haciendo?", "order": 2 },
-      { "characterId": "b", "text": "Estoy buscando la moneda justa.", "order": 3, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy buscando la moneda justa.", "order": 3 },
       { "characterId": "a", "text": "Son monedas de la misma denominación.", "order": 4 },
-      { "characterId": "b", "text": "No, esta tiene mejor energía.", "order": 5, "direction": "misterioso" },
-      { "characterId": "a", "text": "Es una moneda.", "order": 6, "direction": "seco" },
-      { "characterId": "b", "text": "Justamente. Hay que respetarla.", "order": 7, "direction": "solemne" },
-      { "characterId": "a", "text": "{{b}}, el de atrás está esperando.", "order": 8, "direction": "apurado" },
-      { "characterId": "b", "text": "Que espere. Esto necesita una selección cuidadosa.", "order": 9, "direction": "serio" }
+      { "characterId": "b", "text": "No, esta tiene mejor energía.", "order": 5 },
+      { "characterId": "a", "text": "Es una moneda.", "order": 6 },
+      { "characterId": "b", "text": "Justamente. Hay que respetarla.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, el de atrás está esperando.", "order": 8 },
+      { "characterId": "b", "text": "Que espere. Esto necesita una selección cuidadosa.", "order": 9 }
     ]
   },
   {
@@ -754,15 +754,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué tenés la llave en el bolsillo de atrás?", "order": 0 },
-      { "characterId": "b", "text": "Porque ahí no la pierdo.", "order": 1, "direction": "seguro" },
+      { "characterId": "b", "text": "Porque ahí no la pierdo.", "order": 1 },
       { "characterId": "a", "text": "¿Y si te sentás arriba?", "order": 2 },
-      { "characterId": "b", "text": "Queda más protegida.", "order": 3, "direction": "práctico" },
+      { "characterId": "b", "text": "Queda más protegida.", "order": 3 },
       { "characterId": "a", "text": "Bueno, sacala entonces.", "order": 4 },
       { "characterId": "b", "text": "No puedo.", "order": 5 },
-      { "characterId": "a", "text": "¿Por qué?", "order": 6, "direction": "desconcertado" },
-      { "characterId": "b", "text": "Porque me senté arriba.", "order": 7, "direction": "avergonzado" },
-      { "characterId": "a", "text": "{{b}}, acabás de crear una caja fuerte con tu cuerpo.", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Y ahora necesito que alguien me ayude a abrirla.", "order": 9, "direction": "resignado" }
+      { "characterId": "a", "text": "¿Por qué?", "order": 6 },
+      { "characterId": "b", "text": "Porque me senté arriba.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, acabás de crear una caja fuerte con tu cuerpo.", "order": 8 },
+      { "characterId": "b", "text": "Y ahora necesito que alguien me ayude a abrirla.", "order": 9 }
     ]
   },
   {
@@ -774,15 +774,15 @@
       { "characterId": "a", "text": "{{b}}, esa no es mi gaseosa.", "order": 0 },
       { "characterId": "b", "text": "¿Cómo sabés?", "order": 1 },
       { "characterId": "a", "text": "Porque tiene una etiqueta con otro nombre.", "order": 2 },
-      { "characterId": "b", "text": "Ah.", "order": 3, "direction": "sorprendido" },
+      { "characterId": "b", "text": "Ah.", "order": 3 },
       { "characterId": "a", "text": "Y la abriste.", "order": 4 },
-      { "characterId": "b", "text": "Pensé que el nombre era decorativo.", "order": 5, "direction": "inocente" },
-      { "characterId": "a", "text": "¡¿DECORATIVO?!", "order": 6, "direction": "indignado" },
-      { "characterId": "b", "text": "Podría ser una gaseosa con firma.", "order": 7, "direction": "pensativo" },
+      { "characterId": "b", "text": "Pensé que el nombre era decorativo.", "order": 5 },
+      { "characterId": "a", "text": "¡¿DECORATIVO?!", "order": 6 },
+      { "characterId": "b", "text": "Podría ser una gaseosa con firma.", "order": 7 },
       { "characterId": "a", "text": "Ahora tenemos que encontrar al dueño.", "order": 8 },
-      { "characterId": "b", "text": "O podemos esperar a que venga a reclamarla.", "order": 9, "direction": "relajado" },
+      { "characterId": "b", "text": "O podemos esperar a que venga a reclamarla.", "order": 9 },
       { "characterId": "a", "text": "{{b}}, estás diciendo eso como si hubiéramos encontrado una bicicleta.", "order": 10 },
-      { "characterId": "b", "text": "No subestimes el valor emocional de una gaseosa fría.", "order": 11, "direction": "profundo" }
+      { "characterId": "b", "text": "No subestimes el valor emocional de una gaseosa fría.", "order": 11 }
     ]
   },
   {
@@ -792,17 +792,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás caminando tan lento?", "order": 0 },
-      { "characterId": "b", "text": "Tengo ganas de estornudar.", "order": 1, "direction": "incómodo" },
+      { "characterId": "b", "text": "Tengo ganas de estornudar.", "order": 1 },
       { "characterId": "a", "text": "Estamos en una biblioteca.", "order": 2 },
-      { "characterId": "b", "text": "Exactamente.", "order": 3, "direction": "dramático" },
+      { "characterId": "b", "text": "Exactamente.", "order": 3 },
       { "characterId": "a", "text": "No podés pelear contra un estornudo.", "order": 4 },
-      { "characterId": "b", "text": "Estoy intentando." , "order": 5, "direction": "aguantándose" },
+      { "characterId": "b", "text": "Estoy intentando.", "order": 5 },
       { "characterId": "a", "text": "Te estás poniendo rojo.", "order": 6 },
-      { "characterId": "b", "text": "Todavía tengo posibilidades.", "order": 7, "direction": "optimista" },
+      { "characterId": "b", "text": "Todavía tengo posibilidades.", "order": 7 },
       { "characterId": "a", "text": "¿Cuánto tiempo pensás aguantar?", "order": 8 },
-      { "characterId": "b", "text": "Hasta que todos se vayan.", "order": 9, "direction": "decidido" },
+      { "characterId": "b", "text": "Hasta que todos se vayan.", "order": 9 },
       { "characterId": "a", "text": "Eso puede llevar horas.", "order": 10 },
-      { "characterId": "b", "text": "Entonces necesito un plan B.", "order": 11, "direction": "preocupado" }
+      { "characterId": "b", "text": "Entonces necesito un plan B.", "order": 11 }
     ]
   },
   {
@@ -812,16 +812,16 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ese carrito tiene una rueda trabada.", "order": 0 },
-      { "characterId": "b", "text": "Ya sé.", "order": 1, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Ya sé.", "order": 1 },
       { "characterId": "a", "text": "Entonces cambiemos de carrito.", "order": 2 },
-      { "characterId": "b", "text": "No.", "order": 3, "direction": "firme" },
+      { "characterId": "b", "text": "No.", "order": 3 },
       { "characterId": "a", "text": "¿Por qué no?", "order": 4 },
-      { "characterId": "b", "text": "Ya empezamos con este y no quiero abandonar el proceso.", "order": 5, "direction": "solemne" },
+      { "characterId": "b", "text": "Ya empezamos con este y no quiero abandonar el proceso.", "order": 5 },
       { "characterId": "a", "text": "No hay ningún proceso. Estamos comprando detergente.", "order": 6 },
-      { "characterId": "b", "text": "Tiene potencial.", "order": 7, "direction": "optimista" },
+      { "characterId": "b", "text": "Tiene potencial.", "order": 7 },
       { "characterId": "a", "text": "Va para la izquierda.", "order": 8 },
-      { "characterId": "b", "text": "Yo también.", "order": 9, "direction": "orgulloso" },
-      { "characterId": "a", "text": "{{b}}, no quiero hacer el supermercado en diagonal.", "order": 10, "direction": "agotado" }
+      { "characterId": "b", "text": "Yo también.", "order": 9 },
+      { "characterId": "a", "text": "{{b}}, no quiero hacer el supermercado en diagonal.", "order": 10 }
     ]
   },
   {
@@ -832,15 +832,15 @@
     "lines": [
       { "characterId": "a", "text": "¿Por qué pusiste un temporizador de una hora?", "order": 0 },
       { "characterId": "b", "text": "Para cocinar diez minutos.", "order": 1 },
-      { "characterId": "a", "text": "¡¿UNA HORA PARA DIEZ MINUTOS?!", "order": 2, "direction": "sorprendido" },
-      { "characterId": "b", "text": "Así tengo margen.", "order": 3, "direction": "tranquilo" },
+      { "characterId": "a", "text": "¡¿UNA HORA PARA DIEZ MINUTOS?!", "order": 2 },
+      { "characterId": "b", "text": "Así tengo margen.", "order": 3 },
       { "characterId": "a", "text": "¿Margen para qué?", "order": 4 },
-      { "characterId": "b", "text": "Para olvidar que estaba cocinando.", "order": 5, "direction": "sincero" },
+      { "characterId": "b", "text": "Para olvidar que estaba cocinando.", "order": 5 },
       { "characterId": "a", "text": "Eso no es margen. Eso es una trampa.", "order": 6 },
-      { "characterId": "b", "text": "Funcionó otras veces.", "order": 7, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Funcionó otras veces.", "order": 7 },
       { "characterId": "a", "text": "¿Cuántas?", "order": 8 },
-      { "characterId": "b", "text": "No me acuerdo.", "order": 9, "direction": "pensativo" },
-      { "characterId": "a", "text": "Claro. Justamente ese era el problema.", "order": 10, "direction": "resignado" }
+      { "characterId": "b", "text": "No me acuerdo.", "order": 9 },
+      { "characterId": "a", "text": "Claro. Justamente ese era el problema.", "order": 10 }
     ]
   },
   {
@@ -850,17 +850,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás mirando al espejo así?", "order": 0 },
-      { "characterId": "b", "text": "Estoy esperando que haga algo.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "Estoy esperando que haga algo.", "order": 1 },
       { "characterId": "a", "text": "Es un espejo.", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero no me sigue el ritmo.", "order": 3, "direction": "confundido" },
+      { "characterId": "b", "text": "Sí, pero no me sigue el ritmo.", "order": 3 },
       { "characterId": "a", "text": "Porque sos vos.", "order": 4 },
-      { "characterId": "b", "text": "No puede ser.", "order": 5, "direction": "incrédulo" },
+      { "characterId": "b", "text": "No puede ser.", "order": 5 },
       { "characterId": "a", "text": "Levantá la mano.", "order": 6 },
       { "characterId": "b", "text": "¿Para qué?", "order": 7 },
-      { "characterId": "a", "text": "Hacelo.", "order": 8, "direction": "impaciente" },
-      { "characterId": "b", "text": "La levantó.", "order": 9, "direction": "sorprendido" },
-      { "characterId": "a", "text": "¡Porque sos vos!", "order": 10, "direction": "agotado" },
-      { "characterId": "b", "text": "Bueno, pero admití que es bastante rápido.", "order": 11, "direction": "impresionado" }
+      { "characterId": "a", "text": "Hacelo.", "order": 8 },
+      { "characterId": "b", "text": "La levantó.", "order": 9 },
+      { "characterId": "a", "text": "¡Porque sos vos!", "order": 10 },
+      { "characterId": "b", "text": "Bueno, pero admití que es bastante rápido.", "order": 11 }
     ]
   },
   {
@@ -870,17 +870,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué guardaste la caja de los zapatos?", "order": 0 },
-      { "characterId": "b", "text": "Puede servir.", "order": 1, "direction": "práctico" },
+      { "characterId": "b", "text": "Puede servir.", "order": 1 },
       { "characterId": "a", "text": "Tenemos como quince cajas.", "order": 2 },
       { "characterId": "b", "text": "Nunca sabés.", "order": 3 },
       { "characterId": "a", "text": "¿Nunca sé qué?", "order": 4 },
-      { "characterId": "b", "text": "Qué objeto va a necesitar exactamente esa caja.", "order": 5, "direction": "filosófico" },
+      { "characterId": "b", "text": "Qué objeto va a necesitar exactamente esa caja.", "order": 5 },
       { "characterId": "a", "text": "Ahora mismo está vacía.", "order": 6 },
-      { "characterId": "b", "text": "No, está disponible.", "order": 7, "direction": "correctivo" },
+      { "characterId": "b", "text": "No, está disponible.", "order": 7 },
       { "characterId": "a", "text": "Es la misma cosa.", "order": 8 },
-      { "characterId": "b", "text": "No. Vacía suena inútil.", "order": 9, "direction": "ofendido" },
+      { "characterId": "b", "text": "No. Vacía suena inútil.", "order": 9 },
       { "characterId": "a", "text": "{{b}}, estás defendiendo una caja como si fuera un empleado.", "order": 10 },
-      { "characterId": "b", "text": "Y cumple mejor su horario.", "order": 11, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Y cumple mejor su horario.", "order": 11 }
     ]
   },
   {
@@ -890,17 +890,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué caminás tan rápido?", "order": 0 },
-      { "characterId": "b", "text": "Me está siguiendo.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "Me está siguiendo.", "order": 1 },
       { "characterId": "a", "text": "¿Quién?", "order": 2 },
-      { "characterId": "b", "text": "Eso.", "order": 3, "direction": "señalando" },
-      { "characterId": "a", "text": "{{b}}... es tu sombra.", "order": 4, "direction": "sereno" },
+      { "characterId": "b", "text": "Eso.", "order": 3 },
+      { "characterId": "a", "text": "{{b}}... es tu sombra.", "order": 4 },
       { "characterId": "b", "text": "Sí, ya me di cuenta.", "order": 5 },
       { "characterId": "a", "text": "Entonces frená.", "order": 6 },
-      { "characterId": "b", "text": "No quiero darle la oportunidad.", "order": 7, "direction": "desconfiado" },
+      { "characterId": "b", "text": "No quiero darle la oportunidad.", "order": 7 },
       { "characterId": "a", "text": "No puede hacerte nada.", "order": 8 },
-      { "characterId": "b", "text": "Eso decís vos.", "order": 9, "direction": "misterioso" },
+      { "characterId": "b", "text": "Eso decís vos.", "order": 9 },
       { "characterId": "a", "text": "{{b}}, lleva toda la tarde copiándote.", "order": 10 },
-      { "characterId": "b", "text": "Exacto. No me gusta esa falta de originalidad.", "order": 11, "direction": "molesto" }
+      { "characterId": "b", "text": "Exacto. No me gusta esa falta de originalidad.", "order": 11 }
     ]
   },
   {
@@ -910,17 +910,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué buscás ahora?", "order": 0 },
-      { "characterId": "b", "text": "El teléfono.", "order": 1, "direction": "apurado" },
+      { "characterId": "b", "text": "El teléfono.", "order": 1 },
       { "characterId": "a", "text": "¿Revisaste la mesa?", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "El sillón.", "order": 4 },
       { "characterId": "b", "text": "Sí.", "order": 5 },
       { "characterId": "a", "text": "Tu bolsillo.", "order": 6 },
       { "characterId": "b", "text": "También.", "order": 7 },
-      { "characterId": "a", "text": "¿Y esa cosa negra que tenés en la mano?", "order": 8, "direction": "sospechando" },
-      { "characterId": "b", "text": "No sé.", "order": 9, "direction": "confundido" },
-      { "characterId": "a", "text": "{{b}}, es tu teléfono.", "order": 10, "direction": "muy serio" },
-      { "characterId": "b", "text": "...Bueno. Al menos no lo había buscado ahí.", "order": 11, "direction": "avergonzado" }
+      { "characterId": "a", "text": "¿Y esa cosa negra que tenés en la mano?", "order": 8 },
+      { "characterId": "b", "text": "No sé.", "order": 9 },
+      { "characterId": "a", "text": "{{b}}, es tu teléfono.", "order": 10 },
+      { "characterId": "b", "text": "...Bueno. Al menos no lo había buscado ahí.", "order": 11 }
     ]
   },
   {
@@ -930,15 +930,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás agachado al lado de ese perro?", "order": 0 },
-      { "characterId": "b", "text": "Necesito una foto.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Necesito una foto.", "order": 1 },
       { "characterId": "a", "text": "Pero el perro es de otra persona.", "order": 2 },
-      { "characterId": "b", "text": "Ya sé. Por eso necesito que coopere.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Ya sé. Por eso necesito que coopere.", "order": 3 },
       { "characterId": "a", "text": "No te conoce.", "order": 4 },
-      { "characterId": "b", "text": "Estamos trabajando en eso.", "order": 5, "direction": "paciente" },
+      { "characterId": "b", "text": "Estamos trabajando en eso.", "order": 5 },
       { "characterId": "a", "text": "Le estás ofreciendo una galletita desde hace cinco minutos.", "order": 6 },
-      { "characterId": "b", "text": "Es una negociación.", "order": 7, "direction": "profesional" },
-      { "characterId": "a", "text": "El dueño te está mirando.", "order": 8, "direction": "incómodo" },
-      { "characterId": "b", "text": "Decile que estoy cerrando un acuerdo.", "order": 9, "direction": "muy serio" }
+      { "characterId": "b", "text": "Es una negociación.", "order": 7 },
+      { "characterId": "a", "text": "El dueño te está mirando.", "order": 8 },
+      { "characterId": "b", "text": "Decile que estoy cerrando un acuerdo.", "order": 9 }
     ]
   },
   {
@@ -948,15 +948,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿qué estás haciendo con el ticket del estacionamiento?", "order": 0 },
-      { "characterId": "b", "text": "Tratando de entenderlo.", "order": 1, "direction": "confundido" },
+      { "characterId": "b", "text": "Tratando de entenderlo.", "order": 1 },
       { "characterId": "a", "text": "Dice claramente la hora.", "order": 2 },
       { "characterId": "b", "text": "Sí, pero también dice un número gigante.", "order": 3 },
       { "characterId": "a", "text": "Ese es el importe.", "order": 4 },
-      { "characterId": "b", "text": "¿Por qué me cobran por estacionar?", "order": 5, "direction": "ofendido" },
+      { "characterId": "b", "text": "¿Por qué me cobran por estacionar?", "order": 5 },
       { "characterId": "a", "text": "Porque para eso estamos pagando.", "order": 6 },
-      { "characterId": "b", "text": "Me parece una interacción hostil.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "Me parece una interacción hostil.", "order": 7 },
       { "characterId": "a", "text": "Pagá y vámonos.", "order": 8 },
-      { "characterId": "b", "text": "Primero quiero hablar con alguien de finanzas.", "order": 9, "direction": "decidido" }
+      { "characterId": "b", "text": "Primero quiero hablar con alguien de finanzas.", "order": 9 }
     ]
   },
   {
@@ -966,15 +966,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, la puerta dice 'empujar'.", "order": 0 },
-      { "characterId": "b", "text": "Sí.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Entonces empujala.", "order": 2 },
       { "characterId": "b", "text": "Estoy verificando.", "order": 3 },
-      { "characterId": "a", "text": "¿Qué estás verificando?", "order": 4, "direction": "confundido" },
-      { "characterId": "b", "text": "Si realmente quiere que la empuje.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "a", "text": "¿Qué estás verificando?", "order": 4 },
+      { "characterId": "b", "text": "Si realmente quiere que la empuje.", "order": 5 },
       { "characterId": "a", "text": "Es una puerta.", "order": 6 },
-      { "characterId": "b", "text": "Y tiene instrucciones. Eso merece respeto.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "Y tiene instrucciones. Eso merece respeto.", "order": 7 },
       { "characterId": "a", "text": "Llevamos un minuto afuera.", "order": 8 },
-      { "characterId": "b", "text": "Bueno, tampoco quiero entrar a un lugar que no está seguro de lo que quiere.", "order": 9, "direction": "prudente" }
+      { "characterId": "b", "text": "Bueno, tampoco quiero entrar a un lugar que no está seguro de lo que quiere.", "order": 9 }
     ]
   },
   {
@@ -984,15 +984,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué estás leyendo la etiqueta del queso desde hace tanto?", "order": 0 },
-      { "characterId": "b", "text": "Estoy buscando cuál comprar.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy buscando cuál comprar.", "order": 1 },
       { "characterId": "a", "text": "Agarrá uno.", "order": 2 },
-      { "characterId": "b", "text": "No puedo.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "No puedo.", "order": 3 },
       { "characterId": "a", "text": "¿Qué tiene?", "order": 4 },
-      { "characterId": "b", "text": "Dice 'semiduro'.", "order": 5, "direction": "sospechoso" },
+      { "characterId": "b", "text": "Dice 'semiduro'.", "order": 5 },
       { "characterId": "a", "text": "Sí.", "order": 6 },
       { "characterId": "b", "text": "¿Qué significa eso exactamente?", "order": 7 },
       { "characterId": "a", "text": "Que no es duro del todo.", "order": 8 },
-      { "characterId": "b", "text": "Entonces no me gusta. Si no se decide, yo tampoco.", "order": 9, "direction": "firme" }
+      { "characterId": "b", "text": "Entonces no me gusta. Si no se decide, yo tampoco.", "order": 9 }
     ]
   },
   {
@@ -1002,15 +1002,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás cepillándote los dientes desde hace veinte minutos?", "order": 0 },
-      { "characterId": "b", "text": "Estoy terminando.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy terminando.", "order": 1 },
       { "characterId": "a", "text": "Llevás una hora diciendo eso.", "order": 2 },
-      { "characterId": "b", "text": "Me distraigo fácil.", "order": 3, "direction": "avergonzado" },
+      { "characterId": "b", "text": "Me distraigo fácil.", "order": 3 },
       { "characterId": "a", "text": "¿Con qué te distraés mientras te cepillás los dientes?", "order": 4 },
-      { "characterId": "b", "text": "Con pensamientos.", "order": 5, "direction": "filosófico" },
+      { "characterId": "b", "text": "Con pensamientos.", "order": 5 },
       { "characterId": "a", "text": "¿Pensamientos sobre qué?", "order": 6 },
-      { "characterId": "b", "text": "Sobre por qué nunca pensamos en los dientes hasta que tenemos el cepillo en la boca.", "order": 7, "direction": "profundo" },
-      { "characterId": "a", "text": "Sacate el cepillo.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "No puedo. Ahora estoy en la parte intensa.", "order": 9, "direction": "dramático" }
+      { "characterId": "b", "text": "Sobre por qué nunca pensamos en los dientes hasta que tenemos el cepillo en la boca.", "order": 7 },
+      { "characterId": "a", "text": "Sacate el cepillo.", "order": 8 },
+      { "characterId": "b", "text": "No puedo. Ahora estoy en la parte intensa.", "order": 9 }
     ]
   },
   {
@@ -1020,15 +1020,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás soplando la pizza?", "order": 0 },
-      { "characterId": "b", "text": "Porque está fría.", "order": 1, "direction": "natural" },
+      { "characterId": "b", "text": "Porque está fría.", "order": 1 },
       { "characterId": "a", "text": "Entonces no la tenés que enfriar.", "order": 2 },
       { "characterId": "b", "text": "Ya sé.", "order": 3 },
       { "characterId": "a", "text": "Entonces, ¿qué hacés?", "order": 4 },
-      { "characterId": "b", "text": "Estoy acostumbrado.", "order": 5, "direction": "confundido" },
+      { "characterId": "b", "text": "Estoy acostumbrado.", "order": 5 },
       { "characterId": "a", "text": "¿A qué?", "order": 6 },
       { "characterId": "b", "text": "A soplar antes de comer.", "order": 7 },
-      { "characterId": "a", "text": "Pero ahora la estás haciendo todavía más fría.", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Sí. El cuerpo no entiende de temperaturas, entiende de costumbres.", "order": 9, "direction": "filosófico" }
+      { "characterId": "a", "text": "Pero ahora la estás haciendo todavía más fría.", "order": 8 },
+      { "characterId": "b", "text": "Sí. El cuerpo no entiende de temperaturas, entiende de costumbres.", "order": 9 }
     ]
   },
   {
@@ -1040,13 +1040,13 @@
       { "characterId": "a", "text": "{{b}}, ya apretaste el botón.", "order": 0 },
       { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Entonces dejalo.", "order": 2 },
-      { "characterId": "b", "text": "Quiero asegurarme.", "order": 3, "direction": "concentrado" },
+      { "characterId": "b", "text": "Quiero asegurarme.", "order": 3 },
       { "characterId": "a", "text": "Lo apretaste siete veces.", "order": 4 },
-      { "characterId": "b", "text": "Ahora sí debería entender.", "order": 5, "direction": "convencido" },
+      { "characterId": "b", "text": "Ahora sí debería entender.", "order": 5 },
       { "characterId": "a", "text": "Es un botón, no una persona.", "order": 6 },
-      { "characterId": "b", "text": "Eso pensás vos.", "order": 7, "direction": "sospechoso" },
+      { "characterId": "b", "text": "Eso pensás vos.", "order": 7 },
       { "characterId": "a", "text": "Está bajando.", "order": 8 },
-      { "characterId": "b", "text": "Perfecto. Viste que había que insistir.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Perfecto. Viste que había que insistir.", "order": 9 }
     ]
   },
   {
@@ -1056,15 +1056,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Qué estás haciendo?", "order": 0 },
-      { "characterId": "b", "text": "Mirando la tostada.", "order": 1, "direction": "triste" },
+      { "characterId": "b", "text": "Mirando la tostada.", "order": 1 },
       { "characterId": "a", "text": "Se cayó al piso.", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "Hacé otra.", "order": 4 },
-      { "characterId": "b", "text": "No es tan simple.", "order": 5, "direction": "dramático" },
+      { "characterId": "b", "text": "No es tan simple.", "order": 5 },
       { "characterId": "a", "text": "Es una tostada.", "order": 6 },
-      { "characterId": "b", "text": "Era la tostada elegida.", "order": 7, "direction": "emocionado" },
+      { "characterId": "b", "text": "Era la tostada elegida.", "order": 7 },
       { "characterId": "a", "text": "¿Elegida por quién?", "order": 8 },
-      { "characterId": "b", "text": "Por mí. Y ahora tengo que vivir con esa decisión.", "order": 9, "direction": "solemne" }
+      { "characterId": "b", "text": "Por mí. Y ahora tengo que vivir con esa decisión.", "order": 9 }
     ]
   },
   {
@@ -1074,15 +1074,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, tenés la camisa al revés.", "order": 0 },
-      { "characterId": "b", "text": "¿Cómo que al revés?", "order": 1, "direction": "sorprendido" },
+      { "characterId": "b", "text": "¿Cómo que al revés?", "order": 1 },
       { "characterId": "a", "text": "La etiqueta está adelante.", "order": 2 },
       { "characterId": "b", "text": "Ah.", "order": 3 },
       { "characterId": "a", "text": "Hace media hora que estamos caminando.", "order": 4 },
-      { "characterId": "b", "text": "Nadie dijo nada.", "order": 5, "direction": "ofendido" },
+      { "characterId": "b", "text": "Nadie dijo nada.", "order": 5 },
       { "characterId": "a", "text": "Capaz pensaron que era así.", "order": 6 },
-      { "characterId": "b", "text": "Entonces no la voy a cambiar.", "order": 7, "direction": "decidido" },
+      { "characterId": "b", "text": "Entonces no la voy a cambiar.", "order": 7 },
       { "characterId": "a", "text": "¿Por qué?", "order": 8 },
-      { "characterId": "b", "text": "Porque ya construimos una identidad alrededor de esta camisa.", "order": 9, "direction": "solemne" }
+      { "characterId": "b", "text": "Porque ya construimos una identidad alrededor de esta camisa.", "order": 9 }
     ]
   },
   {
@@ -1092,15 +1092,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, hay un banco vacío. Sentate.", "order": 0 },
-      { "characterId": "b", "text": "No puedo.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "No puedo.", "order": 1 },
       { "characterId": "a", "text": "¿Por qué?", "order": 2 },
       { "characterId": "b", "text": "Está mojado.", "order": 3 },
       { "characterId": "a", "text": "Solo un poco.", "order": 4 },
-      { "characterId": "b", "text": "No podemos empezar una relación basada en la desconfianza.", "order": 5, "direction": "dramático" },
+      { "characterId": "b", "text": "No podemos empezar una relación basada en la desconfianza.", "order": 5 },
       { "characterId": "a", "text": "Es un banco.", "order": 6 },
-      { "characterId": "b", "text": "Y yo tengo estándares.", "order": 7, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Y yo tengo estándares.", "order": 7 },
       { "characterId": "a", "text": "Bueno, entonces caminemos.", "order": 8 },
-      { "characterId": "b", "text": "Sí. Prefiero eso antes que sentarme en una superficie que no conozco.", "order": 9, "direction": "prudente" }
+      { "characterId": "b", "text": "Sí. Prefiero eso antes que sentarme en una superficie que no conozco.", "order": 9 }
     ]
   },
   {
@@ -1110,17 +1110,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué caminás inclinado?", "order": 0 },
-      { "characterId": "b", "text": "La bolsa pesa.", "order": 1, "direction": "esforzándose" },
+      { "characterId": "b", "text": "La bolsa pesa.", "order": 1 },
       { "characterId": "a", "text": "Compramos tres cosas.", "order": 2 },
       { "characterId": "b", "text": "Sí, pero una era pesada.", "order": 3 },
       { "characterId": "a", "text": "Era una botella de agua.", "order": 4 },
-      { "characterId": "b", "text": "Exactamente.", "order": 5, "direction": "muy serio" },
+      { "characterId": "b", "text": "Exactamente.", "order": 5 },
       { "characterId": "a", "text": "Dame la bolsa.", "order": 6 },
-      { "characterId": "b", "text": "No.", "order": 7, "direction": "orgulloso" },
+      { "characterId": "b", "text": "No.", "order": 7 },
       { "characterId": "a", "text": "¿Por qué?", "order": 8 },
-      { "characterId": "b", "text": "Porque ya llegué demasiado lejos como para admitir que no puedo.", "order": 9, "direction": "heroico" },
+      { "characterId": "b", "text": "Porque ya llegué demasiado lejos como para admitir que no puedo.", "order": 9 },
       { "characterId": "a", "text": "Estamos a diez metros del auto.", "order": 10 },
-      { "characterId": "b", "text": "Entonces son los diez metros más importantes del día.", "order": 11, "direction": "determinado" }
+      { "characterId": "b", "text": "Entonces son los diez metros más importantes del día.", "order": 11 }
     ]
   },
   {
@@ -1130,15 +1130,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué estás sacando los hielos del vaso?", "order": 0 },
-      { "characterId": "b", "text": "Porque son demasiados.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Porque son demasiados.", "order": 1 },
       { "characterId": "a", "text": "Vos los pediste.", "order": 2 },
       { "characterId": "b", "text": "No sabía que iban a venir tantos.", "order": 3 },
       { "characterId": "a", "text": "Son seis.", "order": 4 },
-      { "characterId": "b", "text": "Sí. Es una multitud.", "order": 5, "direction": "preocupado" },
+      { "characterId": "b", "text": "Sí. Es una multitud.", "order": 5 },
       { "characterId": "a", "text": "¿Qué vas a hacer con ellos?", "order": 6 },
-      { "characterId": "b", "text": "Los voy a poner en una servilleta.", "order": 7, "direction": "práctico" },
+      { "characterId": "b", "text": "Los voy a poner en una servilleta.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, se van a derretir.", "order": 8 },
-      { "characterId": "b", "text": "Entonces tenemos que aprovecharlos mientras estén organizados.", "order": 9, "direction": "estratégico" }
+      { "characterId": "b", "text": "Entonces tenemos que aprovecharlos mientras estén organizados.", "order": 9 }
     ]
   },
   {
@@ -1150,13 +1150,13 @@
       { "characterId": "a", "text": "{{b}}, ¿dónde está la tapa de este recipiente?", "order": 0 },
       { "characterId": "b", "text": "No sé.", "order": 1 },
       { "characterId": "a", "text": "¿Y por qué estás buscando dentro del cajón de los cubiertos?", "order": 2 },
-      { "characterId": "b", "text": "Porque es un lugar posible.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Porque es un lugar posible.", "order": 3 },
       { "characterId": "a", "text": "Ahí hay tenedores, cuchillos y cucharas.", "order": 4 },
-      { "characterId": "b", "text": "Exacto. Gente muy cercana a una tapa.", "order": 5, "direction": "lógico" },
+      { "characterId": "b", "text": "Exacto. Gente muy cercana a una tapa.", "order": 5 },
       { "characterId": "a", "text": "Eso no tiene ningún sentido.", "order": 6 },
-      { "characterId": "b", "text": "Todavía.", "order": 7, "direction": "misterioso" },
+      { "characterId": "b", "text": "Todavía.", "order": 7 },
       { "characterId": "a", "text": "Encontrala y dejemos de investigar.", "order": 8 },
-      { "characterId": "b", "text": "No estoy investigando. Estoy ampliando horizontes.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "No estoy investigando. Estoy ampliando horizontes.", "order": 9 }
     ]
   },
   {
@@ -1166,15 +1166,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "La mesa se mueve.", "order": 0 },
-      { "characterId": "b", "text": "Sí.", "order": 1, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Arreglala.", "order": 2 },
       { "characterId": "b", "text": "Ya lo hice.", "order": 3 },
       { "characterId": "a", "text": "¿Cómo?", "order": 4 },
-      { "characterId": "b", "text": "Le puse una servilleta abajo.", "order": 5, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Le puse una servilleta abajo.", "order": 5 },
       { "characterId": "a", "text": "Sigue moviéndose.", "order": 6 },
-      { "characterId": "b", "text": "Sí, pero ahora se mueve con suavidad.", "order": 7, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Sí, pero ahora se mueve con suavidad.", "order": 7 },
       { "characterId": "a", "text": "Eso no es arreglarla.", "order": 8 },
-      { "characterId": "b", "text": "Depende de qué entendamos por arreglar.", "order": 9, "direction": "filosófico" }
+      { "characterId": "b", "text": "Depende de qué entendamos por arreglar.", "order": 9 }
     ]
   },
   {
@@ -1186,13 +1186,13 @@
       { "characterId": "a", "text": "{{b}}, ¿por qué abriste las dos ventanas?", "order": 0 },
       { "characterId": "b", "text": "Para que entre aire.", "order": 1 },
       { "characterId": "a", "text": "Tenemos el aire acondicionado prendido.", "order": 2 },
-      { "characterId": "b", "text": "Sí.", "order": 3, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "Entonces estamos tirando el aire afuera.", "order": 4 },
-      { "characterId": "b", "text": "No exactamente.", "order": 5, "direction": "pensativo" },
-      { "characterId": "a", "text": "¿Qué parte no entendés?", "order": 6, "direction": "agotado" },
-      { "characterId": "b", "text": "La parte en la que el aire de afuera no estaba invitado a entrar.", "order": 7, "direction": "serio" },
+      { "characterId": "b", "text": "No exactamente.", "order": 5 },
+      { "characterId": "a", "text": "¿Qué parte no entendés?", "order": 6 },
+      { "characterId": "b", "text": "La parte en la que el aire de afuera no estaba invitado a entrar.", "order": 7 },
       { "characterId": "a", "text": "Cerrá las ventanas.", "order": 8 },
-      { "characterId": "b", "text": "Está bien. Pero después no te quejes de que el auto se siente encerrado.", "order": 9, "direction": "ofendido" }
+      { "characterId": "b", "text": "Está bien. Pero después no te quejes de que el auto se siente encerrado.", "order": 9 }
     ]
   },
   {
@@ -1202,15 +1202,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás moviendo tanto el espejo retrovisor?", "order": 0 },
-      { "characterId": "b", "text": "No encuentro el ángulo.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "No encuentro el ángulo.", "order": 1 },
       { "characterId": "a", "text": "Se ve toda la calle.", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero también me veo a mí.", "order": 3, "direction": "molesto" },
+      { "characterId": "b", "text": "Sí, pero también me veo a mí.", "order": 3 },
       { "characterId": "a", "text": "Se supone que se vea la parte de atrás.", "order": 4 },
-      { "characterId": "b", "text": "Entonces está mal diseñado.", "order": 5, "direction": "convencido" },
+      { "characterId": "b", "text": "Entonces está mal diseñado.", "order": 5 },
       { "characterId": "a", "text": "¿Querés ver si viene un auto o querés verte el pelo?", "order": 6 },
-      { "characterId": "b", "text": "Las dos cosas son importantes.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "Las dos cosas son importantes.", "order": 7 },
       { "characterId": "a", "text": "No durante un viaje.", "order": 8 },
-      { "characterId": "b", "text": "Para vos. Yo estoy viviendo una situación multifunción.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Para vos. Yo estoy viviendo una situación multifunción.", "order": 9 }
     ]
   },
   {
@@ -1220,15 +1220,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "La foto salió borrosa.", "order": 0 },
-      { "characterId": "b", "text": "Sí.", "order": 1, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Sacá otra.", "order": 2 },
       { "characterId": "b", "text": "No hace falta.", "order": 3 },
       { "characterId": "a", "text": "No se distingue nada.", "order": 4 },
-      { "characterId": "b", "text": "Eso le da misterio.", "order": 5, "direction": "convencido" },
+      { "characterId": "b", "text": "Eso le da misterio.", "order": 5 },
       { "characterId": "a", "text": "Estamos intentando mostrar una torta.", "order": 6 },
-      { "characterId": "b", "text": "Ahora parece una obra de arte.", "order": 7, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Ahora parece una obra de arte.", "order": 7 },
       { "characterId": "a", "text": "Parece una mancha.", "order": 8 },
-      { "characterId": "b", "text": "Una mancha con potencial.", "order": 9, "direction": "optimista" }
+      { "characterId": "b", "text": "Una mancha con potencial.", "order": 9 }
     ]
   },
   {
@@ -1237,16 +1237,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "{{b}}, ¿qué olor es ese?", "order": 0, "direction": "sospechoso" },
+      { "characterId": "a", "text": "{{b}}, ¿qué olor es ese?", "order": 0 },
       { "characterId": "b", "text": "No sé.", "order": 1 },
       { "characterId": "a", "text": "Huele a quemado.", "order": 2 },
-      { "characterId": "b", "text": "Eso reduce bastante las opciones.", "order": 3, "direction": "analítico" },
+      { "characterId": "b", "text": "Eso reduce bastante las opciones.", "order": 3 },
       { "characterId": "a", "text": "Revisá la cocina.", "order": 4 },
       { "characterId": "b", "text": "Ya revisé.", "order": 5 },
       { "characterId": "a", "text": "¿Y?", "order": 6 },
-      { "characterId": "b", "text": "Hay algo quemándose.", "order": 7, "direction": "serio" },
-      { "characterId": "a", "text": "¡¿QUÉ COSA?!", "order": 8, "direction": "alarmado" },
-      { "characterId": "b", "text": "No sé. Estoy tratando de reducir las opciones.", "order": 9, "direction": "calmado" }
+      { "characterId": "b", "text": "Hay algo quemándose.", "order": 7 },
+      { "characterId": "a", "text": "¡¿QUÉ COSA?!", "order": 8 },
+      { "characterId": "b", "text": "No sé. Estoy tratando de reducir las opciones.", "order": 9 }
     ]
   },
   {
@@ -1256,15 +1256,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás mirando la bombilla del mate?", "order": 0 },
-      { "characterId": "b", "text": "Está sospechosa.", "order": 1, "direction": "desconfiado" },
+      { "characterId": "b", "text": "Está sospechosa.", "order": 1 },
       { "characterId": "a", "text": "¿Sospechosa de qué?", "order": 2 },
       { "characterId": "b", "text": "No tira bien.", "order": 3 },
       { "characterId": "a", "text": "Entonces está tapada.", "order": 4 },
-      { "characterId": "b", "text": "Eso quiere que pensemos.", "order": 5, "direction": "misterioso" },
-      { "characterId": "a", "text": "¿Quién?", "order": 6, "direction": "confundido" },
-      { "characterId": "b", "text": "La bombilla.", "order": 7, "direction": "serio" },
+      { "characterId": "b", "text": "Eso quiere que pensemos.", "order": 5 },
+      { "characterId": "a", "text": "¿Quién?", "order": 6 },
+      { "characterId": "b", "text": "La bombilla.", "order": 7 },
       { "characterId": "a", "text": "Es un pedazo de metal.", "order": 8 },
-      { "characterId": "b", "text": "Eso sería exactamente lo que diría una bombilla si pudiera hablar.", "order": 9, "direction": "conspirativo" }
+      { "characterId": "b", "text": "Eso sería exactamente lo que diría una bombilla si pudiera hablar.", "order": 9 }
     ]
   },
   {
@@ -1274,15 +1274,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás contando el vuelto otra vez?", "order": 0 },
-      { "characterId": "b", "text": "Porque quiero estar seguro.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Porque quiero estar seguro.", "order": 1 },
       { "characterId": "a", "text": "Ya lo contó la cajera.", "order": 2 },
-      { "characterId": "b", "text": "Ella tiene su versión.", "order": 3, "direction": "desconfiado" },
+      { "characterId": "b", "text": "Ella tiene su versión.", "order": 3 },
       { "characterId": "a", "text": "¿Su versión?", "order": 4 },
-      { "characterId": "b", "text": "Sí. Yo quiero la mía.", "order": 5, "direction": "solemne" },
+      { "characterId": "b", "text": "Sí. Yo quiero la mía.", "order": 5 },
       { "characterId": "a", "text": "Son nueve monedas.", "order": 6 },
-      { "characterId": "b", "text": "Nueve monedas pueden esconder muchas sorpresas.", "order": 7, "direction": "dramático" },
-      { "characterId": "a", "text": "Vamos, {{b}}.", "order": 8, "direction": "impaciente" },
-      { "characterId": "b", "text": "Listo. Coincide con ella. Podemos seguir adelante.", "order": 9, "direction": "aliviado" }
+      { "characterId": "b", "text": "Nueve monedas pueden esconder muchas sorpresas.", "order": 7 },
+      { "characterId": "a", "text": "Vamos, {{b}}.", "order": 8 },
+      { "characterId": "b", "text": "Listo. Coincide con ella. Podemos seguir adelante.", "order": 9 }
     ]
   },
   {
@@ -1292,15 +1292,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás tocando todas las manzanas?", "order": 0 },
-      { "characterId": "b", "text": "Estoy buscando la más resistente.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy buscando la más resistente.", "order": 1 },
       { "characterId": "a", "text": "Podés simplemente elegir una.", "order": 2 },
-      { "characterId": "b", "text": "No me puedo llevar una que se lastime fácilmente.", "order": 3, "direction": "serio" },
-      { "characterId": "a", "text": "Son manzanas, {{b}}.", "order": 4, "direction": "resignado" },
-      { "characterId": "b", "text": "Por eso. Comen tranquillas y después te decepcionan.", "order": 5, "direction": "ofendido" },
+      { "characterId": "b", "text": "No me puedo llevar una que se lastime fácilmente.", "order": 3 },
+      { "characterId": "a", "text": "Son manzanas, {{b}}.", "order": 4 },
+      { "characterId": "b", "text": "Por eso. Comen tranquillas y después te decepcionan.", "order": 5 },
       { "characterId": "a", "text": "¿Qué estás haciendo ahora?", "order": 6 },
-      { "characterId": "b", "text": "Le hice una prueba.", "order": 7, "direction": "orgulloso" },
-      { "characterId": "a", "text": "¿La golpeaste contra el carrito?", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Suave. Quería ver si tenía carácter.", "order": 9, "direction": "profesional" }
+      { "characterId": "b", "text": "Le hice una prueba.", "order": 7 },
+      { "characterId": "a", "text": "¿La golpeaste contra el carrito?", "order": 8 },
+      { "characterId": "b", "text": "Suave. Quería ver si tenía carácter.", "order": 9 }
     ]
   },
   {
@@ -1312,13 +1312,13 @@
       { "characterId": "a", "text": "Hay cuatro asientos vacíos.", "order": 0 },
       { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Entonces sentate.", "order": 2 },
-      { "characterId": "b", "text": "No cualquiera.", "order": 3, "direction": "evaluando" },
+      { "characterId": "b", "text": "No cualquiera.", "order": 3 },
       { "characterId": "a", "text": "¿Qué estás evaluando?", "order": 4 },
-      { "characterId": "b", "text": "La inclinación.", "order": 5, "direction": "técnico" },
+      { "characterId": "b", "text": "La inclinación.", "order": 5 },
       { "characterId": "a", "text": "Son iguales.", "order": 6 },
-      { "characterId": "b", "text": "Este tiene mejor vibra.", "order": 7, "direction": "convencido" },
-      { "characterId": "a", "text": "{{b}}, el colectivo acaba de arrancar.", "order": 8, "direction": "apurado" },
-      { "characterId": "b", "text": "Entonces ya elegí. El de la derecha.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "b", "text": "Este tiene mejor vibra.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, el colectivo acaba de arrancar.", "order": 8 },
+      { "characterId": "b", "text": "Entonces ya elegí. El de la derecha.", "order": 9 }
     ]
   },
   {
@@ -1327,16 +1327,16 @@
     "playerCount": 2,
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
-      { "characterId": "a", "text": "{{b}}, no toques eso.", "order": 0, "direction": "advirtiendo" },
+      { "characterId": "a", "text": "{{b}}, no toques eso.", "order": 0 },
       { "characterId": "b", "text": "¿Qué?", "order": 1 },
       { "characterId": "a", "text": "Ese botón.", "order": 2 },
-      { "characterId": "b", "text": "¿Este?", "order": 3, "direction": "tentado" },
+      { "characterId": "b", "text": "¿Este?", "order": 3 },
       { "characterId": "a", "text": "Sí, ese.", "order": 4 },
-      { "characterId": "b", "text": "Ya lo toqué.", "order": 5, "direction": "culpable" },
-      { "characterId": "a", "text": "¿Por qué hiciste eso?", "order": 6, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Porque dijiste que no lo tocara.", "order": 7, "direction": "defensivo" },
-      { "characterId": "a", "text": "¡Ese es exactamente el motivo para no tocarlo!", "order": 8, "direction": "desesperado" },
-      { "characterId": "b", "text": "Bueno, ahora sabemos qué hace.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Ya lo toqué.", "order": 5 },
+      { "characterId": "a", "text": "¿Por qué hiciste eso?", "order": 6 },
+      { "characterId": "b", "text": "Porque dijiste que no lo tocara.", "order": 7 },
+      { "characterId": "a", "text": "¡Ese es exactamente el motivo para no tocarlo!", "order": 8 },
+      { "characterId": "b", "text": "Bueno, ahora sabemos qué hace.", "order": 9 }
     ]
   },
   {
@@ -1346,15 +1346,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué tenés el paraguas abierto hace diez minutos?", "order": 0 },
-      { "characterId": "b", "text": "No cierra.", "order": 1, "direction": "frustrado" },
+      { "characterId": "b", "text": "No cierra.", "order": 1 },
       { "characterId": "a", "text": "Apretá el botón.", "order": 2 },
       { "characterId": "b", "text": "Ya lo hice.", "order": 3 },
       { "characterId": "a", "text": "Hacelo de nuevo.", "order": 4 },
-      { "characterId": "b", "text": "No quiero insistirle.", "order": 5, "direction": "prudente" },
-      { "characterId": "a", "text": "¿A un paraguas?", "order": 6, "direction": "desconcertado" },
-      { "characterId": "b", "text": "Sí. Está claramente pasando un momento complicado.", "order": 7, "direction": "preocupado" },
-      { "characterId": "a", "text": "Dámelo.", "order": 8, "direction": "firme" },
-      { "characterId": "b", "text": "Con cuidado. Está sensible.", "order": 9, "direction": "susurrando" }
+      { "characterId": "b", "text": "No quiero insistirle.", "order": 5 },
+      { "characterId": "a", "text": "¿A un paraguas?", "order": 6 },
+      { "characterId": "b", "text": "Sí. Está claramente pasando un momento complicado.", "order": 7 },
+      { "characterId": "a", "text": "Dámelo.", "order": 8 },
+      { "characterId": "b", "text": "Con cuidado. Está sensible.", "order": 9 }
     ]
   },
   {
@@ -1364,17 +1364,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás sudando?", "order": 0 },
-      { "characterId": "b", "text": "La salsa.", "order": 1, "direction": "aguantando" },
+      { "characterId": "b", "text": "La salsa.", "order": 1 },
       { "characterId": "a", "text": "Te dije que era picante.", "order": 2 },
-      { "characterId": "b", "text": "No entendí el nivel.", "order": 3, "direction": "sufriendo" },
+      { "characterId": "b", "text": "No entendí el nivel.", "order": 3 },
       { "characterId": "a", "text": "Tomá agua.", "order": 4 },
-      { "characterId": "b", "text": "No.", "order": 5, "direction": "orgulloso" },
+      { "characterId": "b", "text": "No.", "order": 5 },
       { "characterId": "a", "text": "¿Por qué?", "order": 6 },
-      { "characterId": "b", "text": "Porque si tomo agua, gana.", "order": 7, "direction": "desafiante" },
-      { "characterId": "a", "text": "¿Gana quién?", "order": 8, "direction": "confundido" },
-      { "characterId": "b", "text": "La salsa.", "order": 9, "direction": "solemne" },
+      { "characterId": "b", "text": "Porque si tomo agua, gana.", "order": 7 },
+      { "characterId": "a", "text": "¿Gana quién?", "order": 8 },
+      { "characterId": "b", "text": "La salsa.", "order": 9 },
       { "characterId": "a", "text": "Estás compitiendo contra un condimento.", "order": 10 },
-      { "characterId": "b", "text": "Y por ahora va ganando por goleada.", "order": 11, "direction": "derrotado" }
+      { "characterId": "b", "text": "Y por ahora va ganando por goleada.", "order": 11 }
     ]
   },
   {
@@ -1384,17 +1384,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Qué hacés con la canilla?", "order": 0 },
-      { "characterId": "b", "text": "Estoy buscando la temperatura justa.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy buscando la temperatura justa.", "order": 1 },
       { "characterId": "a", "text": "Abrila un poquito menos.", "order": 2 },
       { "characterId": "b", "text": "No, ahí está fría.", "order": 3 },
       { "characterId": "a", "text": "Más caliente.", "order": 4 },
       { "characterId": "b", "text": "Ahí quema.", "order": 5 },
       { "characterId": "a", "text": "Buscá un punto medio.", "order": 6 },
-      { "characterId": "b", "text": "Lo encontré.", "order": 7, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Lo encontré.", "order": 7 },
       { "characterId": "a", "text": "¿Y?", "order": 8 },
-      { "characterId": "b", "text": "Se movió.", "order": 9, "direction": "traicionado" },
+      { "characterId": "b", "text": "Se movió.", "order": 9 },
       { "characterId": "a", "text": "{{b}}, es agua.", "order": 10 },
-      { "characterId": "b", "text": "No. Es una situación de presión.", "order": 11, "direction": "dramático" }
+      { "characterId": "b", "text": "No. Es una situación de presión.", "order": 11 }
     ]
   },
   {
@@ -1404,15 +1404,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué estás mirando tanto ese ticket?", "order": 0 },
-      { "characterId": "b", "text": "Tiene demasiados números.", "order": 1, "direction": "abrumado" },
+      { "characterId": "b", "text": "Tiene demasiados números.", "order": 1 },
       { "characterId": "a", "text": "Es un ticket.", "order": 2 },
-      { "characterId": "b", "text": "No. Es una biografía.", "order": 3, "direction": "dramático" },
+      { "characterId": "b", "text": "No. Es una biografía.", "order": 3 },
       { "characterId": "a", "text": "Solo dice la hora y el precio.", "order": 4 },
       { "characterId": "b", "text": "Y mi número de ticket.", "order": 5 },
       { "characterId": "a", "text": "¿Y qué querés hacer con eso?", "order": 6 },
-      { "characterId": "b", "text": "Entender por qué me asignaron el 381.", "order": 7, "direction": "intrigado" },
+      { "characterId": "b", "text": "Entender por qué me asignaron el 381.", "order": 7 },
       { "characterId": "a", "text": "Porque era el próximo.", "order": 8 },
-      { "characterId": "b", "text": "No creo en las coincidencias.", "order": 9, "direction": "conspirativo" }
+      { "characterId": "b", "text": "No creo en las coincidencias.", "order": 9 }
     ]
   },
   {
@@ -1424,13 +1424,13 @@
       { "characterId": "a", "text": "Se te cayó una cuchara.", "order": 0 },
       { "characterId": "b", "text": "Ya la vi.", "order": 1 },
       { "characterId": "a", "text": "Entonces levantala.", "order": 2 },
-      { "characterId": "b", "text": "Estoy esperando.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Estoy esperando.", "order": 3 },
       { "characterId": "a", "text": "¿Esperando qué?", "order": 4 },
-      { "characterId": "b", "text": "Que deje de moverse.", "order": 5, "direction": "observando" },
+      { "characterId": "b", "text": "Que deje de moverse.", "order": 5 },
       { "characterId": "a", "text": "Está en el piso.", "order": 6 },
-      { "characterId": "b", "text": "Sí, pero tiene una oscilación rara.", "order": 7, "direction": "técnico" },
-      { "characterId": "a", "text": "{{b}}, tocala.", "order": 8, "direction": "impaciente" },
-      { "characterId": "b", "text": "No quiero alterar los datos.", "order": 9, "direction": "muy serio" }
+      { "characterId": "b", "text": "Sí, pero tiene una oscilación rara.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, tocala.", "order": 8 },
+      { "characterId": "b", "text": "No quiero alterar los datos.", "order": 9 }
     ]
   },
   {
@@ -1440,15 +1440,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás cambiando de silla?", "order": 0 },
-      { "characterId": "b", "text": "Esta no me convence.", "order": 1, "direction": "evaluando" },
+      { "characterId": "b", "text": "Esta no me convence.", "order": 1 },
       { "characterId": "a", "text": "Nos trajeron la comida.", "order": 2 },
       { "characterId": "b", "text": "Sí, pero la silla está mal.", "order": 3 },
       { "characterId": "a", "text": "¿Qué tiene?", "order": 4 },
-      { "characterId": "b", "text": "Me mira raro.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "Me mira raro.", "order": 5 },
       { "characterId": "a", "text": "Las sillas no miran.", "order": 6 },
       { "characterId": "b", "text": "Esta está torcida.", "order": 7 },
-      { "characterId": "a", "text": "Bueno, eso lo arregla todo.", "order": 8, "direction": "sarcástico" },
-      { "characterId": "b", "text": "No. La hace más sospechosa.", "order": 9, "direction": "serio" }
+      { "characterId": "a", "text": "Bueno, eso lo arregla todo.", "order": 8 },
+      { "characterId": "b", "text": "No. La hace más sospechosa.", "order": 9 }
     ]
   },
   {
@@ -1458,15 +1458,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, derramaste el café.", "order": 0 },
-      { "characterId": "b", "text": "Sí.", "order": 1, "direction": "quieto" },
+      { "characterId": "b", "text": "Sí.", "order": 1 },
       { "characterId": "a", "text": "Limpiá eso.", "order": 2 },
-      { "characterId": "b", "text": "Estoy observando.", "order": 3, "direction": "fascinado" },
+      { "characterId": "b", "text": "Estoy observando.", "order": 3 },
       { "characterId": "a", "text": "¿Observando qué?", "order": 4 },
-      { "characterId": "b", "text": "Hasta dónde llega.", "order": 5, "direction": "científico" },
-      { "characterId": "a", "text": "¡Es café, no lava!", "order": 6, "direction": "exasperado" },
+      { "characterId": "b", "text": "Hasta dónde llega.", "order": 5 },
+      { "characterId": "a", "text": "¡Es café, no lava!", "order": 6 },
       { "characterId": "b", "text": "Llegó a la servilleta.", "order": 7 },
       { "characterId": "a", "text": "Sí, porque la servilleta está al lado.", "order": 8 },
-      { "characterId": "b", "text": "Interesante. Tiene buen criterio.", "order": 9, "direction": "impresionado" }
+      { "characterId": "b", "text": "Interesante. Tiene buen criterio.", "order": 9 }
     ]
   },
   {
@@ -1476,15 +1476,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás mirando la nuca en el espejo?", "order": 0 },
-      { "characterId": "b", "text": "Quiero saber cómo quedó.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Quiero saber cómo quedó.", "order": 1 },
       { "characterId": "a", "text": "Está atrás.", "order": 2 },
-      { "characterId": "b", "text": "Sí. Ese es el problema.", "order": 3, "direction": "preocupado" },
+      { "characterId": "b", "text": "Sí. Ese es el problema.", "order": 3 },
       { "characterId": "a", "text": "Podés usar el otro espejo.", "order": 4 },
-      { "characterId": "b", "text": "No confío en los reflejos múltiples.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "No confío en los reflejos múltiples.", "order": 5 },
       { "characterId": "a", "text": "¿En qué confiás?", "order": 6 },
-      { "characterId": "b", "text": "En alguien que me diga la verdad.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "En alguien que me diga la verdad.", "order": 7 },
       { "characterId": "a", "text": "Te quedó bien.", "order": 8 },
-      { "characterId": "b", "text": "Eso sonó demasiado rápido.", "order": 9, "direction": "sospechoso" }
+      { "characterId": "b", "text": "Eso sonó demasiado rápido.", "order": 9 }
     ]
   },
   {
@@ -1494,15 +1494,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué desarmaste la hamburguesa?", "order": 0 },
-      { "characterId": "b", "text": "Estaba mal puesta.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "Estaba mal puesta.", "order": 1 },
       { "characterId": "a", "text": "Era una hamburguesa.", "order": 2 },
-      { "characterId": "b", "text": "Exactamente. Tiene una estructura.", "order": 3, "direction": "profesional" },
+      { "characterId": "b", "text": "Exactamente. Tiene una estructura.", "order": 3 },
       { "characterId": "a", "text": "Solo necesitabas darle un mordisco.", "order": 4 },
-      { "characterId": "b", "text": "No quiero empezar así.", "order": 5, "direction": "firme" },
+      { "characterId": "b", "text": "No quiero empezar así.", "order": 5 },
       { "characterId": "a", "text": "¿Así cómo?", "order": 6 },
-      { "characterId": "b", "text": "Con una falla estructural.", "order": 7, "direction": "técnico" },
-      { "characterId": "a", "text": "Te estás peleando con el tomate.", "order": 8, "direction": "burlón" },
-      { "characterId": "b", "text": "Y el tomate empezó.", "order": 9, "direction": "ofendido" }
+      { "characterId": "b", "text": "Con una falla estructural.", "order": 7 },
+      { "characterId": "a", "text": "Te estás peleando con el tomate.", "order": 8 },
+      { "characterId": "b", "text": "Y el tomate empezó.", "order": 9 }
     ]
   },
   {
@@ -1514,13 +1514,13 @@
       { "characterId": "a", "text": "{{b}}, la bolsa del pan no cierra.", "order": 0 },
       { "characterId": "b", "text": "Ya lo noté.", "order": 1 },
       { "characterId": "a", "text": "Doblala.", "order": 2 },
-      { "characterId": "b", "text": "No quiero forzarla.", "order": 3, "direction": "prudente" },
+      { "characterId": "b", "text": "No quiero forzarla.", "order": 3 },
       { "characterId": "a", "text": "No es una caja fuerte.", "order": 4 },
-      { "characterId": "b", "text": "Tiene cuatro panes adentro.", "order": 5, "direction": "serio" },
+      { "characterId": "b", "text": "Tiene cuatro panes adentro.", "order": 5 },
       { "characterId": "a", "text": "Sí.", "order": 6 },
-      { "characterId": "b", "text": "Eso es presión.", "order": 7, "direction": "dramático" },
+      { "characterId": "b", "text": "Eso es presión.", "order": 7 },
       { "characterId": "a", "text": "Usá una pinza.", "order": 8 },
-      { "characterId": "b", "text": "No quiero involucrar más herramientas en esto.", "order": 9, "direction": "preocupado" }
+      { "characterId": "b", "text": "No quiero involucrar más herramientas en esto.", "order": 9 }
     ]
   },
   {
@@ -1530,15 +1530,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué levantás el vaso cada dos segundos?", "order": 0 },
-      { "characterId": "b", "text": "La mesa está pegajosa.", "order": 1, "direction": "incómodo" },
+      { "characterId": "b", "text": "La mesa está pegajosa.", "order": 1 },
       { "characterId": "a", "text": "Entonces apoyalo y listo.", "order": 2 },
-      { "characterId": "b", "text": "No puedo.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "No puedo.", "order": 3 },
       { "characterId": "a", "text": "¿Qué pasa ahora?", "order": 4 },
-      { "characterId": "b", "text": "La mesa se lo quiere quedar.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "La mesa se lo quiere quedar.", "order": 5 },
       { "characterId": "a", "text": "Es pegamento.", "order": 6 },
-      { "characterId": "b", "text": "Eso quieren que pensemos.", "order": 7, "direction": "conspirativo" },
+      { "characterId": "b", "text": "Eso quieren que pensemos.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, nadie está planeando robarte el vaso.", "order": 8 },
-      { "characterId": "b", "text": "Hasta que deje de subir tan lento.", "order": 9, "direction": "vigilante" }
+      { "characterId": "b", "text": "Hasta que deje de subir tan lento.", "order": 9 }
     ]
   },
   {
@@ -1548,15 +1548,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué doblaste el boleto tantas veces?", "order": 0 },
-      { "characterId": "b", "text": "Quería hacerlo más chico.", "order": 1, "direction": "natural" },
+      { "characterId": "b", "text": "Quería hacerlo más chico.", "order": 1 },
       { "characterId": "a", "text": "Ya era chico.", "order": 2 },
-      { "characterId": "b", "text": "Ahora entra mejor en el bolsillo.", "order": 3, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Ahora entra mejor en el bolsillo.", "order": 3 },
       { "characterId": "a", "text": "Ahora parece un papelito arrugado.", "order": 4 },
-      { "characterId": "b", "text": "Pero sigue siendo un boleto.", "order": 5, "direction": "convencido" },
+      { "characterId": "b", "text": "Pero sigue siendo un boleto.", "order": 5 },
       { "characterId": "a", "text": "¿Estás seguro?", "order": 6 },
-      { "characterId": "b", "text": "No.", "order": 7, "direction": "honesto" },
-      { "characterId": "a", "text": "Excelente.", "order": 8, "direction": "sarcástico" },
-      { "characterId": "b", "text": "Pero entró perfecto.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "b", "text": "No.", "order": 7 },
+      { "characterId": "a", "text": "Excelente.", "order": 8 },
+      { "characterId": "b", "text": "Pero entró perfecto.", "order": 9 }
     ]
   },
   {
@@ -1566,17 +1566,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás parado frente a la puerta?", "order": 0 },
-      { "characterId": "b", "text": "Estoy esperando.", "order": 1, "direction": "paciente" },
+      { "characterId": "b", "text": "Estoy esperando.", "order": 1 },
       { "characterId": "a", "text": "Dice ocupado.", "order": 2 },
       { "characterId": "b", "text": "Sí.", "order": 3 },
       { "characterId": "a", "text": "Entonces está ocupado.", "order": 4 },
-      { "characterId": "b", "text": "Quiero confirmar.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "Quiero confirmar.", "order": 5 },
       { "characterId": "a", "text": "¿Cómo?", "order": 6 },
-      { "characterId": "b", "text": "Golpeando.", "order": 7, "direction": "preparándose" },
+      { "characterId": "b", "text": "Golpeando.", "order": 7 },
       { "characterId": "a", "text": "No golpees.", "order": 8 },
       { "characterId": "b", "text": "Ya golpeé.", "order": 9 },
       { "characterId": "a", "text": "¿Y?", "order": 10 },
-      { "characterId": "b", "text": "Ahora sé que además de ocupado, hay alguien adentro.", "order": 11, "direction": "satisfecho" }
+      { "characterId": "b", "text": "Ahora sé que además de ocupado, hay alguien adentro.", "order": 11 }
     ]
   },
   {
@@ -1586,15 +1586,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué te levantaste?", "order": 0 },
-      { "characterId": "b", "text": "El banco hizo ruido.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "El banco hizo ruido.", "order": 1 },
       { "characterId": "a", "text": "Es un banco viejo.", "order": 2 },
       { "characterId": "b", "text": "Ya.", "order": 3 },
       { "characterId": "a", "text": "Entonces sentate.", "order": 4 },
-      { "characterId": "b", "text": "No después de escuchar eso.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "No después de escuchar eso.", "order": 5 },
       { "characterId": "a", "text": "¿Qué pensás que puede pasar?", "order": 6 },
-      { "characterId": "b", "text": "No sé.", "order": 7, "direction": "serio" },
+      { "characterId": "b", "text": "No sé.", "order": 7 },
       { "characterId": "a", "text": "Entonces por qué estás preocupado.", "order": 8 },
-      { "characterId": "b", "text": "Porque justamente no sé.", "order": 9, "direction": "dramático" }
+      { "characterId": "b", "text": "Porque justamente no sé.", "order": 9 }
     ]
   },
   {
@@ -1604,15 +1604,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué guardaste la caja de pizza?", "order": 0 },
-      { "characterId": "b", "text": "Todavía tiene olor.", "order": 1, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Todavía tiene olor.", "order": 1 },
       { "characterId": "a", "text": "No queda pizza.", "order": 2 },
       { "characterId": "b", "text": "Ya sé.", "order": 3 },
       { "characterId": "a", "text": "Entonces tirala.", "order": 4 },
-      { "characterId": "b", "text": "No quiero desperdiciar el aroma.", "order": 5, "direction": "solemne" },
+      { "characterId": "b", "text": "No quiero desperdiciar el aroma.", "order": 5 },
       { "characterId": "a", "text": "Es una caja.", "order": 6 },
-      { "characterId": "b", "text": "Fue una buena pizza.", "order": 7, "direction": "nostálgico" },
+      { "characterId": "b", "text": "Fue una buena pizza.", "order": 7 },
       { "characterId": "a", "text": "{{b}}, fue hace veinte minutos.", "order": 8 },
-      { "characterId": "b", "text": "Para vos. Para mí pasó una época.", "order": 9, "direction": "dramático" }
+      { "characterId": "b", "text": "Para vos. Para mí pasó una época.", "order": 9 }
     ]
   },
   {
@@ -1622,15 +1622,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué agarrás el vaso con las dos manos?", "order": 0 },
-      { "characterId": "b", "text": "Es demasiado liviano.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "Es demasiado liviano.", "order": 1 },
       { "characterId": "a", "text": "¿Y eso qué tiene que ver?", "order": 2 },
-      { "characterId": "b", "text": "Se me escapa.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Se me escapa.", "order": 3 },
       { "characterId": "a", "text": "Es un vaso de plástico.", "order": 4 },
-      { "characterId": "b", "text": "Justamente. No pesa lo suficiente para confiar.", "order": 5, "direction": "desconfiado" },
+      { "characterId": "b", "text": "Justamente. No pesa lo suficiente para confiar.", "order": 5 },
       { "characterId": "a", "text": "Tenés el vaso agarrado como si fuera un animal.", "order": 6 },
-      { "characterId": "b", "text": "Los animales también se escapan.", "order": 7, "direction": "filosófico" },
-      { "characterId": "a", "text": "No sé qué respuesta esperaba.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Yo tampoco, pero me dejó tranquilo.", "order": 9, "direction": "aliviado" }
+      { "characterId": "b", "text": "Los animales también se escapan.", "order": 7 },
+      { "characterId": "a", "text": "No sé qué respuesta esperaba.", "order": 8 },
+      { "characterId": "b", "text": "Yo tampoco, pero me dejó tranquilo.", "order": 9 }
     ]
   },
   {
@@ -1640,17 +1640,17 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás golpeando las sandías?", "order": 0 },
-      { "characterId": "b", "text": "Estoy escuchando.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy escuchando.", "order": 1 },
       { "characterId": "a", "text": "¿Qué querés escuchar?", "order": 2 },
-      { "characterId": "b", "text": "La correcta.", "order": 3, "direction": "misterioso" },
+      { "characterId": "b", "text": "La correcta.", "order": 3 },
       { "characterId": "a", "text": "Todas suenan igual.", "order": 4 },
-      { "characterId": "b", "text": "No cuando sabés escuchar.", "order": 5, "direction": "experto" },
+      { "characterId": "b", "text": "No cuando sabés escuchar.", "order": 5 },
       { "characterId": "a", "text": "Probá esa.", "order": 6 },
-      { "characterId": "b", "text": "No. Esa tiene dudas.", "order": 7, "direction": "desconfiado" },
+      { "characterId": "b", "text": "No. Esa tiene dudas.", "order": 7 },
       { "characterId": "a", "text": "¿Y la otra?", "order": 8 },
-      { "characterId": "b", "text": "La otra está segura de sí misma.", "order": 9, "direction": "convencido" },
+      { "characterId": "b", "text": "La otra está segura de sí misma.", "order": 9 },
       { "characterId": "a", "text": "Bueno, llevemos esa y terminemos.", "order": 10 },
-      { "characterId": "b", "text": "Ahora que lo decís, esta me intimidó.", "order": 11, "direction": "incómodo" }
+      { "characterId": "b", "text": "Ahora que lo decís, esta me intimidó.", "order": 11 }
     ]
   },
   {
@@ -1660,15 +1660,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué doblaste la servilleta?", "order": 0 },
-      { "characterId": "b", "text": "Para hacerla más útil.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Para hacerla más útil.", "order": 1 },
       { "characterId": "a", "text": "Es una servilleta.", "order": 2 },
-      { "characterId": "b", "text": "Sí, pero ahora tiene cuatro capas.", "order": 3, "direction": "orgulloso" },
+      { "characterId": "b", "text": "Sí, pero ahora tiene cuatro capas.", "order": 3 },
       { "characterId": "a", "text": "¿Y qué ganaste?", "order": 4 },
-      { "characterId": "b", "text": "Dureza.", "order": 5, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Dureza.", "order": 5 },
       { "characterId": "a", "text": "No necesitábamos una servilleta dura.", "order": 6 },
-      { "characterId": "b", "text": "Eso decís ahora.", "order": 7, "direction": "misterioso" },
-      { "characterId": "a", "text": "¿Qué estás planeando?", "order": 8, "direction": "sospechoso" },
-      { "characterId": "b", "text": "Nada. Pero ahora tengo una herramienta.", "order": 9, "direction": "solemne" }
+      { "characterId": "b", "text": "Eso decís ahora.", "order": 7 },
+      { "characterId": "a", "text": "¿Qué estás planeando?", "order": 8 },
+      { "characterId": "b", "text": "Nada. Pero ahora tengo una herramienta.", "order": 9 }
     ]
   },
   {
@@ -1678,15 +1678,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué seguís raspando el pote?", "order": 0 },
-      { "characterId": "b", "text": "Todavía queda.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Todavía queda.", "order": 1 },
       { "characterId": "a", "text": "No queda nada.", "order": 2 },
-      { "characterId": "b", "text": "Miralo bien.", "order": 3, "direction": "seguro" },
+      { "characterId": "b", "text": "Miralo bien.", "order": 3 },
       { "characterId": "a", "text": "Está transparente.", "order": 4 },
-      { "characterId": "b", "text": "Eso es porque lo estoy sacando del fondo.", "order": 5, "direction": "lógico" },
-      { "characterId": "a", "text": "¡El fondo ya se ve!", "order": 6, "direction": "exasperado" },
-      { "characterId": "b", "text": "Entonces vamos por buen camino.", "order": 7, "direction": "optimista" },
+      { "characterId": "b", "text": "Eso es porque lo estoy sacando del fondo.", "order": 5 },
+      { "characterId": "a", "text": "¡El fondo ya se ve!", "order": 6 },
+      { "characterId": "b", "text": "Entonces vamos por buen camino.", "order": 7 },
       { "characterId": "a", "text": "¿Por qué estás sacando tanto helado inexistente?", "order": 8 },
-      { "characterId": "b", "text": "No estoy dispuesto a perder por diferencia de percepción.", "order": 9, "direction": "determinado" }
+      { "characterId": "b", "text": "No estoy dispuesto a perder por diferencia de percepción.", "order": 9 }
     ]
   },
   {
@@ -1698,15 +1698,15 @@
       { "characterId": "a", "text": "{{b}}, bajá la radio.", "order": 0 },
       { "characterId": "b", "text": "No está tan fuerte.", "order": 1 },
       { "characterId": "a", "text": "No escucho ni mis pensamientos.", "order": 2 },
-      { "characterId": "b", "text": "Eso es parte de la experiencia.", "order": 3, "direction": "tranquilo" },
-      { "characterId": "a", "text": "Bajala.", "order": 4, "direction": "firme" },
+      { "characterId": "b", "text": "Eso es parte de la experiencia.", "order": 3 },
+      { "characterId": "a", "text": "Bajala.", "order": 4 },
       { "characterId": "b", "text": "Está bien.", "order": 5 },
       { "characterId": "a", "text": "Gracias.", "order": 6 },
       { "characterId": "b", "text": "Listo.", "order": 7 },
-      { "characterId": "a", "text": "No cambió nada.", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Bajé una sola rayita.", "order": 9, "direction": "orgulloso" },
-      { "characterId": "a", "text": "{{b}}, eso fue decorativo.", "order": 10, "direction": "agotado" },
-      { "characterId": "b", "text": "Pero técnicamente colaboré.", "order": 11, "direction": "satisfecho" }
+      { "characterId": "a", "text": "No cambió nada.", "order": 8 },
+      { "characterId": "b", "text": "Bajé una sola rayita.", "order": 9 },
+      { "characterId": "a", "text": "{{b}}, eso fue decorativo.", "order": 10 },
+      { "characterId": "b", "text": "Pero técnicamente colaboré.", "order": 11 }
     ]
   },
   {
@@ -1716,15 +1716,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Qué le pasa a tu campera?", "order": 0 },
-      { "characterId": "b", "text": "El cierre no sube.", "order": 1, "direction": "frustrado" },
+      { "characterId": "b", "text": "El cierre no sube.", "order": 1 },
       { "characterId": "a", "text": "Tiralo despacio.", "order": 2 },
       { "characterId": "b", "text": "Ya lo intenté.", "order": 3 },
       { "characterId": "a", "text": "Probá de nuevo.", "order": 4 },
-      { "characterId": "b", "text": "No quiero.", "order": 5, "direction": "ofendido" },
+      { "characterId": "b", "text": "No quiero.", "order": 5 },
       { "characterId": "a", "text": "¿Por qué?", "order": 6 },
-      { "characterId": "b", "text": "Ya le dimos demasiadas oportunidades.", "order": 7, "direction": "solemne" },
+      { "characterId": "b", "text": "Ya le dimos demasiadas oportunidades.", "order": 7 },
       { "characterId": "a", "text": "Es un cierre.", "order": 8 },
-      { "characterId": "b", "text": "Y claramente no está a la altura.", "order": 9, "direction": "decepcionado" }
+      { "characterId": "b", "text": "Y claramente no está a la altura.", "order": 9 }
     ]
   },
   {
@@ -1734,14 +1734,14 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás colando el jugo?", "order": 0 },
-      { "characterId": "b", "text": "Hay demasiada pulpa.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Hay demasiada pulpa.", "order": 1 },
       { "characterId": "a", "text": "Es jugo de naranja.", "order": 2 },
-      { "characterId": "b", "text": "Exactamente. Quiero naranja líquida.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "Exactamente. Quiero naranja líquida.", "order": 3 },
       { "characterId": "a", "text": "La naranja ya es líquida.", "order": 4 },
-      { "characterId": "b", "text": "No toda.", "order": 5, "direction": "correctivo" },
+      { "characterId": "b", "text": "No toda.", "order": 5 },
       { "characterId": "a", "text": "¿Y qué vas a hacer con la pulpa?", "order": 6 },
-      { "characterId": "b", "text": "Todavía no lo sé.", "order": 7, "direction": "pensativo" },
-      { "characterId": "a", "text": "Perfecto. Otra crisis resuelta.", "order": 8, "direction": "sarcástico" }
+      { "characterId": "b", "text": "Todavía no lo sé.", "order": 7 },
+      { "characterId": "a", "text": "Perfecto. Otra crisis resuelta.", "order": 8 }
     ]
   },
   {
@@ -1751,15 +1751,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué mirás los huevos como si fueran piedras preciosas?", "order": 0 },
-      { "characterId": "b", "text": "Estoy buscando uno que no esté roto.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Estoy buscando uno que no esté roto.", "order": 1 },
       { "characterId": "a", "text": "Están todos cerrados.", "order": 2 },
-      { "characterId": "b", "text": "Uno tiene una grieta.", "order": 3, "direction": "detective" },
+      { "characterId": "b", "text": "Uno tiene una grieta.", "order": 3 },
       { "characterId": "a", "text": "Bien visto.", "order": 4 },
-      { "characterId": "b", "text": "Y ese otro me está dando mala espina.", "order": 5, "direction": "sospechoso" },
+      { "characterId": "b", "text": "Y ese otro me está dando mala espina.", "order": 5 },
       { "characterId": "a", "text": "No podés desconfiar de un huevo.", "order": 6 },
-      { "characterId": "b", "text": "Todavía no conocés todos.", "order": 7, "direction": "misterioso" },
-      { "characterId": "a", "text": "Agarrá la caja y vámonos.", "order": 8, "direction": "apurado" },
-      { "characterId": "b", "text": "Sí. Pero me llevo la menos conflictiva.", "order": 9, "direction": "prudente" }
+      { "characterId": "b", "text": "Todavía no conocés todos.", "order": 7 },
+      { "characterId": "a", "text": "Agarrá la caja y vámonos.", "order": 8 },
+      { "characterId": "b", "text": "Sí. Pero me llevo la menos conflictiva.", "order": 9 }
     ]
   },
   {
@@ -1769,15 +1769,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué moviste el salero?", "order": 0 },
-      { "characterId": "b", "text": "Estaba mal ubicado.", "order": 1, "direction": "serio" },
+      { "characterId": "b", "text": "Estaba mal ubicado.", "order": 1 },
       { "characterId": "a", "text": "Estaba al lado del plato.", "order": 2 },
-      { "characterId": "b", "text": "Exactamente.", "order": 3, "direction": "satisfecho" },
+      { "characterId": "b", "text": "Exactamente.", "order": 3 },
       { "characterId": "a", "text": "¿Y dónde debería estar?", "order": 4 },
-      { "characterId": "b", "text": "Un poco más a la izquierda.", "order": 5, "direction": "preciso" },
+      { "characterId": "b", "text": "Un poco más a la izquierda.", "order": 5 },
       { "characterId": "a", "text": "¿Cuánto?", "order": 6 },
-      { "characterId": "b", "text": "Tres centímetros.", "order": 7, "direction": "técnico" },
-      { "characterId": "a", "text": "¿Mediste?", "order": 8, "direction": "incrédulo" },
-      { "characterId": "b", "text": "Con los ojos.", "order": 9, "direction": "orgulloso" }
+      { "characterId": "b", "text": "Tres centímetros.", "order": 7 },
+      { "characterId": "a", "text": "¿Mediste?", "order": 8 },
+      { "characterId": "b", "text": "Con los ojos.", "order": 9 }
     ]
   },
   {
@@ -1787,15 +1787,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué arrugaste el boleto?", "order": 0 },
-      { "characterId": "b", "text": "Se me cayó.", "order": 1, "direction": "culpable" },
+      { "characterId": "b", "text": "Se me cayó.", "order": 1 },
       { "characterId": "a", "text": "Ahora no se lee nada.", "order": 2 },
-      { "characterId": "b", "text": "Sí se lee.", "order": 3, "direction": "seguro" },
+      { "characterId": "b", "text": "Sí se lee.", "order": 3 },
       { "characterId": "a", "text": "Dice '...a...'.", "order": 4 },
-      { "characterId": "b", "text": "Eso es suficiente contexto.", "order": 5, "direction": "tranquilo" },
+      { "characterId": "b", "text": "Eso es suficiente contexto.", "order": 5 },
       { "characterId": "a", "text": "¿Contexto para qué?", "order": 6 },
-      { "characterId": "b", "text": "Para saber que era mío.", "order": 7, "direction": "lógico" },
+      { "characterId": "b", "text": "Para saber que era mío.", "order": 7 },
       { "characterId": "a", "text": "Nadie te lo estaba disputando.", "order": 8 },
-      { "characterId": "b", "text": "Mejor. Entonces estamos de acuerdo.", "order": 9, "direction": "satisfecho" }
+      { "characterId": "b", "text": "Mejor. Entonces estamos de acuerdo.", "order": 9 }
     ]
   },
   {
@@ -1805,15 +1805,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "¿Por qué apagaste la cafetera?", "order": 0 },
-      { "characterId": "b", "text": "Hizo un ruido raro.", "order": 1, "direction": "preocupado" },
+      { "characterId": "b", "text": "Hizo un ruido raro.", "order": 1 },
       { "characterId": "a", "text": "Es normal.", "order": 2 },
-      { "characterId": "b", "text": "No me avisó.", "order": 3, "direction": "ofendido" },
+      { "characterId": "b", "text": "No me avisó.", "order": 3 },
       { "characterId": "a", "text": "¿Cómo querías que te avisara?", "order": 4 },
-      { "characterId": "b", "text": "Con un sonido más amable.", "order": 5, "direction": "serio" },
+      { "characterId": "b", "text": "Con un sonido más amable.", "order": 5 },
       { "characterId": "a", "text": "Es una cafetera.", "order": 6 },
-      { "characterId": "b", "text": "Por eso mismo no esperaba semejante actitud.", "order": 7, "direction": "decepcionado" },
+      { "characterId": "b", "text": "Por eso mismo no esperaba semejante actitud.", "order": 7 },
       { "characterId": "a", "text": "Encendela otra vez.", "order": 8 },
-      { "characterId": "b", "text": "Primero necesito saber si estamos en buenos términos.", "order": 9, "direction": "prudente" }
+      { "characterId": "b", "text": "Primero necesito saber si estamos en buenos términos.", "order": 9 }
     ]
   },
   {
@@ -1823,15 +1823,15 @@
     "characters": [{ "id": "a" }, { "id": "b" }],
     "lines": [
       { "characterId": "a", "text": "{{b}}, ¿por qué estás mirando el tacho de basura?", "order": 0 },
-      { "characterId": "b", "text": "Hay un papel que no cayó.", "order": 1, "direction": "concentrado" },
+      { "characterId": "b", "text": "Hay un papel que no cayó.", "order": 1 },
       { "characterId": "a", "text": "Empujalo.", "order": 2 },
-      { "characterId": "b", "text": "No.", "order": 3, "direction": "serio" },
+      { "characterId": "b", "text": "No.", "order": 3 },
       { "characterId": "a", "text": "¿Por qué no?", "order": 4 },
-      { "characterId": "b", "text": "Quiero ver si lo hace solo.", "order": 5, "direction": "curioso" },
+      { "characterId": "b", "text": "Quiero ver si lo hace solo.", "order": 5 },
       { "characterId": "a", "text": "Es un papel pegado en el borde.", "order": 6 },
-      { "characterId": "b", "text": "Entonces eventualmente tendrá que aceptar la realidad.", "order": 7, "direction": "filosófico" },
-      { "characterId": "a", "text": "{{b}}, llevás tres minutos esperando que caiga un papel.", "order": 8, "direction": "agotado" },
-      { "characterId": "b", "text": "Y está empezando a ceder. No quiero arruinarle el momento.", "order": 9, "direction": "emocionado" }
+      { "characterId": "b", "text": "Entonces eventualmente tendrá que aceptar la realidad.", "order": 7 },
+      { "characterId": "a", "text": "{{b}}, llevás tres minutos esperando que caiga un papel.", "order": 8 },
+      { "characterId": "b", "text": "Y está empezando a ceder. No quiero arruinarle el momento.", "order": 9 }
     ]
   }
 ]

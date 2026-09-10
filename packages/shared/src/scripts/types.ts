@@ -16,7 +16,6 @@ export const ScriptLineSchema = z.object({
   characterId: z.string().min(1).max(16),
   text: z.string().trim().min(1).max(280),
   order: z.number().int().min(0),
-  direction: z.string().trim().min(1).max(24).optional(),
 })
 
 export type ScriptLine = z.infer<typeof ScriptLineSchema>

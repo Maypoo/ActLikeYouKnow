@@ -112,14 +112,8 @@ export function buildRevealView(script: Script): ScriptRevealView {
 
 const SPLIT_PARTITIONS: Record<number, number[][]> = {
   6: [[3, 3]],
-  7: [
-    [2, 5],
-    [3, 4],
-  ],
-  8: [
-    [3, 5],
-    [4, 4],
-  ],
+  7: [[3, 4]],
+  8: [[4, 4]],
   9: [[4, 5]],
   10: [[5, 5]],
 }

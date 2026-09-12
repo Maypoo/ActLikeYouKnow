@@ -21,6 +21,10 @@ export default function AudioRecorder({ lineKey }: Props) {
   const contextRef = useRef<AudioContext | null>(null)
   const analyserRef = useRef<AnalyserNode | null>(null)
   const rafRef = useRef<number | null>(null)
+  const playheadRef = useRef<number | null>(null)
+  const playheadRafRef = useRef<number | null>(null)
+  const playbackStartRef = useRef<number | null>(null)
+  const playbackDurationRef = useRef<number>(0)
 
   useEffect(() => {
     setStatus("idle")
@@ -32,6 +36,13 @@ export default function AudioRecorder({ lineKey }: Props) {
     setTrimStart(0)
     setTrimEnd(100)
     setPeaks([])
+    playheadRef.current = null
+    playbackStartRef.current = null
+    playbackDurationRef.current = 0
+    if (playheadRafRef.current) {
+      cancelAnimationFrame(playheadRafRef.current)
+      playheadRafRef.current = null
+    }
     stopStream()
     if (audioRef.current) {
       audioRef.current.pause()
@@ -83,6 +94,7 @@ export default function AudioRecorder({ lineKey }: Props) {
       stopStream()
       if (url) URL.revokeObjectURL(url)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      if (playheadRafRef.current) cancelAnimationFrame(playheadRafRef.current)
       if (audioRef.current) audioRef.current.pause()
       if (contextRef.current) {
         try { contextRef.current.close() } catch {}
@@ -95,6 +107,13 @@ export default function AudioRecorder({ lineKey }: Props) {
       cancelAnimationFrame(rafRef.current)
       rafRef.current = null
     }
+    if (playheadRafRef.current) {
+      cancelAnimationFrame(playheadRafRef.current)
+      playheadRafRef.current = null
+    }
+    playheadRef.current = null
+    playbackStartRef.current = null
+    playbackDurationRef.current = 0
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((t) => t.stop())
       streamRef.current = null
@@ -200,49 +219,63 @@ export default function AudioRecorder({ lineKey }: Props) {
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.clearRect(0, 0, cssW, cssH)
-    ctx.fillStyle = "#ffffff"
+    ctx.fillStyle = "#fff7ed"
     ctx.fillRect(0, 0, cssW, cssH)
+    ctx.fillStyle = "rgba(124,92,255,0.06)"
+    for (let i = 1; i < 5; i++) {
+      ctx.fillRect(0, (cssH / 5) * i, cssW, 1)
+    }
     if (peaks.length === 0) return
-    const barW = cssW / peaks.length
-    const gap = Math.max(1, barW * 0.2)
-    const bw = Math.max(3, barW - gap)
+    const step = cssW / (peaks.length - 1)
+    const center = cssH / 2
+    const amp = cssH * 0.38
+    ctx.lineWidth = 3.5
+    ctx.strokeStyle = "#7c5cff"
+    ctx.lineCap = "round"
+    ctx.lineJoin = "round"
+    ctx.shadowColor = "rgba(124,92,255,0.28)"
+    ctx.shadowBlur = 8
+    ctx.beginPath()
     for (let i = 0; i < peaks.length; i++) {
       const v = peaks[i]!
-      const bh = Math.max(4, v * cssH * 0.78)
-      const x = i * barW + gap / 2
-      const y = (cssH - bh) / 2
-      const pct = (i / peaks.length) * 100
-      const inside = pct >= trimStart && pct <= trimEnd
-      ctx.fillStyle = inside ? "#7c5cff" : "rgba(15,15,20,0.14)"
-      const r = bw / 2
-      ctx.beginPath()
-      ctx.roundRect(x, y, bw, bh, r)
-      ctx.fill()
-      if (inside) {
-        ctx.fillStyle = "rgba(255,255,255,0.55)"
-        ctx.beginPath()
-        ctx.roundRect(x, y, bw, 2.5, 1)
-        ctx.fill()
+      const y = center - v * amp * 0.92
+      const x = i * step
+      if (i === 0) ctx.moveTo(x, y)
+      else {
+        const prevX = (i - 1) * step
+        const prevV = peaks[i - 1]!
+        const prevY = center - prevV * amp * 0.92
+        const cpx = (prevX + x) / 2
+        ctx.quadraticCurveTo(prevX, prevY, cpx, (prevY + y) / 2)
+        if (i === peaks.length - 1) ctx.lineTo(x, y)
       }
     }
+    for (let i = peaks.length - 1; i >= 0; i--) {
+      const v = peaks[i]!
+      const y = center + v * amp * 0.92
+      const x = i * step
+      if (i === peaks.length - 1) ctx.lineTo(x, y)
+      else {
+        const nextX = (i + 1) * step
+        const nextV = peaks[i + 1]!
+        const nextY = center + nextV * amp * 0.92
+        const cpx = (nextX + x) / 2
+        ctx.quadraticCurveTo(nextX, nextY, cpx, (nextY + y) / 2)
+      }
+    }
+    ctx.closePath()
+    ctx.stroke()
+    ctx.shadowBlur = 0
+    const grad = ctx.createLinearGradient(0, 0, 0, cssH)
+    grad.addColorStop(0, "rgba(124,92,255,0.22)")
+    grad.addColorStop(1, "rgba(255,77,106,0.16)")
+    ctx.fillStyle = grad
+    ctx.fill()
     const sx = (trimStart / 100) * cssW
     const ex = (trimEnd / 100) * cssW
     ctx.fillStyle = "rgba(15,15,20,0.08)"
     ctx.fillRect(0, 0, sx, cssH)
     ctx.fillRect(ex, 0, cssW - ex, cssH)
-    ctx.fillStyle = "#ffb830"
-    ctx.beginPath()
-    ctx.roundRect(sx - 6, 4, 12, cssH - 8, 6)
-    ctx.fill()
-    ctx.strokeStyle = "#0f0f14"
-    ctx.lineWidth = 2
-    ctx.stroke()
-    ctx.fillStyle = "#ffb830"
-    ctx.beginPath()
-    ctx.roundRect(ex - 6, 4, 12, cssH - 8, 6)
-    ctx.fill()
-    ctx.strokeStyle = "#0f0f14"
-    ctx.stroke()
     ctx.strokeStyle = "rgba(255,184,48,0.9)"
     ctx.lineWidth = 2
     ctx.setLineDash([0, 0])
@@ -252,11 +285,109 @@ export default function AudioRecorder({ lineKey }: Props) {
     ctx.moveTo(ex, 0)
     ctx.lineTo(ex, cssH)
     ctx.stroke()
+    ctx.fillStyle = "#ffb830"
+    ctx.beginPath()
+    if (typeof (ctx as unknown as { roundRect: unknown }).roundRect === "function") {
+      (ctx as unknown as { roundRect: (x: number, y: number, w: number, h: number, r: number) => void }).roundRect(sx - 6, 4, 12, cssH - 8, 6)
+    } else {
+      ctx.rect(sx - 6, 4, 12, cssH - 8)
+    }
+    ctx.fill()
+    ctx.strokeStyle = "#0f0f14"
+    ctx.lineWidth = 2
+    ctx.stroke()
+    ctx.fillStyle = "#ffb830"
+    ctx.beginPath()
+    if (typeof (ctx as unknown as { roundRect: unknown }).roundRect === "function") {
+      (ctx as unknown as { roundRect: (x: number, y: number, w: number, h: number, r: number) => void }).roundRect(ex - 6, 4, 12, cssH - 8, 6)
+    } else {
+      ctx.rect(ex - 6, 4, 12, cssH - 8)
+    }
+    ctx.fill()
+    ctx.strokeStyle = "#0f0f14"
+    ctx.stroke()
+    const ph = playheadRef.current
+    if (ph !== null && duration > 0) {
+      const px = (ph / 100) * cssW
+      const clamped = Math.max(sx, Math.min(ex, px))
+      ctx.setLineDash([])
+      ctx.strokeStyle = "#0f0f14"
+      ctx.lineWidth = 4
+      ctx.beginPath()
+      ctx.moveTo(clamped, 0)
+      ctx.lineTo(clamped, cssH)
+      ctx.stroke()
+      ctx.strokeStyle = "#00e5cc"
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.moveTo(clamped, 0)
+      ctx.lineTo(clamped, cssH)
+      ctx.stroke()
+      ctx.fillStyle = "#00e5cc"
+      ctx.strokeStyle = "#0f0f14"
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.arc(clamped, 6, 6, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.stroke()
+      ctx.fillStyle = "#0f0f14"
+      ctx.beginPath()
+      ctx.arc(clamped, 6, 2, 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 
   useEffect(() => {
     drawPeaks()
   }, [peaks, trimStart, trimEnd])
+
+  useEffect(() => {
+    if (status !== "playing" || !audioRef.current || duration <= 0) {
+      if (playheadRafRef.current) {
+        cancelAnimationFrame(playheadRafRef.current)
+        playheadRafRef.current = null
+      }
+      return
+    }
+    const audio = audioRef.current
+    const start = playbackStartRef.current
+    const total = playbackDurationRef.current
+    if (start === null || total <= 0) return
+    const tick = () => {
+      const elapsed = (performance.now() - start) / 1000
+      let progress = elapsed / total
+      if (progress < 0) progress = 0
+      if (progress > 1) progress = 1
+      const pct = trimStart + progress * (trimEnd - trimStart)
+      playheadRef.current = pct
+      drawPeaks()
+      if (progress < 1) {
+        playheadRafRef.current = requestAnimationFrame(tick)
+      } else {
+        playheadRef.current = trimEnd
+        drawPeaks()
+        if (audio && !audio.paused) {
+          try { audio.pause() } catch {}
+        }
+        window.setTimeout(() => {
+          if (audioRef.current === audio) {
+            playbackStartRef.current = null
+            playbackDurationRef.current = 0
+            playheadRef.current = null
+            drawPeaks()
+            setStatus("recorded")
+          }
+        }, 180)
+      }
+    }
+    tick()
+    return () => {
+      if (playheadRafRef.current) {
+        cancelAnimationFrame(playheadRafRef.current)
+        playheadRafRef.current = null
+      }
+    }
+  }, [status, duration, trimStart, trimEnd])
 
   async function startRecording() {
     if (status === "recording") return
@@ -334,7 +465,17 @@ export default function AudioRecorder({ lineKey }: Props) {
           setTrimEnd(100)
           const audio = new Audio(nextUrl)
           audioRef.current = audio
-          audio.onended = () => setStatus("recorded")
+          audio.onended = () => {
+            if (playheadRafRef.current) {
+              cancelAnimationFrame(playheadRafRef.current)
+              playheadRafRef.current = null
+            }
+            playbackStartRef.current = null
+            playbackDurationRef.current = 0
+            playheadRef.current = null
+            drawPeaks()
+            setStatus("recorded")
+          }
           try { decodeCtx.close() } catch {}
         } catch {
           setPeaks(Array.from({ length: 64 }, () => Math.random() * 0.6 + 0.2))
@@ -361,31 +502,72 @@ export default function AudioRecorder({ lineKey }: Props) {
     if (!audio || !url) return
     if (status === "playing") {
       audio.pause()
+      if (playheadRafRef.current) {
+        cancelAnimationFrame(playheadRafRef.current)
+        playheadRafRef.current = null
+      }
       setStatus("recorded")
+      drawPeaks()
       return
     }
     const s = (trimStart / 100) * duration
     const e = (trimEnd / 100) * duration
     const playDur = Math.max(0, e - s)
     if (playDur <= 0.05) return
-    audio.currentTime = s
-    setStatus("playing")
-    audio.onended = () => setStatus("recorded")
+    const existing = playheadRef.current
+    const isResume = existing !== null && existing > trimStart + 0.05 && existing < trimEnd - 0.05 && existing >= trimStart && existing <= trimEnd
+    if (isResume) {
+      const progress = (existing - trimStart) / Math.max(0.01, trimEnd - trimStart)
+      const offset = progress * playDur
+      try { audio.currentTime = s + offset } catch {}
+      playbackStartRef.current = performance.now() - offset * 1000
+      playbackDurationRef.current = playDur
+      drawPeaks()
+      setStatus("playing")
+    } else {
+      try { audio.currentTime = s } catch {}
+      playheadRef.current = trimStart
+      playbackStartRef.current = performance.now()
+      playbackDurationRef.current = playDur
+      drawPeaks()
+      setStatus("playing")
+    }
+    audio.onended = () => {
+      audio.removeEventListener("timeupdate", onTime)
+    }
     const onTime = () => {
       if (audio.currentTime >= e) {
-        audio.pause()
-        setStatus("recorded")
+        try { audio.pause() } catch {}
         audio.removeEventListener("timeupdate", onTime)
       }
     }
     audio.addEventListener("timeupdate", onTime)
-    audio.play().catch(() => setStatus("recorded"))
+    audio.play().then(() => {
+      playbackStartRef.current = performance.now()
+    }).catch(() => {
+      playheadRef.current = null
+      playbackStartRef.current = null
+      playbackDurationRef.current = 0
+      if (playheadRafRef.current) {
+        cancelAnimationFrame(playheadRafRef.current)
+        playheadRafRef.current = null
+      }
+      drawPeaks()
+      setStatus("recorded")
+    })
   }
 
   function reset() {
     if (audioRef.current) {
       audioRef.current.pause()
       audioRef.current = null
+    }
+    playheadRef.current = null
+    playbackStartRef.current = null
+    playbackDurationRef.current = 0
+    if (playheadRafRef.current) {
+      cancelAnimationFrame(playheadRafRef.current)
+      playheadRafRef.current = null
     }
     setUrl((prev) => {
       if (prev) URL.revokeObjectURL(prev)

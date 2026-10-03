@@ -71,10 +71,30 @@ const scriptStates = new Map<string, ScriptState>()
 const scriptViewsByPlayer = new Map<string, Map<string, PlayerScriptView & { act?: number; totalActs?: number }>>()
 const scriptConfirms = new Map<string, Set<string>>()
 
+const avatarSegmenter = new Intl.Segmenter("es", { granularity: "grapheme" })
+
+function splitAvatarGraphemes(value: string) {
+  return [...avatarSegmenter.segment(value)].map((entry) => entry.segment)
+}
+
+function countAvatarGraphemes(value: string) {
+  return splitAvatarGraphemes(value).length
+}
+
+function truncateAvatarText(value: string) {
+  return splitAvatarGraphemes(value).slice(0, 3).join("")
+}
+
+const AvatarTextSchema = z
+  .string()
+  .trim()
+  .min(1)
+  .refine((value) => countAvatarGraphemes(value) <= 3, "Máximo 3 letras o un solo emoji")
+
 const PlayerInputSchema = z.object({
   name: z.string().trim().min(1).max(20),
   avatarColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/),
-  avatarText: z.string().trim().min(1).max(3),
+  avatarText: AvatarTextSchema,
 })
 
 const RoomCodeSchema = z.string().regex(/^[A-Z0-9]{6}$/)
@@ -530,7 +550,7 @@ app.post("/api/rooms", async (c) => {
     token,
     name: parsed.data.name.trim(),
     avatarColor: parsed.data.avatarColor,
-    avatarText: parsed.data.avatarText.slice(0, 3),
+    avatarText: truncateAvatarText(parsed.data.avatarText),
     isHost: true,
     joinedAt: now,
   }
@@ -577,7 +597,7 @@ app.post("/api/rooms/:code/join", async (c) => {
       playerId: z.string().optional(),
       name: z.string().trim().min(1).max(20),
       avatarColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/),
-      avatarText: z.string().trim().min(1).max(3),
+      avatarText: AvatarTextSchema,
     })
     .safeParse(body)
   if (!withToken.success) {
@@ -608,7 +628,7 @@ app.post("/api/rooms/:code/join", async (c) => {
     token,
     name: name.trim(),
     avatarColor,
-    avatarText: avatarText.slice(0, 3),
+    avatarText: truncateAvatarText(avatarText),
     isHost: false,
     joinedAt: Date.now(),
   }

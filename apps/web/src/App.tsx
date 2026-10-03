@@ -69,13 +69,28 @@ function getWsUrl(code: string, playerId: string, token: string) {
   return `${proto}//${host}/ws?code=${encodeURIComponent(code)}&playerId=${encodeURIComponent(playerId)}&token=${encodeURIComponent(token)}`
 }
 
+const avatarSegmenter = new Intl.Segmenter("es", { granularity: "grapheme" })
+const avatarEmojiPattern = /\p{Extended_Pictographic}/u
+const avatarEmojiComponentPattern = /\p{Extended_Pictographic}|\p{Emoji_Modifier}|\uFE0F|\u200D/u
+
+function splitAvatarGraphemes(value: string) {
+  return [...avatarSegmenter.segment(value)].map((entry) => entry.segment)
+}
+
+function sanitizeAvatarText(raw: string, previous: string) {
+  const graphemes = splitAvatarGraphemes(raw)
+  const containsEmoji = graphemes.some((grapheme) => avatarEmojiComponentPattern.test(grapheme))
+  if (!containsEmoji) return graphemes.slice(0, 3).join("")
+  const singleEmoji = graphemes.length === 1 && avatarEmojiPattern.test(graphemes[0] ?? "")
+  return singleEmoji ? raw : previous
+}
+
 function App() {
   const [mode, setMode] = useState<ModalMode>(null)
   const [name, setName] = useState("")
   const [roomCode, setRoomCode] = useState("")
   const [avatarColor, setAvatarColor] = useState<string>(DEFAULT_COLOR)
-  const [avatarText, setAvatarText] = useState("¿?")
-  const [pickerOpen, setPickerOpen] = useState(false)
+  const [avatarText, setAvatarText] = useState("")
   const [nameError, setNameError] = useState("")
   const [codeError, setCodeError] = useState("")
   const [submitError, setSubmitError] = useState("")
@@ -116,6 +131,9 @@ function App() {
   const isCreate = mode === "create"
   const isJoin = mode === "join"
   const isOpen = mode !== null
+
+  const nameInitial = name.trim().charAt(0).toUpperCase()
+  const effectiveAvatarText = avatarText.trim() || nameInitial || "¿?"
 
   useEffect(() => {
     const storedCode = localStorage.getItem(STORAGE_ROOM_CODE)
@@ -161,8 +179,10 @@ function App() {
       setAvatarColor(storedColor)
     }
     const storedText = localStorage.getItem(STORAGE_TEXT_KEY)
-    if (storedText !== null) setAvatarText(storedText.slice(0, 3) || "¿?")
-    setPickerOpen(false)
+    if (storedText !== null) {
+      const cleaned = storedText === "¿?" ? "" : storedText
+      setAvatarText(sanitizeAvatarText(cleaned, ""))
+    }
     setSubmitError("")
     requestAnimationFrame(() => nameInputRef.current?.focus())
   }, [isOpen])
@@ -171,13 +191,12 @@ function App() {
     if (!isOpen) return
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
-        if (pickerOpen) setPickerOpen(false)
-        else setMode(null)
+        setMode(null)
       }
     }
     window.addEventListener("keydown", onKeyDown)
     return () => window.removeEventListener("keydown", onKeyDown)
-  }, [isOpen, pickerOpen])
+  }, [isOpen])
 
   useEffect(() => {
     expiredMessageRef.current = expiredMessage
@@ -526,7 +545,6 @@ function App() {
 
   function close() {
     setMode(null)
-    setPickerOpen(false)
     setNameError("")
     setCodeError("")
     setSubmitError("")
@@ -567,7 +585,7 @@ function App() {
     const trimmedName = name.trim()
     localStorage.setItem(STORAGE_KEY, trimmedName)
     localStorage.setItem(STORAGE_COLOR_KEY, avatarColor)
-    localStorage.setItem(STORAGE_TEXT_KEY, avatarText.slice(0, 3))
+    localStorage.setItem(STORAGE_TEXT_KEY, avatarText.trim())
     setIsSubmitting(true)
     setSubmitError("")
     try {
@@ -575,7 +593,7 @@ function App() {
         const res = await fetch("/api/rooms", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: trimmedName, avatarColor, avatarText: avatarText.slice(0, 3) || "¿?" }),
+          body: JSON.stringify({ name: trimmedName, avatarColor, avatarText: effectiveAvatarText }),
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.message ?? data.error ?? "No se pudo crear la sala")
@@ -590,14 +608,13 @@ function App() {
         setPlayerId(pid)
         setToken(tk)
         setMode(null)
-        setPickerOpen(false)
         window.history.replaceState({}, "", `/j/${code}`)
       } else {
         const normalized = roomCode.trim().toUpperCase()
         const res = await fetch(`/api/rooms/${normalized}/join`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: trimmedName, avatarColor, avatarText: avatarText.slice(0, 3) || "¿?" }),
+          body: JSON.stringify({ name: trimmedName, avatarColor, avatarText: effectiveAvatarText }),
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.message ?? data.error ?? "No se pudo unir a la sala")
@@ -612,7 +629,6 @@ function App() {
         setPlayerId(pid)
         setToken(tk)
         setMode(null)
-        setPickerOpen(false)
         window.history.replaceState({}, "", `/j/${code}`)
       }
     } catch (err) {
@@ -1002,41 +1018,37 @@ function App() {
                   className="avatar-text-input"
                   type="text"
                   value={avatarText}
-                  onChange={(e) => setAvatarText(e.target.value.slice(0, 3))}
-                  maxLength={3}
+                  onChange={(e) => {
+                    const raw = e.target.value
+                    setAvatarText((previous) => sanitizeAvatarText(raw, previous))
+                  }}
                   aria-label="Texto del avatar"
                   spellCheck={false}
                   autoComplete="off"
                 />
               </label>
-              <button type="button" className="avatar-edit" onClick={() => setPickerOpen((v) => !v)} aria-expanded={pickerOpen} aria-controls="avatar-palette">
-                {pickerOpen ? "Cerrar" : "Editar"}
-              </button>
-              {pickerOpen && (
-                <div id="avatar-palette" className="avatar-palette" role="group" aria-label="Paleta de colores">
-                  {AVATAR_COLORS.map((color) => {
-                    const selected = color === avatarColor
-                    return (
-                      <button
-                        key={color}
-                        type="button"
-                        className={`palette-swatch ${selected ? "palette-swatch--selected" : ""}`}
-                        style={{ background: color }}
-                        onClick={() => selectColor(color)}
-                        aria-label={`Color ${color}`}
-                        aria-pressed={selected}
-                      >
-                        {selected && <span className="palette-check" aria-hidden="true"><Check size={14} color="white" /></span>}
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
+              <div id="avatar-palette" className="avatar-palette" role="group" aria-label="Paleta de colores">
+                {AVATAR_COLORS.map((color) => {
+                  const selected = color === avatarColor
+                  return (
+                    <button
+                      key={color}
+                      type="button"
+                      className={`palette-swatch ${selected ? "palette-swatch--selected" : ""}`}
+                      style={{ background: color }}
+                      onClick={() => selectColor(color)}
+                      aria-label={`Color ${color}`}
+                      aria-pressed={selected}
+                    >
+                      {selected && <span className="palette-check" aria-hidden="true"><Check size={14} color="white" /></span>}
+                    </button>
+                  )
+                })}
+              </div>
             </div>
 
             <form className="modal-form" onSubmit={handleSubmit} noValidate>
               <label className="field">
-                <span className="field-label">Tu nombre</span>
                 <input
                   ref={nameInputRef}
                   className={`field-input ${nameError ? "field-input--error" : ""}`}
@@ -1047,6 +1059,7 @@ function App() {
                   maxLength={20}
                   autoComplete="nickname"
                   spellCheck={false}
+                  aria-label="Tu nombre"
                 />
                 {nameError ? <span className="field-error">{nameError}</span> : null}
               </label>

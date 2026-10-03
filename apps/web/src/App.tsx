@@ -1055,7 +1055,7 @@ function App() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ej. Mauro"
+                  placeholder="Ingresá tu nombre"
                   maxLength={20}
                   autoComplete="nickname"
                   spellCheck={false}
